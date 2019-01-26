@@ -7,11 +7,9 @@ Software Engineering, Spring 2019
 ### M.V.P. (Minimum Viable Product):
   * ...
   
-### Wire-Frame:
-  * [Here](/Wire_Frame.md)
+### Wire-Frame [here](/Wire_Frame.md)
 
-### Product Backlog: 
-  * [Here](/Product_Backlog.md)
+### Product Backlog [here](/Product_Backlog.md)
 
 ### Team Members:
 1. Luke R. Prescott
