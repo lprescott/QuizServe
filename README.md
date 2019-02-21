@@ -16,6 +16,12 @@ Software Engineering, Spring 2019
     * lprescott@albany.edu
     * 518-466-8280
     * @lprescott
-2. ...
-    * ...
+2. Sean Loucks
+3. Jack Holden
+4. Max Moore
+5. Chin Wa Cheung
+6. Will Dahl
+7. Gary Passarelli
     
+### Comma Seperated list for Quizzes
+Luke Prescott, Sean Loucks, Jack Holden, Max Moore, Chin Wa Cheung, Will Dahl, Gary Passarelli
