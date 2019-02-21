@@ -1,6 +1,8 @@
 # ICSI 418 Group Project
 Software Engineering, Spring 2019
 
+## Assignment [here](https://github.com/lprescott/ICSI418-Group-Project/blob/master/Final%20Project%20for%20CSI%20418%20Spring%202019.pdf)
+
 ## Initiative: 
   * ...
 
