@@ -1,5 +1,4 @@
-# Final Project
-### ISCI-418Y, Software Engineering, Spring 2019
+# Final Project for ISCI-418Y, Software Engineering, Spring 2019
 
 ### [Slack Group Chat Invite Link](https://join.slack.com/t/icsi-418team/shared_invite/enQtNTU4NjUxODQ4NTQ2LTM2MDMwY2ExM2U0YjU0ZjMzNzkzY2JlNGFiMTQ4YWJlMjBkM2JmNTMyZThlMWRkZmYxZjhhZTcxYWQ5M2E5Y2I)
 
@@ -10,9 +9,6 @@
 ### [Trello](https://trello.com/invite/b/pfH92DPN/355ce0c1f77e07fc7a083b350d3e0692/icsi-418-group-project)
 
 ### [Assignment PDF](https://github.com/lprescott/ICSI418-Group-Project/blob/master/Final%20Project%20for%20CSI%20418%20Spring%202019.pdf)
-
-### M.V.P. (Minimum Viable Product):
-  * A web based testing tool that can be used to manage and administer tests.
   
 ### Team Members:
 1. Luke R. Prescott
