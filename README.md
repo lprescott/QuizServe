@@ -2,7 +2,7 @@
 
 ### [Slack Group Chat Invite Link](https://join.slack.com/t/icsi-418team/shared_invite/enQtNTU4NjUxODQ4NTQ2LTM2MDMwY2ExM2U0YjU0ZjMzNzkzY2JlNGFiMTQ4YWJlMjBkM2JmNTMyZThlMWRkZmYxZjhhZTcxYWQ5M2E5Y2I)
 
-### [Slack URL/Team Code](icsi-418team.slack.com): icsi-418team.slack.com
+### Slack URL/Team Code: icsi-418team.slack.com
 
 ### [Wire-Frame](https://drive.google.com/file/d/1x-5YBpBQQn3sGen98tNRY536cOMy9JH7/view?usp=sharing)
 
