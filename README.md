@@ -1,8 +1,7 @@
 # Final Project for ISCI-418Y, Software Engineering, Spring 2019
 
 ### [Slack Group Chat Invite Link](https://join.slack.com/t/icsi-418team/shared_invite/enQtNTU4NjUxODQ4NTQ2LTM2MDMwY2ExM2U0YjU0ZjMzNzkzY2JlNGFiMTQ4YWJlMjBkM2JmNTMyZThlMWRkZmYxZjhhZTcxYWQ5M2E5Y2I)
-
-### Slack URL/Team Code: icsi-418team.slack.com
+1. Team Code: __icsi-418team__.slack.com
 
 ### [Wire-Frame](https://drive.google.com/file/d/1x-5YBpBQQn3sGen98tNRY536cOMy9JH7/view?usp=sharing)
 
@@ -12,11 +11,6 @@
   
 ### Team Members:
 1. Luke R. Prescott
-    * email: lprescott@albany.edu
-    * phone: 518-466-8280
-    * github: @lprescott
-    * slack: @lprescott
-    * trello: @lprescott
 2. Sean Loucks
 3. Jack Holden
 4. Max Moore
