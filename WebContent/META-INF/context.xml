@@ -3,7 +3,7 @@
 <Context>
     <Resource name="jdbc/Henry"
         auth="Container"
-        driverClassName="com.mysql.jdbc.Driver"
+        driverClassName="com.mysql.cj.jdbc.Driver"
         type="javax.sql.DataSource"
         username="eclipse"
         password="csi2019"
