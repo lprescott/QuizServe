@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<Context>
+    <Resource name="jdbc/Henry"
+        auth="Container"
+        driverClassName="com.mysql.jdbc.Driver"
+        type="javax.sql.DataSource"
+        username="eclipse"
+        password="csi2019"
+        url="jdbc:mysql://localhost:3306/Henry"/>
+</Context>
