@@ -1,4 +1,4 @@
-# ICSI418-Group-Project
+# ICSI418-Group-Project-JSP-Example
 Software engineering, ICSI 418, group final project.
 
 ### This is a simple JSP dynamic web app example where you access a database called Henry, printing out the below attributes of the author table to a live page.
