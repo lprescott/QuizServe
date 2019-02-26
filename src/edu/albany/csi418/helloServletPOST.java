@@ -17,14 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class helloServlet
  */
-@WebServlet("/helloServlet")
-public class helloServlet extends HttpServlet {
+@WebServlet("/helloServletPOST")
+public class helloServletPOST extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public helloServlet() {
+    public helloServletPOST() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,5 +41,4 @@ public class helloServlet extends HttpServlet {
 		writer.println("<h1>Hello " + yourName + "</h1>");
 		writer.close();
 	}
-
 }

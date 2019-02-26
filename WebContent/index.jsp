@@ -15,10 +15,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<!-- Forward, Hello World! -->
 	Hello World!
 	<br /> 
 	
+	<h1> Using JSP, think "Java code in HTML"</h1>
 	<!-- Part 1, Printing some data from the database -->
 	<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver"
 		url="jdbc:mysql://localhost/Henry" user="eclipse" password="csi2019" />
@@ -41,12 +43,18 @@
 	</table>
 	<br />
 	
-	<!-- Part 2, Calling a simple java file (servlet) -->
-	<form action="helloServlet" method="post">
+	<h1> Using Servlets, think "HTML in Java code"</h1>
+	<h2> POST example</h2>
+	<!-- Part 2, Calling a simple java file (servlet) - POST -->
+	<form action="helloServletPOST" method="post">
 	    Enter your name: <input type="text" name="yourName" size="20">
 	    <input type="submit" value="Call Servlet" />
 	</form>
 	<br />
+	
+	<h2> GET example</h2>
+	<!-- Part 3, Going to a a simple java file (servlet) - GET -->
+	<a href="/ICSI418-Group-Project/helloServletGET">What time is it?</a>
 	
 </body>
 </html>
