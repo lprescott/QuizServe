@@ -1,4 +1,3 @@
-/build/
 # Compiled class file
 *.class
 
@@ -12,15 +11,13 @@
 .mtj.tmp/
 
 # Package Files #
-# Since this is a simple project, we are not using maven -- therefore keeping these #
-# packages: #
-#*.jar
-#*.war
-#*.nar
-#*.ear
-#*.zip
-#*.tar.gz
-#*.rar
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
