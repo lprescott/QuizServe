@@ -1,8 +1,6 @@
-# ICSI418-Group-Project-JSP-Example
-Software engineering, ICSI 418, group final project.
-
-## The following database was used to illustrate a simple JSP example. See Henry Database MySQL initialization.txt.
-### Also as an example, are included to simple Java Servlets -- one POST, one GET.
+## ICSI418-Group-Project-JSP-Example
+* The following database was used to illustrate a simple JSP example. See Henry Database MySQL initialization.txt.
+* Also as an example, two simple Java Servlets are included -- one POST, one GET.
 
 ```
 mysql> Use Henry;
