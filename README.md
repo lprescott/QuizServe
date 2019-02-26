@@ -1,7 +1,8 @@
 # ICSI418-Group-Project-JSP-Example
 Software engineering, ICSI 418, group final project.
 
-### This is a simple JSP dynamic web app example where you access a database called Henry, printing out the below attributes of the author table to a live page.
+## The following database was used to illustrate a simple JSP example. See Henry Database MySQL initialization.txt.
+### Also as an example, are included to simple Java Servlets -- one POST, one GET.
 
 ```
 mysql> Use Henry;
