@@ -8,6 +8,7 @@
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
+      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
    </head>
    <body>
       <div class="header">
@@ -24,5 +25,8 @@
             </form>
          </div>
       </div>
+      <div class="footer">
+		 <p><i>A quiz app for the ICSI 418Y final project, Spring 2019.</i></p>
+	  </div>
    </body>
 </html>
