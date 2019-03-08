@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
 .login-main {
 	width: 360px;
-	padding: 8% 0 0;
+	padding: 16% 0 0;
 	margin: auto;
 }
 
@@ -65,44 +65,14 @@
 	clear: both;
 }
 
-.container .info {
-	margin: 50px auto;
-	text-align: center;
-}
-
-.container .info h1 {
-	margin: 0 0 15px;
-	padding: 0;
-	font-size: 36px;
-	font-weight: 300;
-	color: #1a1a1a;
-}
-
-.container .info span {
-	color: #4d4d4d;
-	font-size: 12px;
-}
-
-.container .info span a {
-	color: #000000;
-	text-decoration: none;
-}
-
-.container .info span .fa {
-	color: #ef3b3a;
-}
-
 html {
-    height: 100%;
-
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-
-    background: rgba(147, 206, 222, 1);
-    background-repeat:no-repeat;
-
+	height: 100%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background: rgba(147, 206, 222, 1);
+	background-repeat: no-repeat;
 	background: -moz-linear-gradient(left, rgba(147, 206, 222, 1) 0%, rgba(73, 165, 191, 1) 100%);
 	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(147, 206, 222, 1)), color-stop(100%, rgba(73, 165, 191, 1)));
 	background: -webkit-linear-gradient(left, rgba(147, 206, 222, 1) 0%, rgba(73, 165, 191, 1) 100%);
@@ -110,8 +80,7 @@ html {
 	background: -ms-linear-gradient(left, rgba(147, 206, 222, 1) 0%, rgba(73, 165, 191, 1) 100%);
 	background: linear-gradient(to right, rgba(147, 206, 222, 1) 0%, rgba(73, 165, 191, 1) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#49a5bf', GradientType=1);
-    
-    font-family: "Open Sans", sans-serif;
+	font-family: "Open Sans", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
