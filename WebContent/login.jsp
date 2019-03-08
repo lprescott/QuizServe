@@ -18,8 +18,8 @@
       <div class="login-main">
          <div class="form-container">
             <form class="login-form" action="LoginServlet" method="post">
-               <input id="email" name="email" type="text" placeholder="email"/>
-               <input id="password" name="password" type="password" placeholder="password"/>
+               <input id="email" name="email" type="email" placeholder="email" required>
+               <input id="password" name="password" type="password" placeholder="password" required>
                <input id="submit" type="submit" value="LOGIN">
             </form>
          </div>
