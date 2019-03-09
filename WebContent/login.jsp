@@ -26,7 +26,7 @@
          </div>
       </div>
       <div class="footer">
-		 <p><i>A quiz app for the ICSI 418Y final project, Spring 2019.</i></p>
+		 <p>A quiz app for the ICSI 418Y final project, Spring 2019.</p>
 	  </div>
    </body>
 </html>
