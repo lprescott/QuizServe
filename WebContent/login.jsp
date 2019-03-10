@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-   pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html;" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
    <head>
-      <meta charset="ISO-8859-1">
+      <meta content="text/html;" charset="UTF-8">
       <title>Login</title>
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
@@ -26,7 +25,7 @@
          </div>
       </div>
       <div class="footer">
-		 <p>A quiz app for the ICSI 418Y final project, Spring 2019.</p>
+		 <p>A quiz application for the ICSI 418Y final project, Spring 2019.</p>
 	  </div>
    </body>
 </html>
