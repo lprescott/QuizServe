@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.sql.*;
+
 /**
  * Servlet implementation class LoginServlet
  */
@@ -35,6 +37,19 @@ public class LoginServlet extends HttpServlet {
 		PrintWriter writer = response.getWriter();
 		writer.println("<h1>Email: " + email + "</h1>");
 		writer.println("<h1>Password: " + password + "</h1>");
+
+
+		try{
+			Class.forName("com.mysql.jdbc.Driver");  
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/QUIZ","root","csi2019"); 
+		
+			
+
+
+			connection.close();
+		} catch(Exception e){
+			writer.println("<h1>" + e + "</h1>");
+		}
 
 		writer.close();
 	}
