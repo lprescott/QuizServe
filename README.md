@@ -12,7 +12,7 @@
 ### [Trello Invite Link](https://trello.com/invite/b/pfH92DPN/355ce0c1f77e07fc7a083b350d3e0692/icsi-418-group-project)
 * A repository/task manager for hosting our product backlog and sprints
 
-### [Assignment PDF](https://github.com/lprescott/ICSI418-Group-Project/blob/master/Final%20Project%20for%20CSI%20418%20Spring%202019.pdf)
+### [Assignment PDF](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/Final%20Project%20for%20CSI%20418%20Spring%202019.pdf)
   
 ### Team Members:
 1. Luke R. Prescott
