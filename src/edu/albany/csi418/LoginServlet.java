@@ -12,13 +12,13 @@ import javax.servlet.http.HttpSession;
 
 import java.sql.*;
 
-import edu.albany.csi418.DatabaseLogin;
+import edu.albany.csi418.LoginEnum;
 
 /**
  * Servlet implementation class LoginServlet
  * 
  * This servlet connects to our QUIZ MySQL database, checking if the posted login information corresponds to known user/admin
- * logins and/or returns/redirects the the relavent information/page.
+ * logins and/or returns/redirects the the relevant information/page.
  */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 		
 		try {
 	         // Open a connection
-	         Connection DB_Connnection = DriverManager.getConnection(DatabaseLogin.JDBC_HOST.getValue(), DatabaseLogin.USERNAME.getValue(), DatabaseLogin.PASSWORD.getValue());
+	         Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 
 	         // Execute SQL queries
 	         Statement USER_SQL_Statement = DB_Connnection.createStatement();

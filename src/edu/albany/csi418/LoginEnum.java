@@ -5,14 +5,14 @@ package edu.albany.csi418;
  * relavent MySQL database. This also allows for ease of change when pushing to the cloud
  * if need be.
  */
-public enum DatabaseLogin {
-	JDBC_HOST("jdbc:mysql://localhost:3306/QUIZ"),
-	USERNAME("eclipse"),
-	PASSWORD("csi2019");
+public enum LoginEnum {
+	hostname("jdbc:mysql://localhost:3306/QUIZ"),
+	username("eclipse"),
+	password("csi2019");
 	
 	private final String value;
 	
-	private DatabaseLogin(String value) {
+	private LoginEnum(String value) {
 		this.value = value;
 	}
 
