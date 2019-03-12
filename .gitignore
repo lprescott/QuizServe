@@ -25,3 +25,6 @@ hs_err_pid*
 # Build path for maven project
 /target/
 /build/
+
+/.settings
+/.classpath
