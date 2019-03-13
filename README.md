@@ -6,8 +6,9 @@
 ### [Wire-Frame Invite Link](https://drive.google.com/file/d/1x-5YBpBQQn3sGen98tNRY536cOMy9JH7/view?usp=sharing)
 * A [draw.io](https://www.draw.io) diagram hosted on Google Drive
 
-### [Entity Relationship Diagram Invite Link](https://drive.google.com/file/d/1XlezssqVcUBls8oMyGCVEdJGmtN95HkN/view?usp=sharing)
+### Entity Relationship Diagram
 * A [draw.io](https://www.draw.io) diagram hosted on Google Drive
+![ICSI 418, Group Project, Entity Relationship Diagram](https://github.com/lprescott/ICSI418-Group-Project/project-logistics/er-diagram.png)
 
 ### [Trello Invite Link](https://trello.com/invite/b/pfH92DPN/355ce0c1f77e07fc7a083b350d3e0692/icsi-418-group-project)
 * A repository/task manager for hosting our product backlog and sprints
