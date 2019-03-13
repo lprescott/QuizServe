@@ -55,6 +55,10 @@ public class LoginServlet extends HttpServlet {
 
 		
 		try {
+			
+			 //Load the Connector/J
+			 Class.forName("com.mysql.cj.jdbc.Driver"); 
+
 	         // Open a connection
 	         Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 
