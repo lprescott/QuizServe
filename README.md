@@ -8,7 +8,7 @@
 
 ### Entity Relationship Diagram
 * A [draw.io](https://www.draw.io) diagram hosted on Google Drive
-![ICSI 418, Group Project, Entity Relationship Diagram](https://github.com/lprescott/ICSI418-Group-Project/project-logistics/er-diagram.png)
+![ICSI 418, Group Project, Entity Relationship Diagram](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/er-diagram.png)
 
 ### [Trello Invite Link](https://trello.com/invite/b/pfH92DPN/355ce0c1f77e07fc7a083b350d3e0692/icsi-418-group-project)
 * A repository/task manager for hosting our product backlog and sprints
