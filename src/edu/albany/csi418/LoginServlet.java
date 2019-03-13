@@ -103,13 +103,21 @@ public class LoginServlet extends HttpServlet {
 
 	         } else if(isInactiveUser == true) {
 		     	writer.println("<br><h1> Inactive Login </h1>");
+		     	
+		     	//return to login page with error binded to request
+		     	request.setAttribute("error", "User Account Disabled");
+		     	request.getRequestDispatcher("login.jsp").forward(request, response);
 
 	         } else if(isValidAdmin == true) {
 		     	writer.println("<br><h1> Admin Login </h1>");
+		     	
 
 	         } else {
 	     		writer.println("<br><h1> Invalid Login </h1>");
-	     		
+		     
+		     	//return to login page with error binded to request
+		     	request.setAttribute("error", "Invalid Login Credentials");
+		     	request.getRequestDispatcher("login.jsp").forward(request, response);
 	         }
 
 	         // Clean-up environment
@@ -126,5 +134,16 @@ public class LoginServlet extends HttpServlet {
 		} catch(Exception e) {
 			e.printStackTrace();
 		} 
+	}
+	
+	public static void invalidateOldSession(HttpServletRequest request) {
+		
+		//get old session
+		HttpSession oldSession = request.getSession(false);
+		
+		//invalidate
+		if (oldSession != null) {
+            oldSession.invalidate();
+		}
 	}
 }
