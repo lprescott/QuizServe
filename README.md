@@ -1,14 +1,11 @@
 # Final Project for ISCI-418Y, Software Engineering, Spring 2019
 
-### [Group Chat Invite Link](https://join.slack.com/t/icsi-418team/shared_invite/enQtNTU4NjUxODQ4NTQ2LTM2MDMwY2ExM2U0YjU0ZjMzNzkzY2JlNGFiMTQ4YWJlMjBkM2JmNTMyZThlMWRkZmYxZjhhZTcxYWQ5M2E5Y2I)
-* [Slack](https://www.slack.com) Team Code: __icsi-418team__.slack.com
-
-### [Wire-Frame Invite Link](https://drive.google.com/file/d/1x-5YBpBQQn3sGen98tNRY536cOMy9JH7/view?usp=sharing)
-* A [draw.io](https://www.draw.io) diagram hosted on Google Drive
-
 ### Entity Relationship Diagram
 * A [draw.io](https://www.draw.io) diagram hosted on Google Drive
 ![ICSI 418, Group Project, Entity Relationship Diagram](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/er-diagram.png)
+
+### [Group Chat Invite Link](https://join.slack.com/t/icsi-418team/shared_invite/enQtNTU4NjUxODQ4NTQ2LTM2MDMwY2ExM2U0YjU0ZjMzNzkzY2JlNGFiMTQ4YWJlMjBkM2JmNTMyZThlMWRkZmYxZjhhZTcxYWQ5M2E5Y2I)
+* [Slack](https://www.slack.com) Team Code: __icsi-418team__.slack.com
 
 ### [Trello Invite Link](https://trello.com/invite/b/pfH92DPN/355ce0c1f77e07fc7a083b350d3e0692/icsi-418-group-project)
 * A repository/task manager for hosting our product backlog and sprints
