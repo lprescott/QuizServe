@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -105,19 +104,18 @@ public class Login extends HttpServlet {
                 //Expiration in 10 minutes
                 session.setMaxInactiveInterval(10 * 60);
                 
-                //Add a cookie labelling this session as user
-                Cookie message = new Cookie("user-type", "user");
-                response.addCookie(message);
+                //Add session email attribute, and user-type
+                session.setAttribute("email", email);
+                session.setAttribute("user-type", "user");
                 
                 //redirect to user main page
-                request.setAttribute("email", email);
-                request.getRequestDispatcher("User.jsp").forward(request, response);
+                request.getRequestDispatcher("/user/main.jsp").forward(request, response);
 
             } else if (isInactiveUser == true) {
             	
                 //return to login page with error binded to request
                 request.setAttribute("error", "User Account Disabled");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
 
             } else if (isValidAdmin == true) {  	
           
@@ -130,20 +128,18 @@ public class Login extends HttpServlet {
                 //Expiration in 10 minutes
                 session.setMaxInactiveInterval(10 * 60);
                 
-                //Add a cookie labelling this session as admin
-                Cookie message = new Cookie("user-type", "admin");
-                response.addCookie(message);
+                //Add session email attribute, and user-type
+                session.setAttribute("email", email);
+                session.setAttribute("user-type", "admin");
 
                 //redirect to admin main page
-                request.setAttribute("email", email);
-                request.getRequestDispatcher("Administrator.jsp").forward(request, response);
+                request.getRequestDispatcher("/admin/main.jsp").forward(request, response);
 
             } else {
             	
                 //return to login page with error binded to request
                 request.setAttribute("error", "Invalid Login Credentials");
-                request.setAttribute("email", email);
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
+                request.getRequestDispatcher("/user/main.jsp").forward(request, response);
             }
 
             // Clean-up environment
