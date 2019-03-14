@@ -15,22 +15,22 @@
    </head>
    <body>
       <div class="header">
-         <a class="logo" href="${pageContext.request.contextPath}/login.jsp"><img style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
+         <a class="logo" href="${pageContext.request.contextPath}/Login.jsp"><img style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
          <div class="logo-label">  </div>
-         <a class="text" href="${pageContext.request.contextPath}/login.jsp"><i>You are not logged in.</i></a>
+         <a class="text" href="${pageContext.request.contextPath}/Login.jsp"><i>You are not logged in.</i></a>
       </div>
       <div class="login-main">
          <div class="form-container">
-            <form class="login-form" action="LoginServlet" method="post">
+            <form class="login-form" action="Login" method="post">
                <input id="email" name="email" type="email" placeholder="email" required>
                <input id="password" name="password" type="password" placeholder="password" required>
                <input id="submit" type="submit" value="LOGIN">
-               <c:if test="${not empty error}">
-                  <div id=error>
-                     <p>${error}</p>
-                  </div>
-               </c:if>
             </form>
+            <c:if test="${not empty error}">
+	           <div id=error>
+	               <p>${error}</p>
+	           </div>
+         	</c:if>
          </div>
       </div>
       <div class="footer">
