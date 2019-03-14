@@ -115,7 +115,7 @@ public class Login extends HttpServlet {
             	
                 //return to login page with error binded to request
                 request.setAttribute("error", "User Account Disabled");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
 
             } else if (isValidAdmin == true) {  	
           

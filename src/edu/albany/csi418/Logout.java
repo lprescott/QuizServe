@@ -40,7 +40,7 @@ public class Logout extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		invalidateOldSession(request);
-		response.sendRedirect("Login.jsp");
+		response.sendRedirect("login.jsp");
 	}
 	
 

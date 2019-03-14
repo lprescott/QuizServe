@@ -23,7 +23,7 @@ public class Authentication implements Filter {
         HttpSession session = request.getSession(false);
                 	
         if ((session == null) || (session.getAttribute("email") == null)) {  
-        	response.sendRedirect(request.getContextPath() + "/Login.jsp");
+        	response.sendRedirect(request.getContextPath() + "/login.jsp");
         } else {
         	arg2.doFilter(request, response);
         }

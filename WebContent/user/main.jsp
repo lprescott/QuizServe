@@ -12,7 +12,7 @@
 </head>
 <body>
    <div class="header">
-      <a class="logo" href="${pageContext.request.contextPath}/Login.jsp"><img style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
+      <a class="logo" href="${pageContext.request.contextPath}/login.jsp"><img style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
       <div class="logo-label"></div>
       <p>Logged in as ${email}.</p> 
       <form action="Logout" method="post"><input type="submit" value="Logout?" ></form>
