@@ -104,8 +104,9 @@ public class Login extends HttpServlet {
                 //Expiration in 10 minutes
                 session.setMaxInactiveInterval(10 * 60);
                 
-                //Add session email attribute
+                //Add session email attribute, and user-type
                 session.setAttribute("email", email);
+                session.setAttribute("user-type", "user");
                 
                 //redirect to user main page
                 request.getRequestDispatcher("/user/main.jsp").forward(request, response);
@@ -127,8 +128,9 @@ public class Login extends HttpServlet {
                 //Expiration in 10 minutes
                 session.setMaxInactiveInterval(10 * 60);
                 
-                //Add session email attribute
+                //Add session email attribute, and user-type
                 session.setAttribute("email", email);
+                session.setAttribute("user-type", "admin");
 
                 //redirect to admin main page
                 request.getRequestDispatcher("/admin/main.jsp").forward(request, response);

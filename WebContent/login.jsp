@@ -14,10 +14,12 @@
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
    </head>
    <body>
-      <div class="header">
-         <a class="logo" href="${pageContext.request.contextPath}/login.jsp"><img style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
-         <div class="logo-label">  </div>
-      </div>
+        <div class="header">
+	      <a class="logo" href="${pageContext.request.contextPath}/login.jsp"><img style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
+	      <div class="logo-label">  </div>
+	      <form action="Logout" method="post"><input style="text-decoration: none !important;" type="submit" value="Clear Session" ></form>
+	   </div>
+   
       <div class="login-main">
          <div class="form-container">
             <form class="login-form" action="Login" method="post">
