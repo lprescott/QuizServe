@@ -105,13 +105,11 @@ public class Login extends HttpServlet {
                 //Expiration in 10 minutes
                 session.setMaxInactiveInterval(10 * 60);
                 
-                //Add a cookie labelling this session as user
-                Cookie message = new Cookie("user-type", "user");
-                response.addCookie(message);
+                //Add session email attribute
+                session.setAttribute("email", email);
                 
                 //redirect to user main page
-                request.setAttribute("email", email);
-                request.getRequestDispatcher("User.jsp").forward(request, response);
+                request.getRequestDispatcher("/user/main.jsp").forward(request, response);
 
             } else if (isInactiveUser == true) {
             	
@@ -130,19 +128,16 @@ public class Login extends HttpServlet {
                 //Expiration in 10 minutes
                 session.setMaxInactiveInterval(10 * 60);
                 
-                //Add a cookie labelling this session as admin
-                Cookie message = new Cookie("user-type", "admin");
-                response.addCookie(message);
+                //Add session email attribute
+                session.setAttribute("email", email);
 
                 //redirect to admin main page
-                request.setAttribute("email", email);
                 request.getRequestDispatcher("/admin/main.jsp").forward(request, response);
 
             } else {
             	
                 //return to login page with error binded to request
                 request.setAttribute("error", "Invalid Login Credentials");
-                request.setAttribute("email", email);
                 request.getRequestDispatcher("/user/main.jsp").forward(request, response);
             }
 

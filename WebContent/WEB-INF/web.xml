@@ -18,12 +18,12 @@
 	</servlet>
 
 	<filter>
-		<filter-name>Authentication</filter-name>
+		<filter-name>authentication</filter-name>
 		<filter-class>edu.albany.csi418.Authentication</filter-class>
 	</filter>
 	
 	<filter-mapping>
-		<filter-name>Authentication</filter-name>
+		<filter-name>authentication</filter-name>
 		<url-pattern>/admin/*</url-pattern>
 		<url-pattern>/user/*</url-pattern>
 	  	<dispatcher>REQUEST</dispatcher> 

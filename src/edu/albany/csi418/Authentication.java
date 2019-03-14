@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -22,8 +21,8 @@ public class Authentication implements Filter {
         HttpServletResponse response = (HttpServletResponse) arg1;
 
         HttpSession session = request.getSession(false);
-        
-        if (session == null) {  
+                	
+        if ((session == null) || (session.getAttribute("email") == null)) {  
         	response.sendRedirect(request.getContextPath() + "/Login.jsp");
         } else {
         	arg2.doFilter(request, response);

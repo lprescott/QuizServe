@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>Admin Home</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
@@ -15,7 +15,7 @@
       <a class="logo" href="${pageContext.request.contextPath}/Login.jsp"><img style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
       <div class="logo-label">  </div>
       <p>Logged in as ${email}. </p> 
-      <form action="../Logout" method="post"><input type="submit" value="Logout?" ></form>
+      <form action="Logout" method="post"><input type="submit" value="Logout?" ></form>
    </div>
    
    
