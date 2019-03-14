@@ -136,14 +136,14 @@ public class Login extends HttpServlet {
 
                 //redirect to admin main page
                 request.setAttribute("email", email);
-                request.getRequestDispatcher("Administrator.jsp").forward(request, response);
+                request.getRequestDispatcher("/admin/main.jsp").forward(request, response);
 
             } else {
             	
                 //return to login page with error binded to request
                 request.setAttribute("error", "Invalid Login Credentials");
                 request.setAttribute("email", email);
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
+                request.getRequestDispatcher("/user/main.jsp").forward(request, response);
             }
 
             // Clean-up environment
