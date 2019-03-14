@@ -139,7 +139,7 @@ public class Login extends HttpServlet {
             	
                 //return to login page with error binded to request
                 request.setAttribute("error", "Invalid Login Credentials");
-                request.getRequestDispatcher("/user/main.jsp").forward(request, response);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
             }
 
             // Clean-up environment

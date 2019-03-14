@@ -2,7 +2,7 @@ package edu.albany.csi418;
 
 /*
  * This enumeration contains some commonly referenced values when connecting to the 
- * relavent MySQL database. This also allows for ease of change when pushing to the cloud
+ * relevant MySQL database. This also allows for ease of change when pushing to the cloud
  * if need be.
  */
 public enum LoginEnum {
