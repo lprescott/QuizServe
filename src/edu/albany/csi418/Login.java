@@ -30,15 +30,14 @@ public class Login extends HttpServlet {
      */
     public Login() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        String email = request.getParameter("email");
+
+    	String email = request.getParameter("email");
         String password = request.getParameter("password");
 
         // Flags set to true if user or admin is found
@@ -50,6 +49,8 @@ public class Login extends HttpServlet {
 
 
         try {
+        	
+        	Logout.invalidateOldSession(request);
 
             //Load the Connector/J
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -95,8 +96,6 @@ public class Login extends HttpServlet {
             // Control structure to determine type of login
             if (isValidUser == true) {
 
-                Logout.invalidateOldSession(request);
-
                 //generate a new session
                 //create jssessionid cookie
                 HttpSession session = request.getSession(true);
@@ -112,15 +111,13 @@ public class Login extends HttpServlet {
                 request.getRequestDispatcher("/user/main.jsp").forward(request, response);
 
             } else if (isInactiveUser == true) {
-            	
+            	            	
                 //return to login page with error binded to request
                 request.setAttribute("error", "User Account Disabled");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
 
             } else if (isValidAdmin == true) {  	
           
-            	Logout.invalidateOldSession(request);
-
                 //generate a new session
                 //create jssessionid cookie
                 HttpSession session = request.getSession(true);
