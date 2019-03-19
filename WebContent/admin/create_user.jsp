@@ -24,10 +24,10 @@
    
     <div class="login-main">
          <div class="form-container">
-            <form class="login-form" action="CreateUser" method="post">
-               <input id="email" name="email" type="email" placeholder="Users email" required>
-               <input id="password" name="password" type="password" placeholder="Users password" required>
-               <input id="submit" type="submit" value="Create User">
+            <form class="login-form" action="../CreateUser" method="post">
+               <input id="email" name="email" type="email" placeholder="user's email" required>
+               <input id="password" name="password" type="password" placeholder="user's password" required>
+               <input id="submit" type="submit" value="CREATE">
             </form>
             <c:if test="${not empty error}">
 	           <div id="error">
