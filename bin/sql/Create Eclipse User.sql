@@ -1,0 +1,1 @@
+CREATE USER 'eclipse'@'localhost' IDENTIFIED BY 'csi2019';

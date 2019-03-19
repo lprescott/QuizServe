@@ -6,7 +6,7 @@ package edu.albany.csi418;
  * if need be.
  */
 public enum LoginEnum {
-	hostname("jdbc:mysql://localhost:3306/QUIZ"),
+	hostname("jdbc:mysql://localhost:3306/QUIZ?&serverTimezone=US/Eastern"),
 	username("eclipse"),
 	password("csi2019");
 	

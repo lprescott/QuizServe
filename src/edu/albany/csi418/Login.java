@@ -149,7 +149,7 @@ public class Login extends HttpServlet {
             DB_Connnection.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
     }
 }
