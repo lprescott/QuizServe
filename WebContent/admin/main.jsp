@@ -6,8 +6,9 @@
 	<meta charset="UTF-8">
 	<title>Admin Home</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
 </head>
 <body>
    <div class="header">
@@ -15,7 +16,7 @@
       <div class="logo-label">  </div>
       <p>Logged in as ${email}. </p> 
       <a id="link" href="${pageContext.request.contextPath}/admin/create_user.jsp"> Create a user </a>
-      <form action="Logout" method="post"><input type="submit" value="Logout?" ></form>
+      <form action="../Logout" method="post"><input type="submit" value="Logout?" ></form>
    </div>
    
    

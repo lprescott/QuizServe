@@ -9,16 +9,17 @@
 	<meta content="text/html;" charset="UTF-8">
 	<title>Create a user</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
-      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
-      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
-      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
 </head>
 <body>
    <div class="header">
       <a class="logo" href="${pageContext.request.contextPath}/login.jsp"><img style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
       <div class="logo-label">  </div>
       <p>Logged in as ${email}. </p> 
-      <a href="main.jsp">Back to main page</a>
+      <a id="link" href="${pageContext.request.contextPath}/admin/main.jsp"> Go back </a>
+      <form action="../Logout" method="post"><input type="submit" value="Logout?" ></form>
    </div>
    
     <div class="login-main">
