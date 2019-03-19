@@ -28,7 +28,7 @@
                <input id="submit" type="submit" value="LOGIN">
             </form>
             <c:if test="${not empty error}">
-	           <div id=error>
+	           <div id="error">
 	               <p>${error}</p>
 	           </div>
          	</c:if>

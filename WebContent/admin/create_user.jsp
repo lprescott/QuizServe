@@ -30,8 +30,13 @@
                <input id="submit" type="submit" value="Create User">
             </form>
             <c:if test="${not empty error}">
-	           <div id=error>
+	           <div id="error">
 	               <p>${error}</p>
+	           </div>
+         	</c:if>
+    	    <c:if test="${not empty success}">
+	           <div id="success">
+	               <p>${success}</p>
 	           </div>
          	</c:if>
          </div>
