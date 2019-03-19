@@ -1,1 +1,0 @@
-GRANT ALL PRIVILEGES ON QUIZ.* TO 'eclipse'@'localhost';
