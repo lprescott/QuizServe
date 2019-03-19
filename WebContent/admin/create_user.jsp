@@ -6,11 +6,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+	<meta content="text/html;" charset="UTF-8">
 	<title>Create a user</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
+      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
+      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
+      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
 </head>
 <body>
    <div class="header">
@@ -34,3 +35,8 @@
          	</c:if>
          </div>
       </div>
+      <div class="footer">
+         <p>A quiz application for the ICSI 418Y final project, Spring 2019.</p>
+      </div>
+   </body>
+</html>
