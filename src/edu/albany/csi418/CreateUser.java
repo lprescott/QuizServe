@@ -27,7 +27,6 @@ public class CreateUser extends HttpServlet {
      */
     public CreateUser() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -39,6 +38,10 @@ public class CreateUser extends HttpServlet {
         
         try {
         	 Class.forName("com.mysql.cj.jdbc.Driver");
+        	 
+        	 //TODO Check if user exists
+        	 //TODO set success or error variable
+        	 //TODO Redirect back to create user page (see line 116, 117 in Login.java)
 
              // Open a connection
              Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
