@@ -35,28 +35,84 @@ public class CreateUser extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String password_confirmation = request.getParameter("password-confirm");
+        
+        //Check if passwords match
+        if(!password.equals(password_confirmation)) {
+        	response.sendRedirect("admin/create_user.jsp?success=false&error=Passwords%20Do%20Not%20Match");
+            return;
+        }
         
         try {
-        	 Class.forName("com.mysql.cj.jdbc.Driver");
-        	 
-        	 //TODO Check if user exists
-        	 //TODO set success or error variable
-        	 //TODO Redirect back to create user page (see line 116, 117 in Login.java)
+        	 //Load the Connector/J
+             Class.forName("com.mysql.cj.jdbc.Driver");
 
              // Open a connection
              Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
              
-             //Creates the query to be sent to the database
+             // Execute SQL queries
              Statement USER_SQL_Statement = DB_Connnection.createStatement();
-             String USER_SQL_Query = "INSERT INTO USERS (EMAIL, PASSWORD, IS_ACTIVE)\n" + 
-             		"VALUES (" + email + ", " + password + ", 1);";
+             String USER_SQL_Query = "SELECT EMAIL FROM USERS";
              
-             //executes the query
+             Statement ADMIN_SQL_Statement = DB_Connnection.createStatement();
+             String ADMIN_SQL_Query = "SELECT EMAIL FROM ADMINISTRATOR";
+             
              ResultSet USER_Results = USER_SQL_Statement.executeQuery(USER_SQL_Query);
+             ResultSet ADMIN_Results = ADMIN_SQL_Statement.executeQuery(ADMIN_SQL_Query);
+             
+             //Check if user exists with given email
+             while (USER_Results.next()) {
+            	 if (email.equals(USER_Results.getString("EMAIL"))) {
+            		 
+                     // Clean-up environment
+                     USER_Results.close();
+                     ADMIN_Results.close();
+
+                     USER_SQL_Statement.close();
+                     ADMIN_SQL_Statement.close();
+
+                     DB_Connnection.close();
+                     
+                     response.sendRedirect("admin/create_user.jsp?success=false&error=Existing%20User%20Email");
+                     return;
+            	 }
+             }
+             
+             //Check if admin exists with given email
+             while (ADMIN_Results.next()) {
+            	 if (email.equals(ADMIN_Results.getString("EMAIL"))) {
+                     
+                     // Clean-up environment
+                     USER_Results.close();
+                     ADMIN_Results.close();
+
+                     USER_SQL_Statement.close();
+                     ADMIN_SQL_Statement.close();
+
+                     DB_Connnection.close();
+                     
+                     response.sendRedirect("admin/create_user.jsp?success=false&error=Existing%20Admin%20Email");
+                     return;
+            	 }
+             }
+             
+             //Insert into DB
+             
+             //Email User Information
+             
+             // Clean-up environment
+             USER_Results.close();
+             ADMIN_Results.close();
+
+             USER_SQL_Statement.close();
+             ADMIN_SQL_Statement.close();
+
+             DB_Connnection.close();
+        
+             response.sendRedirect("admin/create_user.jsp?success=true");
         }
         catch(Exception e) {
         	System.out.println(e);
-        }
+        } 
 	}
-
 }
