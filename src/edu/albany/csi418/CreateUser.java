@@ -5,7 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,12 +22,24 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/CreateUser")
 public class CreateUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private String host;
+    	private String port;
+   	private String user;
+    	private String pass;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public CreateUser() {
         super();
+    }
+	public void init() {
+        // reads SMTP server setting from web.xml file
+        ServletContext context = getServletContext();
+        host = context.getInitParameter("host");
+        port = context.getInitParameter("port");
+        user = context.getInitParameter("user");
+        pass = context.getInitParameter("pass");
     }
 
 	/**
@@ -36,7 +49,12 @@ public class CreateUser extends HttpServlet {
 		String email = request.getParameter("email");
         String password = request.getParameter("password");
         String password_confirmation = request.getParameter("password-confirm");
-        
+	String recipient = request.getParameter("email");
+	//email subject and description
+        String subject = "New Account";
+        String content = ("A new account was created for you on a test-taking website."
+        		+ " Your Username is "+ email + "and your password is " + password);
+         String resultMessage = "";
         //Check if passwords match
         if(!password.equals(password_confirmation)) {
         	response.sendRedirect("admin/create_user.jsp?success=false&error=Passwords%20Do%20Not%20Match");
@@ -102,7 +120,9 @@ public class CreateUser extends HttpServlet {
              ADD_USER_Statement.executeUpdate(ADD_USER_STRING);
              
              //Email User Information
-             
+             EmailUtility.sendEmail(host, port, user, pass, recipient, subject,
+	                    content);
+	            resultMessage = "The e-mail was sent successfully";
              // Clean-up environment
              USER_Results.close();
              ADMIN_Results.close();
@@ -117,6 +137,7 @@ public class CreateUser extends HttpServlet {
         }
         catch(Exception e) {
         	System.out.println(e);
+		resultMessage = "There was an error: " + e.getMessage();
         } 
 	}
 }
