@@ -25,20 +25,25 @@
     <div class="login-main">
          <div class="form-container">
             <form class="login-form" action="../CreateUser" method="post">
-               <input id="email" name="email" type="email" placeholder="user's email" required>
-               <input id="password" name="password" type="password" placeholder="user's password" required>
+               <input id="email" name="email" type="email" placeholder="email" required>
+               <input id="password" name="password" type="password" placeholder="password" required>
+               <input id="password" name="password-confirm" type="password" placeholder="confirm password" required>
                <input id="submit" type="submit" value="CREATE">
             </form>
-            <c:if test="${not empty error}">
-	           <div id="error">
-	               <p>${error}</p>
-	           </div>
-         	</c:if>
-    	    <c:if test="${not empty success}">
-	           <div id="success">
-	               <p>${success}</p>
-	           </div>
-         	</c:if>
+            <%	
+            if(request.getParameter("success") != null) {
+            	 if (request.getParameter("success").equals("false")) {
+ 			        out.println("<div id=\"error\"><p>" + request.getParameter("error") + "</p></div>");
+ 			    }
+            }
+			%>
+			<%
+			if(request.getParameter("success") != null) {
+			    if (request.getParameter("success").equals("true")) {
+			    	out.println("<div id=\"success\"><p>Successfully Added User</p></div>");
+			    }
+			}
+			%>
          </div>
       </div>
       <div class="footer">
