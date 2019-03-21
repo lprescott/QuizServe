@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/CreateUser")
 public class CreateUser extends HttpServlet {
-    private static final long serialVersionUID = 1 L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
