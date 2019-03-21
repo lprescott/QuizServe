@@ -97,6 +97,9 @@ public class CreateUser extends HttpServlet {
              }
              
              //Insert into DB
+             Statement ADD_USER_Statement = DB_Connnection.createStatement();
+             String ADD_USER_STRING = "INSERT INTO USERS (EMAIL, PASSWORD, IS_ACTIVE) VALUES ('" + email + "', '" + password + "', 1)";
+             ADD_USER_Statement.executeUpdate(ADD_USER_STRING);
              
              //Email User Information
              
@@ -106,6 +109,7 @@ public class CreateUser extends HttpServlet {
 
              USER_SQL_Statement.close();
              ADMIN_SQL_Statement.close();
+             ADD_USER_Statement.close();
 
              DB_Connnection.close();
         
