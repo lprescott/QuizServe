@@ -3,8 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+	<meta content="text/html;" charset="UTF-8">
 	<title>User Home</title>
+	<link rel="shortcut icon" href="favicon.ico"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">

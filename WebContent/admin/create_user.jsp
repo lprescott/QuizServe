@@ -7,7 +7,8 @@
 <html>
 <head>
 	<meta content="text/html;" charset="UTF-8">
-	<title>Create a user</title>
+	<title>Create A User</title>
+	<link rel="shortcut icon" href="favicon.ico"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">

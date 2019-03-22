@@ -3,8 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+	<meta content="text/html;" charset="UTF-8">
 	<title>Admin Home</title>
+	<link rel="shortcut icon" href="favicon.ico"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
@@ -22,7 +23,30 @@
    <div class="main-container">
 	   <div class="main shadow">
          <!-- Content goes here. -->
-         Hello, World!
+         <h2>Admin Home</h2>
+		<p>Here you have CRUD access to users, questions, and tests.</p>
+		
+		<ul>
+		    <li>Questions
+		        <ul>
+		            <li>Create a new question, <a href="">here</a>.</li>
+		            <li>View all questions, <a href="">here</a>.</li>
+		        </ul>
+		    </li>
+		    <li>Users
+		        <ul>
+		            <li>Create a new user, <a href="${pageContext.request.contextPath}/admin/create_user.jsp">here</a>.</li>
+		            <li>View all users, <a href="">here</a>.</li>
+		        </ul>
+		    </li>
+		    <li>Tests
+		        <ul>
+		            <li>Create a new test, <a href="">here</a>.</li>
+		            <li>View all tests, <a href="">here</a>.</li>
+		        </ul>
+		    </li>
+		</ul>
+		
       </div>
    </div>
    
