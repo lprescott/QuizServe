@@ -1,4 +1,4 @@
-package edu.albany.csi418;
+package edu.albany.csi418.session;
 
 /*
  * This enumeration contains some commonly referenced values when connecting to the 

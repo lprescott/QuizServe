@@ -12,19 +12,19 @@
   </welcome-file-list>
   <servlet>
     <servlet-name>Login</servlet-name>
-    <servlet-class>edu.albany.csi418.Login</servlet-class>
+    <servlet-class>edu.albany.csi418.session.Login</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>Logout</servlet-name>
-    <servlet-class>edu.albany.csi418.Logout</servlet-class>
+    <servlet-class>edu.albany.csi418.session.Logout</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>CreateUser</servlet-name>
-    <servlet-class>edu.albany.csi418.CreateUser</servlet-class>
+    <servlet-class>edu.albany.csi418.main.CreateUser</servlet-class>
   </servlet>
   <filter>
     <filter-name>userAuthentication</filter-name>
-    <filter-class>edu.albany.csi418.UserAuthentication</filter-class>
+    <filter-class>edu.albany.csi418.filter.UserAuthentication</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>userAuthentication</filter-name>
@@ -32,7 +32,7 @@
   </filter-mapping>
   <filter>
     <filter-name>adminAuthentication</filter-name>
-    <filter-class>edu.albany.csi418.AdminAuthentication</filter-class>
+    <filter-class>edu.albany.csi418.filter.AdminAuthentication</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>adminAuthentication</filter-name>

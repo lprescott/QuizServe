@@ -1,4 +1,4 @@
-package edu.albany.csi418;
+package edu.albany.csi418.session;
 
 import java.io.IOException;
 

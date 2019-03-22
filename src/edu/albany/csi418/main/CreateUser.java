@@ -1,4 +1,4 @@
-package edu.albany.csi418;
+package edu.albany.csi418.main;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.albany.csi418.MailUtils;
+import edu.albany.csi418.session.LoginEnum;
 
 /**
  * Servlet implementation class CreateUser

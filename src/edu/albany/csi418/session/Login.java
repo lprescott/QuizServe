@@ -1,4 +1,4 @@
-package edu.albany.csi418;
+package edu.albany.csi418.session;
 
 import java.io.IOException;
 
@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import java.sql.*;
-
-import edu.albany.csi418.LoginEnum;
-import edu.albany.csi418.Logout;
 
 
 /**
