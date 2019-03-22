@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
 </head>
 <body>
-   <div class="header">
+   <div class="header shadow">
       <a class="logo" href="${pageContext.request.contextPath}/login.jsp"><img style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
       <div class="logo-label">  </div>
       <p>Logged in as ${email}. </p> 
@@ -23,7 +23,7 @@
    </div>
    
     <div class="login-main">
-         <div class="form-container">
+         <div class="form-container shadow">
             <form class="login-form" action="../CreateUser" method="post">
                <input id="email" name="email" type="email" placeholder="email" required>
                <input id="password" name="password" type="password" placeholder="password" required>
@@ -46,7 +46,7 @@
 			%>
          </div>
       </div>
-      <div class="footer">
+      <div class="footer shadow">
          <p>A quiz application for the ICSI 418Y final project, Spring 2019.</p>
       </div>
    </body>
