@@ -11,16 +11,21 @@
 
 </head>
 <body>
-   <div class="header">
+   <div class="header shadow">
       <a class="logo" href="${pageContext.request.contextPath}/login.jsp"><img style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
       <div class="logo-label"></div>
       <p>Logged in as ${email}.</p> 
       <form action="../Logout" method="post"><input type="submit" value="Logout?" ></form>
    </div>
    
+   <div class="main-container">
+	   <div class="main shadow">
+         <!-- Content goes here. -->
+         Hello, World!
+      </div>
+   </div>
    
-   
-   <div class="footer">
+   <div class="footer shadow">
       <p>A quiz application for the ICSI 418Y final project, Spring 2019.</p>
    </div>
 </body>
