@@ -10,6 +10,8 @@
 <head>
 <meta content="text/html;" charset="UTF-8">
 <title>Create A Question</title>
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/favicon.ico" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/main.css">
 <link rel="stylesheet" type="text/css"
