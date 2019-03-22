@@ -8,7 +8,7 @@
    <head>
       <meta content="text/html;" charset="UTF-8">
       <title>Login</title>
-  	  <link rel="shortcut icon" href="favicon.ico"/>  
+  	  <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico"/>  
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">

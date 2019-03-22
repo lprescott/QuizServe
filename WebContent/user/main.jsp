@@ -5,7 +5,7 @@
 <head>
 	<meta content="text/html;" charset="UTF-8">
 	<title>User Home</title>
-	<link rel="shortcut icon" href="favicon.ico"/>
+  	  <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico"/>  
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
@@ -13,7 +13,7 @@
 </head>
 <body>
    <div class="header shadow">
-      <a class="logo" href="${pageContext.request.contextPath}/login.jsp"><img style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
+      <a class="logo" href="${pageContext.request.contextPath}/login.jsp"><img class="shadow" style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
       <div class="logo-label"></div>
       <p>Logged in as ${email}.</p> 
       <form action="../Logout" method="post"><input type="submit" value="Logout?" ></form>
