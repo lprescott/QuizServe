@@ -31,6 +31,7 @@
 		        <ul>
 		            <li>Create a new question, <a href="">here</a>.</li>
 		            <li>View all questions, <a href="">here</a>.</li>
+		            <li>Test:Go Questions Management Center, <a href="${pageContext.request.contextPath}/admin/question_management.jsp">here</a>.</li>
 		        </ul>
 		    </li>
 		    <li>Users
