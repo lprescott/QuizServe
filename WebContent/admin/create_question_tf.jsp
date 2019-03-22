@@ -47,7 +47,7 @@
 					<textarea class="q_input_text" id="q_text" name="q_text" rows="10"
 						cols="30" placeholder="Question text goes here..." required></textarea>
 
-					<div>
+					<div class="padded-bottom">
 						<input type="checkbox" id="true" name="true"> <label
 							for="true">True</label> 
 						<input type="checkbox" id="false"
