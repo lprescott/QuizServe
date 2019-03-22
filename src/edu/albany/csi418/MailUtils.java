@@ -15,41 +15,54 @@ import javax.mail.internet.MimeMessage;
 
 public class MailUtils {
 	
-	public static void sendEmail(String host, String port,
-            final String userName, final String password, String toAddress,
-            String subject, String message) throws AddressException, MessagingException {
- 
+	//Team's new GMail
+	final static String teamEmail = "uaonlinequizproject@gmail.com";
+	final static String teamPassword = "csi-2019";
+
+	/**
+	 * Sends a email pertaining to a newly created user w/ their info.
+	 * @param userEmail
+	 * @param userPassword
+	 * @throws AddressException
+	 * @throws MessagingException
+	 */
+	public static void newUserMail(String userEmail, String userPassword) throws AddressException, MessagingException {
+		
         // sets SMTP server properties
-        Properties properties = new Properties();
-        properties.put("mail.smtp.host", host);
-        properties.put("mail.smtp.port", port);
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
-        
-        message = "Your PassWord is " + message;
-        
+		Properties properties = new Properties();
+		properties.put("mail.smtp.host", "smtp.gmail.com");
+		properties.put("mail.smtp.port", "587");
+		properties.put("mail.smtp.auth", "true");
+		properties.put("mail.smtp.starttls.enable", "true");
+
+		
         // creates a new session with an authenticator
         Authenticator auth = new Authenticator() {
             public PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(userName, password);
+                return new PasswordAuthentication(teamEmail, teamPassword);
             }
         };
- 
         Session session = Session.getInstance(properties, auth);
  
-        // creates a new e-mail message
-        Message msg = new MimeMessage(session);
- 
-        msg.setFrom(new InternetAddress(userName));
-        InternetAddress[] toAddresses = { new InternetAddress(toAddress) };
-        msg.setRecipients(Message.RecipientType.TO, toAddresses);
-        msg.setSubject(subject);
-        msg.setSentDate(new Date());
-        msg.setText(message);
- 
-        //Connect to smtp and send email
-        Transport.send(msg);
- 
-    }
+        try {
+            // creates a new e-mail msg
+			Message msg = new MimeMessage(session);
+			
+			msg.setFrom(new InternetAddress(teamEmail));
+			msg.setRecipients(Message.RecipientType.TO,
+				InternetAddress.parse(userEmail));
+			msg.setSubject("Newly Created Account Information");
+			msg.setSentDate(new Date());
+			msg.setText("Dear " + userEmail + ","
+				+ "\n\nYour password is: \"" + userPassword + "\""
+				+ "\n\nSincerely,"
+				+ "\nICSI-418 Team");
 
+	        //Connect to smtp and send email
+			Transport.send(msg);
+
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

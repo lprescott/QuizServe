@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.albany.csi418.MailUtils;
+
 /**
  * Servlet implementation class CreateUser
  * 
@@ -103,7 +105,7 @@ public class CreateUser extends HttpServlet {
             ADD_USER_Statement.executeUpdate(ADD_USER_STRING);
 
             //Email User Information
-            MailSend.newMail(email, password);
+            MailUtils.newUserMail(email, password);
 
             // Clean-up environment
             USER_Results.close();
@@ -117,7 +119,10 @@ public class CreateUser extends HttpServlet {
 
             response.sendRedirect("admin/create_user.jsp?success=true");
         } catch (Exception e) {
-            System.out.println(e);
+            
+        	//System.out.println(e);
+            response.sendRedirect("admin/create_user.jsp?success=false&error=Unknown%20Error");
+            return;
         }
     }
 }
