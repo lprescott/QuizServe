@@ -22,6 +22,7 @@
 	href="${pageContext.request.contextPath}/css/footer.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/create_question.css">
+<script src="${pageContext.request.contextPath}/js/checkBox.js"></script>
 </head>
 </head>
 <body>
@@ -50,10 +51,15 @@
 						cols="30" placeholder="Question text goes here..." required></textarea>
 
 					<div class="padded-bottom">
-						<input type="checkbox" id="true" name="true"> <label
-							for="true">True</label> 
-						<input type="checkbox" id="false"
-							name="false"> <label for="false">False</label>
+						Answer: <input class="cb" type="checkbox" id="true_cb"
+							name="true_cb" onchange="checkBoxUpdate(this)"> <label
+							for="true">True</label> <input class="cb" type="checkbox"
+							id="false_cb" name="false_cb" onchange="checkBoxUpdate(this)">
+						<label for="false">False</label>
+
+						<script>
+							
+						</script>
 					</div>
 
 					<div class="padded-bottom">

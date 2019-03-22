@@ -24,9 +24,6 @@
 			alt="SUNY Albany Seal"></a>
 		<div class="logo-label"></div>
 		<p>Logged in as ${email}.</p>
-		<a id="link"
-			href="${pageContext.request.contextPath}/admin/create_user.jsp">
-			Create a user </a>
 		<form action="../Logout" method="post">
 			<input type="submit" value="Logout?">
 		</form>

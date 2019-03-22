@@ -5,4 +5,5 @@
    width: 100%;
    background-color: white;
    text-align: center;
+   z-index: 1;
 }
