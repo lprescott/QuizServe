@@ -6,32 +6,25 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
-<head>
-<meta content="text/html;" charset="UTF-8">
-<title>Create A Question</title>
-<link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/favicon.ico" />
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/main.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/login.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/header.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/footer.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/create_question.css">
-<script src="${pageContext.request.contextPath}/js/checkBox.js"></script>
+	<meta content="text/html;" charset="UTF-8">
+	<title>Create A Question</title>
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/create_question.css">
+	<script src="${pageContext.request.contextPath}/js/checkBox.js"></script>
 </head>
-</head>
+
 <body>
 
 	<div class="header shadow">
-		<a class="logo" href="${pageContext.request.contextPath}/login.jsp"><img
-			class="shadow" style="max-height: 60px;"
-			src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
-			alt="SUNY Albany Seal"></a>
+		<a class="logo" href="${pageContext.request.contextPath}/login.jsp"><img class="shadow"
+				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
+				alt="SUNY Albany Seal"></a>
 		<div class="logo-label"></div>
 		<p>Logged in as ${email}.</p>
 		<a id="link" href="${pageContext.request.contextPath}/admin/main.jsp">
@@ -46,27 +39,18 @@
 			<!-- Content goes here. -->
 			<div class="form-container-question">
 				<form class="login-form" action="../CreateQuestion" method="post">
-
-					<textarea class="q_input_text" id="q_text" name="q_text" rows="10"
-						cols="30" placeholder="Question text goes here..." required></textarea>
-
+					<textarea class="q_input_text" id="q_text" name="q_text" rows="10" cols="30"
+						placeholder="Question text goes here..." required></textarea>
 					<div class="padded-bottom">
-						Answer: <input class="cb" type="checkbox" id="true_cb"
-							name="true_cb" onchange="checkBoxUpdate(this)"> <label
-							for="true">True</label> <input class="cb" type="checkbox"
-							id="false_cb" name="false_cb" onchange="checkBoxUpdate(this)">
+						Answer: <input class="cb" type="checkbox" id="true_cb" name="true_cb"
+							onchange="checkBoxUpdate(this)"> <label for="true">True</label> <input class="cb"
+							type="checkbox" id="false_cb" name="false_cb" onchange="checkBoxUpdate(this)">
 						<label for="false">False</label>
-
-						<script>
-							
-						</script>
 					</div>
-
 					<div class="padded-bottom">
-						Attached image: <input type="file" id="q_image" name="q_image"
-							accept="image/png, image/jpeg"> <br>
+						Attached image: <input type="file" id="q_image" name="q_image" accept="image/png, image/jpeg">
+						<br>
 					</div>
-
 					<input id="submit" type="submit" value="CREATE QUESTION">
 				</form>
 				<%
@@ -92,6 +76,6 @@
 		<p>A quiz application for the ICSI 418Y final project, Spring
 			2019.</p>
 	</div>
-
 </body>
+
 </html>
