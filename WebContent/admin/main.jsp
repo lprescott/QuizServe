@@ -5,7 +5,6 @@
 <html>
 
 <head>
-
 	<meta content="text/html;" charset="UTF-8">
 	<title>Admin Home</title>
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
@@ -16,6 +15,7 @@
 </head>
 
 <body>
+	<!-- Navbar -->
 	<div class="header shadow">
 		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow"
 				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
@@ -27,9 +27,9 @@
 		</form>
 	</div>
 
+	<!-- Content -->
 	<div class="main-container">
 		<div class="main shadow">
-			<!-- Content goes here. -->
 			<h2>Admin Home</h2>
 			<p>Here you have CRUD access to users, questions, and tests.</p>
 			<ul>
@@ -59,7 +59,8 @@
 			</ul>
 		</div>
 	</div>
-
+	
+	<!-- Footer -->
 	<div class="footer shadow">
 		<p>A quiz application for the ICSI 418Y final project, Spring
 			2019.</p>

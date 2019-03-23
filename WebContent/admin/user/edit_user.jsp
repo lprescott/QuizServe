@@ -21,6 +21,7 @@
 </head>
 
 <body>
+	<!-- Navbar -->
 	<div class="header shadow">
 		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow"
 				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
@@ -34,6 +35,7 @@
 		</form>
 	</div>
 
+	<!-- Content -->
 	<div class="login-main">
 		<div class="form-container shadow">
 		
@@ -76,6 +78,7 @@
 					<input id="delete" type="submit" name="submit" value="DELETE">
 					
 			</form>
+			<!-- Error Message (if set) -->
 			<%
 				if (request.getParameter("success") != null) {
 					if (request.getParameter("success").equals("false")) {
@@ -83,16 +86,19 @@
 					}
 				}
 			%>
+			
+			<!-- Success Message (if set) -->
 			<%
 				if (request.getParameter("success") != null) {
 					if (request.getParameter("success").equals("true")) {
-						out.println("<div id=\"success\"><p>Successfully Added User</p></div>");
+						out.println("<div id=\"success\"><p>Successfully Edited User</p></div>");
 					}
 				}
 			%>
 		</div>
 	</div>
 
+	<!-- Footer -->
 	<div class="footer shadow">
 		<p>A quiz application for the ICSI 418Y final project, Spring
 			2019.</p>

@@ -21,6 +21,7 @@
 </head>
 
 <body>
+	<!-- Navbar -->
 	<div class="header shadow">
 		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow"
 				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
@@ -34,13 +35,16 @@
 		</form>
 	</div>
 
+	<!-- Content -->
 	<div class="main-container" style="max-width: 1000px;">
 		<div class="main shadow" style="padding: 0;">
-			<!-- Content goes here. -->
+
+			<!-- Connect to DB and select all users -->
 			<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver"
 				url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 			<sql:query dataSource="${snapshot}" var="result"> SELECT * from USERS; </sql:query>
 		
+			<!-- Print table of all users -->
 			<table class="table" style="width: 100%;">
 				<tr>
 					<th>ID</th>
@@ -73,6 +77,7 @@
 				</tr>
 			</table>
 			
+			<!-- Message (if set) -->
 			<%
 				if (request.getParameter("message") != null) {
 					out.println("<div style=\"padding-bottom: 5px; text-align: center;\" id=\"success\"><p>" + request.getParameter("message") + "</p></div>");
@@ -82,6 +87,7 @@
 		</div>
 	</div>
 
+	<!-- Footer -->
 	<div class="footer shadow">
 		<p>A quiz application for the ICSI 418Y final project, Spring
 			2019.</p>

@@ -20,7 +20,7 @@
 </head>
 
 <body>
-
+	<!-- Navbar -->
 	<div class="header shadow">
 		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow"
 				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
@@ -34,10 +34,11 @@
 		</form>
 	</div>
 
+	<!-- Content -->
 	<div class="main-container">
 		<div class="main shadow">
-			<!-- Content goes here. -->
 			<div class="form-container-question">
+				<!-- Form -->
 				<form class="login-form" action="../CreateQuestion" method="post">
 					<textarea class="q_input_text" id="q_text" name="q_text" rows="10" cols="30"
 						placeholder="Question text goes here..." required></textarea>
@@ -53,6 +54,8 @@
 					</div>
 					<input id="submit" type="submit" value="CREATE QUESTION">
 				</form>
+				
+				<!-- Error Message (if set) -->
 				<%
 					if (request.getParameter("success") != null) {
 						if (request.getParameter("success").equals("false")) {
@@ -60,6 +63,8 @@
 						}
 					}
 				%>
+				
+				<!-- Success Message (if set) -->
 				<%
 					if (request.getParameter("success") != null) {
 						if (request.getParameter("success").equals("true")) {
@@ -71,7 +76,7 @@
 		</div>
 	</div>
 
-
+	<!-- Footer -->
 	<div class="footer shadow">
 		<p>A quiz application for the ICSI 418Y final project, Spring
 			2019.</p>

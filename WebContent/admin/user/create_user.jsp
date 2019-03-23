@@ -16,6 +16,7 @@
 </head>
 
 <body>
+	<!-- Navbar -->
 	<div class="header shadow">
 		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow"
 				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
@@ -29,8 +30,10 @@
 		</form>
 	</div>
 
+	<!-- Content -->
 	<div class="login-main">
 		<div class="form-container shadow">
+			<!-- Form -->
 			<form class="login-form" action="${pageContext.request.contextPath}/CreateUser" method="post">
 				<input id="email" name="email" type="email" placeholder="email" required> <input id="password"
 					name="password" type="password" placeholder="password" required> <input id="password-confirm"
@@ -45,6 +48,8 @@
 					
 					<input id="submit" type="submit" value="CREATE">
 			</form>
+			
+			<!-- Error Message (if set) -->
 			<%
 				if (request.getParameter("success") != null) {
 					if (request.getParameter("success").equals("false")) {
@@ -52,6 +57,8 @@
 					}
 				}
 			%>
+			
+			<!-- Success Message (if set) -->
 			<%
 				if (request.getParameter("success") != null) {
 					if (request.getParameter("success").equals("true")) {
@@ -62,6 +69,7 @@
 		</div>
 	</div>
 
+	<!-- Footer -->
 	<div class="footer shadow">
 		<p>A quiz application for the ICSI 418Y final project, Spring
 			2019.</p>
