@@ -1,4 +1,4 @@
-package edu.albany.csi418.main;
+package edu.albany.csi418.user;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.albany.csi418.MailUtils;
 import edu.albany.csi418.session.LoginEnum;
 
 /**
@@ -42,7 +43,7 @@ public class CreateUser extends HttpServlet {
 
         //Check if passwords match	
         if (!password.equals(password_confirmation)) {
-            response.sendRedirect("admin/create_user.jsp?success=false&error=Passwords%20Do%20Not%20Match");
+            response.sendRedirect("admin/user/create_user.jsp?success=false&error=Passwords%20Do%20Not%20Match");
             return;
         }
 
@@ -76,7 +77,7 @@ public class CreateUser extends HttpServlet {
 
                     DB_Connnection.close();
 
-                    response.sendRedirect("admin/create_user.jsp?success=false&error=Existing%20User%20Email");
+                    response.sendRedirect("admin/user/create_user.jsp?success=false&error=Existing%20User%20Email");
                     return;
                 }
             }
@@ -94,7 +95,7 @@ public class CreateUser extends HttpServlet {
 
                     DB_Connnection.close();
 
-                    response.sendRedirect("admin/create_user.jsp?success=false&error=Existing%20Admin%20Email");
+                    response.sendRedirect("admin/user/create_user.jsp?success=false&error=Existing%20Admin%20Email");
                     return;
                 }
             }
@@ -119,7 +120,7 @@ public class CreateUser extends HttpServlet {
 
                 DB_Connnection.close();
                 
-                response.sendRedirect("admin/create_user.jsp?success=false&error=Invalid%20Input");
+                response.sendRedirect("admin/user/create_user.jsp?success=false&error=Invalid%20Input");
                 return;
             }
 
@@ -141,11 +142,11 @@ public class CreateUser extends HttpServlet {
 
             DB_Connnection.close();
 
-            response.sendRedirect("admin/create_user.jsp?success=true");
+            response.sendRedirect("admin/user/create_user.jsp?success=true");
         } catch (Exception e) {
             
         	//System.out.println(e);
-            response.sendRedirect("admin/create_user.jsp?success=false&error=Unknown%20Error");
+            response.sendRedirect("admin/user/create_user.jsp?success=false&error=Unknown%20Error");
             return;
         }
     }

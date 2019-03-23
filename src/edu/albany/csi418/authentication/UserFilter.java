@@ -1,4 +1,4 @@
-package edu.albany.csi418.filter;
+package edu.albany.csi418.authentication;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class AdminAuthentication implements Filter {
+public class UserFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -22,7 +22,7 @@ public class AdminAuthentication implements Filter {
 
         HttpSession session = req.getSession(false);
                 	
-        if ((session == null) || (session.getAttribute("email") == null) || (!session.getAttribute("user-type").equals("admin"))) {  
+        if ((session == null) || (session.getAttribute("email") == null) || (!session.getAttribute("user-type").equals("user"))) {  
         	res.sendRedirect(req.getContextPath() + "/login.jsp");
         } else {
         	chain.doFilter(request, response);

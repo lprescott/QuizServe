@@ -1,4 +1,4 @@
-package edu.albany.csi418.main;
+package edu.albany.csi418.user;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -53,13 +53,13 @@ public class EditUser extends HttpServlet {
 	            DELETE_USER_SQL_Statement.close();
 	            DB_Connnection.close();
 
-	            response.sendRedirect("admin/user_management.jsp?message=User%20Deleted%20Successfully");
+	            response.sendRedirect("admin/user/user_management.jsp?message=User%20Deleted%20Successfully");
 	            return;
 			
 			} catch (Exception e) {
 	            
 	        	//System.out.println(e);
-	            response.sendRedirect("admin/edit_user.jsp?success=false&error=Unknown%20Error");
+	            response.sendRedirect("admin/user/edit_user.jsp?success=false&error=Unknown%20Error");
 	            return;
 	        }
 	            
@@ -81,7 +81,7 @@ public class EditUser extends HttpServlet {
             	new_is_active = 1;
             } else {
 
-                response.sendRedirect("admin/edit_user.jsp?success=false&error=Invalid%20Input");
+                response.sendRedirect("admin/user/edit_user.jsp?success=false&error=Invalid%20Input");
                 return;
             }
             
@@ -102,18 +102,18 @@ public class EditUser extends HttpServlet {
 	            UPDATE_USER_SQL_Statement.close();
 	            DB_Connnection.close();
 
-	            response.sendRedirect("admin/user_management.jsp?message=User%20Updated%20Successfully");
+	            response.sendRedirect("admin/user/user_management.jsp?message=User%20Updated%20Successfully");
 	            return;
             } catch (Exception e) {
 	            
 	        	//System.out.println(e);
-	            response.sendRedirect("admin/edit_user.jsp?success=false&error=Unknown%20Error");
+	            response.sendRedirect("admin/user/edit_user.jsp?success=false&error=Unknown%20Error");
 	            return;
 	        }
 			
 		} else {
 			
-            response.sendRedirect("admin/edit_user.jsp?success=false&error=Unknown%20Error");
+            response.sendRedirect("admin/user/edit_user.jsp?success=false&error=Unknown%20Error");
             return;
 		}
 	}

@@ -17,21 +17,21 @@
 
 <body>
 	<div class="header shadow">
-		<a class="logo" href="${pageContext.request.contextPath}/login.jsp"><img class="shadow"
+		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow"
 				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
 				alt="SUNY Albany Seal"></a>
 		<div class="logo-label"></div>
 		<p>Logged in as ${email}.</p>
-		<a id="link" href="${pageContext.request.contextPath}/admin/user_management.jsp">
+		<a id="link" href="${pageContext.request.contextPath}/admin/user/user_management.jsp">
 			Go back </a>
-		<form action="../Logout" method="post">
+		<form action="${pageContext.request.contextPath}/Logout" method="post">
 			<input type="submit" value="Logout?">
 		</form>
 	</div>
 
 	<div class="login-main">
 		<div class="form-container shadow">
-			<form class="login-form" action="../CreateUser" method="post">
+			<form class="login-form" action="${pageContext.request.contextPath}/CreateUser" method="post">
 				<input id="email" name="email" type="email" placeholder="email" required> <input id="password"
 					name="password" type="password" placeholder="password" required> <input id="password-confirm"
 					name="password-confirm" type="password" placeholder="confirm password" required> 

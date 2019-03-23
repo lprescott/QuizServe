@@ -19,7 +19,7 @@
 
 <body>
 	<div class="header shadow">
-		<a class="logo" href="${pageContext.request.contextPath}/login.jsp"><img class="shadow"
+		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow"
 				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
 				alt="SUNY Albany Seal"></a>
 		<div class="logo-label"></div>
@@ -31,7 +31,7 @@
 
 	<div class="login-main">
 		<div class="form-container shadow">
-			<form class="login-form" action="Login" method="post">
+			<form class="login-form" action="${pageContext.request.contextPath}/Login" method="post">
 				<input id="email" name="email" type="email" placeholder="email" required> <input id="password"
 					name="password" type="password" placeholder="password" required> <input id="submit" type="submit"
 					value="LOGIN">
@@ -40,13 +40,6 @@
 				if (request.getParameter("success") != null) {
 					if (request.getParameter("success").equals("false")) {
 						out.println("<div id=\"error\"><p>" + request.getParameter("error") + "</p></div>");
-					}
-				}
-			%>
-			<%
-				if (request.getParameter("success") != null) {
-					if (request.getParameter("success").equals("true")) {
-						out.println("<div id=\"success\"><p>Successfully Added User</p></div>");
 					}
 				}
 			%>

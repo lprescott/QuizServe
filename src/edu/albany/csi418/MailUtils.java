@@ -1,4 +1,4 @@
-package edu.albany.csi418.main;
+package edu.albany.csi418;
 
 import java.util.Date;
 import java.util.Properties;

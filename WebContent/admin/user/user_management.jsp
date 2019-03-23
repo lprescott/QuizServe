@@ -22,14 +22,14 @@
 
 <body>
 	<div class="header shadow">
-		<a class="logo" href="${pageContext.request.contextPath}/login.jsp"><img class="shadow"
+		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow"
 				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
 				alt="SUNY Albany Seal"></a>
 		<div class="logo-label"></div>
 		<p>Logged in as ${email}.</p>
 		<a id="link" href="${pageContext.request.contextPath}/admin/main.jsp">
 			Go back </a>
-		<form action="../Logout" method="post">
+		<form action="${pageContext.request.contextPath}/Logout" method="post">
 			<input type="submit" value="Logout?">
 		</form>
 	</div>
@@ -57,7 +57,7 @@
 						<td><c:out value="${row.PASSWORD}" /></td>
 						<td><c:out value="${row.IS_ACTIVE}" /></td>
 						<td>
-							<a class="link-style" href="${pageContext.request.contextPath}/admin/edit_user.jsp?USERS_ID=<c:out value="${row.USERS_ID}"/>">edit</a>
+							<a class="link-style" href="${pageContext.request.contextPath}/admin/user/edit_user.jsp?USERS_ID=<c:out value="${row.USERS_ID}"/>">edit</a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -65,7 +65,7 @@
 				<tr>
 					<td></td>
 					<td>
-						<a class="link-style" href="${pageContext.request.contextPath}/admin/create_user.jsp">create new user</a>
+						<a class="link-style" href="${pageContext.request.contextPath}/admin/user/create_user.jsp">create new user</a>
 					</td>
 					<td></td>
 					<td></td>

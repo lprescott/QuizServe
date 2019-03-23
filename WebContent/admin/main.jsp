@@ -17,12 +17,12 @@
 
 <body>
 	<div class="header shadow">
-		<a class="logo" href="${pageContext.request.contextPath}/login.jsp"><img class="shadow"
+		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow"
 				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
 				alt="SUNY Albany Seal"></a>
 		<div class="logo-label"></div>
 		<p>Logged in as ${email}.</p>
-		<form action="../Logout" method="post">
+		<form action="${pageContext.request.contextPath}/Logout" method="post">
 			<input type="submit" value="Logout?">
 		</form>
 	</div>
@@ -36,16 +36,16 @@
 				<li>Questions
 					<ul>
 						<li>Create a new multiple choice question, <a
-								href="${pageContext.request.contextPath}/admin/create_question_mc.jsp">here</a>.
+								href="${pageContext.request.contextPath}/admin/question/create_question_mc.jsp">here</a>.
 						</li>
 						<li>Create a new true/false question, <a
-								href="${pageContext.request.contextPath}/admin/create_question_tf.jsp">here</a>.
+								href="${pageContext.request.contextPath}/admin/question/create_question_tf.jsp">here</a>.
 						</li>
 						<li>View all questions, <a href="">here</a>.
 						</li>
 					</ul>
 				</li>
-				<li>User management <a href="${pageContext.request.contextPath}/admin/user_management.jsp">here</a>.
+				<li>User management <a href="${pageContext.request.contextPath}/admin/user/user_management.jsp">here</a>.
 
 				</li>
 				<li>Tests

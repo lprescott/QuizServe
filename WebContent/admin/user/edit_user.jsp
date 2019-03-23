@@ -22,14 +22,14 @@
 
 <body>
 	<div class="header shadow">
-		<a class="logo" href="${pageContext.request.contextPath}/login.jsp"><img class="shadow"
+		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow"
 				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
 				alt="SUNY Albany Seal"></a>
 		<div class="logo-label"></div>
 		<p>Logged in as ${email}.</p>
-		<a id="link" href="${pageContext.request.contextPath}/admin/user_management.jsp">
+		<a id="link" href="${pageContext.request.contextPath}/admin/user/user_management.jsp">
 			Go back </a>
-		<form action="../Logout" method="post">
+		<form action="${pageContext.request.contextPath}/Logout" method="post">
 			<input type="submit" value="Logout?">
 		</form>
 	</div>
@@ -41,7 +41,7 @@
 				url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 			<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM USERS WHERE USERS_ID=<%=request.getParameter("USERS_ID")%>; </sql:query>
 			
-			<form class="login-form" action="../EditUser" method="post">
+			<form class="login-form" action="${pageContext.request.contextPath}/EditUser" method="post">
 			
 					<!-- Hidden input with ID# -->
 					<input id="USERS_ID" type="hidden" name="USERS_ID" value="<%=request.getParameter("USERS_ID")%>">  
