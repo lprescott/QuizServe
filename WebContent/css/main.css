@@ -50,3 +50,26 @@ body {
 	-webkit-box-shadow: 0 3px 29px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.23);
 	-moz-box-shadow: 0 3px 29px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
+
+.link-style{
+	color: rgba(73, 165, 191, 1);
+	text-decoration: underline;
+}
+
+.padded-bottom{
+	padding-bottom: 15px;
+}
+
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #cbcbcb;
+} 
+
+table th,
+table td {
+  padding: .5em;
+  border: 1px solid lightgrey;
+}

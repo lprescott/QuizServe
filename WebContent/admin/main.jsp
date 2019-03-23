@@ -50,7 +50,7 @@
 						<li>Create a new user, <a
 								href="${pageContext.request.contextPath}/admin/create_user.jsp">here</a>.
 						</li>
-						<li>View all users, <a href="">here</a>.
+						<li>View all users, <a href="${pageContext.request.contextPath}/admin/view_users.jsp">here</a>.
 						</li>
 					</ul>
 				</li>

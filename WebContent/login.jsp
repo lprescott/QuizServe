@@ -23,6 +23,7 @@
 				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
 				alt="SUNY Albany Seal"></a>
 		<div class="logo-label"></div>
+		<p>Not logged in.</p>
 		<form action="Logout" method="post">
 			<input style="text-decoration: none !important;" type="submit" value="Clear Session">
 		</form>
