@@ -104,14 +104,31 @@ public class Login extends HttpServlet {
                 session.setAttribute("email", email);
                 session.setAttribute("user-type", "user");
                 
+                // Clean-up environment
+                USER_Results.close();
+                ADMIN_Results.close();
+
+                USER_SQL_Statement.close();
+                ADMIN_SQL_Statement.close();
+
+                DB_Connnection.close();
+                
                 //redirect to user main page
-                request.getRequestDispatcher("/user/main.jsp").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/user/main.jsp");
 
             } else if (isInactiveUser == true) {
+            	
+                // Clean-up environment
+                USER_Results.close();
+                ADMIN_Results.close();
+
+                USER_SQL_Statement.close();
+                ADMIN_SQL_Statement.close();
+
+                DB_Connnection.close();
             	            	
                 //return to login page with error binded to request
-                request.setAttribute("error", "User Account Disabled");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                response.sendRedirect("login.jsp?success=false&error=User%20Account%20Disabled");
 
             } else if (isValidAdmin == true) {  	
           
@@ -125,28 +142,39 @@ public class Login extends HttpServlet {
                 //Add session email attribute, and user-type
                 session.setAttribute("email", email);
                 session.setAttribute("user-type", "admin");
+                
+                // Clean-up environment
+                USER_Results.close();
+                ADMIN_Results.close();
+
+                USER_SQL_Statement.close();
+                ADMIN_SQL_Statement.close();
+
+                DB_Connnection.close();
 
                 //redirect to admin main page
-                request.getRequestDispatcher("/admin/main.jsp").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/admin/main.jsp");
 
             } else {
-            	
+                
+                // Clean-up environment
+                USER_Results.close();
+                ADMIN_Results.close();
+
+                USER_SQL_Statement.close();
+                ADMIN_SQL_Statement.close();
+
+                DB_Connnection.close();
+            	            	
                 //return to login page with error binded to request
-                request.setAttribute("error", "Invalid Login Credentials");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                response.sendRedirect("login.jsp?success=false&error=Invalid%20Login%20Credentials");
             }
 
-            // Clean-up environment
-            USER_Results.close();
-            ADMIN_Results.close();
-
-            USER_SQL_Statement.close();
-            ADMIN_SQL_Statement.close();
-
-            DB_Connnection.close();
-
         } catch (Exception e) {
-            System.out.println(e);
+            //System.out.println(e);
+        	            	
+            //return to login page with error binded to request
+            response.sendRedirect("login.jsp?success=false&error=Unknown%20Error");
         }
     }
 }

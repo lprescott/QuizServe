@@ -36,11 +36,20 @@
 					name="password" type="password" placeholder="password" required> <input id="submit" type="submit"
 					value="LOGIN">
 			</form>
-			<c:if test="${not empty error}">
-				<div id="error">
-					<p>${error}</p>
-				</div>
-			</c:if>
+			<%
+				if (request.getParameter("success") != null) {
+					if (request.getParameter("success").equals("false")) {
+						out.println("<div id=\"error\"><p>" + request.getParameter("error") + "</p></div>");
+					}
+				}
+			%>
+			<%
+				if (request.getParameter("success") != null) {
+					if (request.getParameter("success").equals("true")) {
+						out.println("<div id=\"success\"><p>Successfully Added User</p></div>");
+					}
+				}
+			%>
 		</div>
 	</div>
 
