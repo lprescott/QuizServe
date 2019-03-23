@@ -22,6 +22,10 @@
     <servlet-name>CreateUser</servlet-name>
     <servlet-class>edu.albany.csi418.main.CreateUser</servlet-class>
   </servlet>
+<servlet>
+    <servlet-name>EditUser</servlet-name>
+    <servlet-class>edu.albany.csi418.main.EditUser</servlet-class>
+  </servlet>
   <filter>
     <filter-name>userAuthentication</filter-name>
     <filter-class>edu.albany.csi418.filter.UserAuthentication</filter-class>

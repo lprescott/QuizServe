@@ -16,7 +16,8 @@
 }
 
 .form-container #email,
-.form-container #password {
+.form-container #password,
+.form-container #password-confirm {
 	font-family: "Open Sans", sans-serif;
 	outline: 0;
 	background: #f2f2f2;

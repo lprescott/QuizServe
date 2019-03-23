@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
+	<script src="${pageContext.request.contextPath}/js/checkBox.js"></script>
 </head>
 
 <body>
@@ -21,7 +22,7 @@
 				alt="SUNY Albany Seal"></a>
 		<div class="logo-label"></div>
 		<p>Logged in as ${email}.</p>
-		<a id="link" href="${pageContext.request.contextPath}/admin/main.jsp">
+		<a id="link" href="${pageContext.request.contextPath}/admin/user_management.jsp">
 			Go back </a>
 		<form action="../Logout" method="post">
 			<input type="submit" value="Logout?">
@@ -32,9 +33,17 @@
 		<div class="form-container shadow">
 			<form class="login-form" action="../CreateUser" method="post">
 				<input id="email" name="email" type="email" placeholder="email" required> <input id="password"
-					name="password" type="password" placeholder="password" required> <input id="password"
-					name="password-confirm" type="password" placeholder="confirm password" required> <input id="submit"
-					type="submit" value="CREATE">
+					name="password" type="password" placeholder="password" required> <input id="password-confirm"
+					name="password-confirm" type="password" placeholder="confirm password" required> 
+					
+					<div class="padded-bottom">
+						<input class="cb" type="checkbox" id="active_cb" name="active_cb" value="active_cb" onchange="checkBoxUpdate(this)" checked> 
+						<label for="active_cb">Active</label> 
+						<input class="cb" type="checkbox" id="inactive_cb" name="inactive_cb" value="inactive_cb" onchange="checkBoxUpdate(this)">
+						<label for="inactive_cb">Inactive</label>
+					</div>
+					
+					<input id="submit" type="submit" value="CREATE">
 			</form>
 			<%
 				if (request.getParameter("success") != null) {

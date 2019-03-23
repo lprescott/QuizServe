@@ -99,9 +99,33 @@ public class CreateUser extends HttpServlet {
                 }
             }
 
+            //Check if active or inactive check box is selected
+            int IS_ACTIVE;
+            if(request.getParameter("active_cb") == null) {
+            	//invalid user
+            	IS_ACTIVE = 0;
+            	
+            } else if(request.getParameter("inactive_cb") == null){
+            	//valid user
+            	IS_ACTIVE = 1;
+            } else {
+            	
+                // Clean-up environment
+                USER_Results.close();
+                ADMIN_Results.close();
+
+                USER_SQL_Statement.close();
+                ADMIN_SQL_Statement.close();
+
+                DB_Connnection.close();
+                
+                response.sendRedirect("admin/create_user.jsp?success=false&error=Invalid%20Input");
+                return;
+            }
+
             //Insert into DB
             Statement ADD_USER_Statement = DB_Connnection.createStatement();
-            String ADD_USER_STRING = "INSERT INTO USERS (EMAIL, PASSWORD, IS_ACTIVE) VALUES ('" + email + "', '" + password + "', 1)";
+            String ADD_USER_STRING = "INSERT INTO USERS (EMAIL, PASSWORD, IS_ACTIVE) VALUES ('" + email + "', '" + password + "', " + IS_ACTIVE + ")";
             ADD_USER_Statement.executeUpdate(ADD_USER_STRING);
 
             //Email User Information

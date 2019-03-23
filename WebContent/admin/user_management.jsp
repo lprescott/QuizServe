@@ -12,7 +12,7 @@
 
 <head>
 	<meta content="text/html;" charset="UTF-8">
-	<title>View Users</title>
+	<title>User Management</title>
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
@@ -27,13 +27,15 @@
 				alt="SUNY Albany Seal"></a>
 		<div class="logo-label"></div>
 		<p>Logged in as ${email}.</p>
+		<a id="link" href="${pageContext.request.contextPath}/admin/main.jsp">
+			Go back </a>
 		<form action="../Logout" method="post">
 			<input type="submit" value="Logout?">
 		</form>
 	</div>
 
 	<div class="main-container" style="max-width: 1000px;">
-		<div class="main shadow">
+		<div class="main shadow" style="padding: 0;">
 			<!-- Content goes here. -->
 			<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver"
 				url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
@@ -55,7 +57,7 @@
 						<td><c:out value="${row.PASSWORD}" /></td>
 						<td><c:out value="${row.IS_ACTIVE}" /></td>
 						<td>
-							<a class="link-style" href="${pageContext.request.contextPath}/admin/edit_user.jsp?id=<c:out value="${row.USERS_ID}"/>">edit</a>
+							<a class="link-style" href="${pageContext.request.contextPath}/admin/edit_user.jsp?USERS_ID=<c:out value="${row.USERS_ID}"/>">edit</a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -63,13 +65,20 @@
 				<tr>
 					<td></td>
 					<td>
-						<a class="link-style" href="${pageContext.request.contextPath}/admin/create_user.jsp?id=<c:out value="${row.USERS_ID}"/>">create new user</a>
+						<a class="link-style" href="${pageContext.request.contextPath}/admin/create_user.jsp">create new user</a>
 					</td>
 					<td></td>
 					<td></td>
 					<td></td>
 				</tr>
 			</table>
+			
+			<%
+				if (request.getParameter("message") != null) {
+					out.println("<div style=\"padding-bottom: 5px; text-align: center;\" id=\"success\"><p>" + request.getParameter("message") + "</p></div>");
+				}
+			%>
+
 		</div>
 	</div>
 

@@ -45,14 +45,8 @@
 						</li>
 					</ul>
 				</li>
-				<li>Users
-					<ul>
-						<li>Create a new user, <a
-								href="${pageContext.request.contextPath}/admin/create_user.jsp">here</a>.
-						</li>
-						<li>View all users, <a href="${pageContext.request.contextPath}/admin/view_users.jsp">here</a>.
-						</li>
-					</ul>
+				<li>User management <a href="${pageContext.request.contextPath}/admin/user_management.jsp">here</a>.
+
 				</li>
 				<li>Tests
 					<ul>
