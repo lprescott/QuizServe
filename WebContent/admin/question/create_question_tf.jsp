@@ -42,6 +42,7 @@
 				<form class="login-form" action="../CreateQuestion" method="post">
 					<textarea class="q_input_text" id="q_text" name="q_text" rows="10" cols="30"
 						placeholder="Question text goes here..." required></textarea>
+					<input class="q_input_text" id="q_category" name="q_category" type="text" placeholder="Category">
 					<div class="padded-bottom">
 						Answer: <input class="cb" type="checkbox" id="true_cb" name="true_cb"
 							onchange="checkBoxUpdate(this)"> <label for="true">True</label> <input class="cb"
