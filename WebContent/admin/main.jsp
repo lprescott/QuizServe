@@ -41,7 +41,7 @@
 						<li>Create a new true/false question, <a
 								href="${pageContext.request.contextPath}/admin/question/create_question_tf.jsp">here</a>.
 						</li>
-						<li>View all questions, <a href="">here</a>.
+						<li>View all questions, <a href="http://localhost:8080/ICSI418-Group-Project/ViewQuestion">here</a>.
 						</li>
 					</ul>
 				</li>
