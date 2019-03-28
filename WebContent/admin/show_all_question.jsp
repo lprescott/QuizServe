@@ -42,8 +42,8 @@
 		<table border="1" style = center>
 			<tr>
 				<th>ID</th>
+				<th>DESCRIPTION</th>
 				<th>CATEGORY</th>
-				<th>Description</th>
 				<th>Answer 1</th>
 				<th>Answer 2</th>
 				<th>Answer 3</th>
