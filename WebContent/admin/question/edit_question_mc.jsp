@@ -23,7 +23,6 @@
 	<!-- Navbar -->
 	<div class="header shadow">
 		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
-		<div class="logo-label"></div>
 		<p>Logged in as ${email}.</p>
 		<a id="link" href="${pageContext.request.contextPath}/admin/question/question_management.jsp"> Go back </a>
 		<form action="${pageContext.request.contextPath}/Logout" method="post">
@@ -49,41 +48,13 @@
 					<input class="q_input_text" id="q_category" name="q_category" type="text" placeholder="Category" value="${result.rows[0].CATEGORY}"> <input class="q_input_text" id="q_a1" name="q_a1" type="text" placeholder="Answer #1" required value="${result.rows[0].ANSWER}"> <input class="q_input_text" id="q_a2" name="q_a2" type="text" placeholder="Answer #2" required value="${result.rows[1].ANSWER}"> <input class="q_input_text" id="q_a3" name="q_a3" type="text"
 						placeholder="Answer #3" required value="${result.rows[2].ANSWER}"> <input class="q_input_text" id="q_a4" name="q_a4" type="text" placeholder="Answer #4" required value="${result.rows[3].ANSWER}"> <input class="q_input_text" id="q_a5" name="q_a5" type="text" placeholder="Answer #5" value="${result.rows[4].ANSWER}"> <input class="q_input_text" id="q_a6" name="q_a6" type="text" placeholder="Answer #6" value="${result.rows[5].ANSWER}">
 
-					<c:if test="${result.rows[0].IS_CORRECT_ANSWER}">
-						<div class="padded-bottom">
-							Correct Answer #: <input id="q_correct_answer" type="number" name="q_correct_answer" min="1" max="6" value="1" required>
-						</div>
-					</c:if>
-
-					<c:if test="${result.rows[1].IS_CORRECT_ANSWER}">
-						<div class="padded-bottom">
-							Correct Answer #: <input id="q_correct_answer" type="number" name="q_correct_answer" min="1" max="6" value="2" required>
-						</div>
-					</c:if>
-
-					<c:if test="${result.rows[2].IS_CORRECT_ANSWER}">
-						<div class="padded-bottom">
-							Correct Answer #: <input id="q_correct_answer" type="number" name="q_correct_answer" min="1" max="6" value="3" required>
-						</div>
-					</c:if>
-
-					<c:if test="${result.rows[3].IS_CORRECT_ANSWER}">
-						<div class="padded-bottom">
-							Correct Answer #: <input id="q_correct_answer" type="number" name="q_correct_answer" min="1" max="6" value="4" required>
-						</div>
-					</c:if>
-
-					<c:if test="${result.rows[4].IS_CORRECT_ANSWER}">
-						<div class="padded-bottom">
-							Correct Answer #: <input id="q_correct_answer" type="number" name="q_correct_answer" min="1" max="6" value="5" required>
-						</div>
-					</c:if>
-
-					<c:if test="${result.rows[5].IS_CORRECT_ANSWER}">
-						<div class="padded-bottom">
-							Correct Answer #: <input id="q_correct_answer" type="number" name="q_correct_answer" min="1" max="6" value="6" required>
-						</div>
-					</c:if>
+					<c:forEach begin="1" end="6" varStatus="loop">
+    					<c:if test="${result.rows[loop.index-1].IS_CORRECT_ANSWER}">
+	   						<div class="padded-bottom">
+								Correct Answer #: <input id="q_correct_answer" type="number" name="q_correct_answer" min="1" max="6" value="${loop.index}" required>
+							</div>
+					    </c:if>
+					</c:forEach>
 
 					<div class="padded-bottom">
 						Attached image: <input type="file" id="q_image" name="q_image" accept="image/png, image/jpeg">

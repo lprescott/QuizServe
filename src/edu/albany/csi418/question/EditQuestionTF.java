@@ -76,7 +76,7 @@ public class EditQuestionTF extends HttpServlet {
 			} catch (Exception e) {
 	            
 	        	//System.out.println(e);
-				response.sendRedirect("admin/question/edit_question_tf.jsp?success=false&error=Error%20Deleting Record");
+				response.sendRedirect("admin/question/edit_question_tf.jsp?success=false&error=Error%20Deleting%20Record");
 	            return;
 	        }
 			
@@ -91,7 +91,7 @@ public class EditQuestionTF extends HttpServlet {
 	            // Open a connection
 	            Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 
-	            //Insert into QUESTION Table
+	            //Update into QUESTION Table
 	            Statement UPDATE_QUESTION_Statement = DB_Connnection.createStatement();
 	            String UPDATE_QUESTION_STRING =  "UPDATE QUESTION SET TEXT = '" + question + "', CATEGORY = '" + category + "', TF_IS_TRUE = " + tf + " WHERE QUESTION_ID = " + QUESTION_ID + ";";
 	            UPDATE_QUESTION_Statement.executeUpdate(UPDATE_QUESTION_STRING);
@@ -108,7 +108,7 @@ public class EditQuestionTF extends HttpServlet {
 	        } catch (Exception e) {
 	            
 	        	//e.printStackTrace();
-				response.sendRedirect("admin/question/edit_question_tf.jsp?success=false&error=Error%20Updating Record");
+				response.sendRedirect("admin/question/edit_question_tf.jsp?success=false&error=Error%20Updating%20Record");
 	            return;
 	        }
 			
