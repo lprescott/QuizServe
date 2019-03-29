@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html;" pageEncoding="UTF-8"%>
 <%@page import="java.io.*,java.util.*,java.sql.*"%>
 <%@page import="javax.servlet.http.*,javax.servlet.*"%>
+<%@page import="edu.albany.csi418.session.LoginEnum"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
@@ -9,13 +10,14 @@
 
 <head>
 	<meta content="text/html;" charset="UTF-8">
-	<title>Create A Question</title>
+	<title>Edit A Question</title>
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/create_question.css">
+	<script src="${pageContext.request.contextPath}/js/checkBox.js"></script>
 </head>
 
 <body>
@@ -38,25 +40,46 @@
 		<div class="main shadow">
 			<div class="form-container-question">
 				<!-- Form -->
-				<form class="login-form" action="${pageContext.request.contextPath}/CreateQuestionMC" method="post">
+				
+				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver"
+				url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
+				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM QUESTION WHERE QUESTION_ID=<%=request.getParameter("QUESTION_ID")%>; </sql:query>
+			
+				<form class="login-form" action="${pageContext.request.contextPath}/EditQuestionTF" method="post">
+				
+					<!-- Hidden input with ID# -->
+					<input id="QUESTION_ID" type="hidden" name="QUESTION_ID" value="<%=request.getParameter("QUESTION_ID")%>">  
+				
 					<textarea class="q_input_text" id="q_text" name="q_text" rows="10" cols="30"
-						placeholder="Question text goes here..." required></textarea>
-					<input class="q_input_text" id="q_category" name="q_category" type="text" placeholder="Category">
-					<input class="q_input_text" id="q_a1" name="q_a1" type="text" placeholder="Answer #1" required>
-					<input class="q_input_text" id="q_a2" name="q_a2" type="text" placeholder="Answer #2" required>
-					<input class="q_input_text" id="q_a3" name="q_a3" type="text" placeholder="Answer #3" required>
-					<input class="q_input_text" id="q_a4" name="q_a4" type="text" placeholder="Answer #4" required>
-					<input class="q_input_text" id="q_a5" name="q_a5" type="text" placeholder="Answer #5"> <input
-						class="q_input_text" id="q_a6" name="q_a6" type="text" placeholder="Answer #6">
+						placeholder="Question text goes here..." required>${result.rows[0].TEXT}</textarea>
+					<input class="q_input_text" id="q_category" name="q_category" type="text" placeholder="Category" value="${result.rows[0].CATEGORY}">
 					<div class="padded-bottom">
-						Correct Answer #: <input id="q_correct_answer" type="number" name="q_correct_answer" min="1"
-							max="6" required>
+										
+					<c:if test="${result.rows[0].TF_IS_TRUE}">
+						Answer: <input class="cb" type="checkbox" id="true_cb" name="true_cb"
+							onchange="checkBoxUpdate(this)" checked> <label for="true">True</label> <input class="cb"
+							type="checkbox" id="false_cb" name="false_cb" onchange="checkBoxUpdate(this)">
+						<label for="false">False</label>
+					</c:if>
+					
+					<c:if test="${!result.rows[0].TF_IS_TRUE}">
+						Answer: <input class="cb" type="checkbox" id="true_cb" name="true_cb"
+							onchange="checkBoxUpdate(this)"> <label for="true">True</label> <input class="cb"
+							type="checkbox" id="false_cb" name="false_cb" onchange="checkBoxUpdate(this)" checked>
+						<label for="false">False</label>
+					</c:if>
+						
 					</div>
 					<div class="padded-bottom">
 						Attached image: <input type="file" id="q_image" name="q_image" accept="image/png, image/jpeg">
+						<br>
 					</div>
-					<input id="submit" type="submit" value="CREATE QUESTION">
-				</form>
+					
+					<div class="padded-bottom">
+						<input id="submit" type="submit" name="submit" value="UPDATE">
+					</div>
+					
+					<input id="delete" type="submit" name="submit" value="DELETE">				</form>
 				
 				<!-- Error Message (if set) -->
 				<%
@@ -71,7 +94,7 @@
 				<%
 					if (request.getParameter("success") != null) {
 						if (request.getParameter("success").equals("true")) {
-							out.println("<div id=\"success\"><p>Successfully Added Question</p></div>");
+							out.println("<div id=\"success\"><p>Successfully Updated Question</p></div>");
 						}
 					}
 				%>

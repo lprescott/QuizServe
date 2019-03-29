@@ -33,18 +33,8 @@
 			<h2>Admin Home</h2>
 			<p>Here you have CRUD access to users, questions, and tests.</p>
 			<ul>
-				<li>Questions
-					<ul>
-						<li>Create a new multiple choice question, <a
-								href="${pageContext.request.contextPath}/admin/question/create_question_mc.jsp">here</a>.
-						</li>
-						<li>Create a new true/false question, <a
-								href="${pageContext.request.contextPath}/admin/question/create_question_tf.jsp">here</a>.
-						</li>
-						<li>View all questions, <a href="http://localhost:8080/ICSI418-Group-Project/ViewQuestion">here</a>.
-						</li>
-					</ul>
-				</li>
+				<li>Question management <a href="${pageContext.request.contextPath}/admin/question/question_management.jsp">here</a>.
+
 				<li>User management <a href="${pageContext.request.contextPath}/admin/user/user_management.jsp">here</a>.
 
 				</li>

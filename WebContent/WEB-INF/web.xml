@@ -22,9 +22,25 @@
     <servlet-name>CreateUser</servlet-name>
     <servlet-class>edu.albany.csi418.user.CreateUser</servlet-class>
   </servlet>
-<servlet>
+  <servlet>
     <servlet-name>EditUser</servlet-name>
     <servlet-class>edu.albany.csi418.user.EditUser</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CreateQuestionMC</servlet-name>
+    <servlet-class>edu.albany.csi418.question.CreateQuestionMC</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>EditQuestionMC</servlet-name>
+    <servlet-class>edu.albany.csi418.question.EditQuestionMC</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CreateQuestionTF</servlet-name>
+    <servlet-class>edu.albany.csi418.question.CreateQuestionTF</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>EditQuestionTF</servlet-name>
+    <servlet-class>edu.albany.csi418.question.EditQuestionTF</servlet-class>
   </servlet>
   <filter>
     <filter-name>userFilter</filter-name>
