@@ -42,7 +42,7 @@
 					<ul>
 						<li>Create a new test, <a href="">here</a>.
 						</li>
-						<li>View all tests, <a href="">here</a>.
+						<li>View all tests, <a href="${pageContext.request.contextPath}/admin/test/test_list.jsp">here</a>.
 						</li>
 					</ul>
 				</li>
