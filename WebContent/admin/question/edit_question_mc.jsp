@@ -40,11 +40,10 @@
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM QUESTION Q INNER JOIN QUESTION_ANSWER QA ON Q.QUESTION_ID = QA.QUESTION_ID INNER JOIN ANSWER A ON QA.ANSWER_ID = A.ANSWER_ID WHERE Q.QUESTION_ID=<%=request.getParameter("QUESTION_ID")%>; </sql:query>
 
-				<form class="login-form" action="${pageContext.request.contextPath}/CreateQuestionMC" method="post">
+				<form class="login-form" action="${pageContext.request.contextPath}/EditQuestionMC" method="post">
 
 					<!-- Hidden input with ID# -->
 					<input id="QUESTION_ID" type="hidden" name="QUESTION_ID" value="<%=request.getParameter("QUESTION_ID")%>">
-
 
 					<textarea class="q_input_text" id="q_text" name="q_text" rows="10" cols="30" placeholder="Question text goes here..." required>${result.rows[0].TEXT}</textarea>
 					<input class="q_input_text" id="q_category" name="q_category" type="text" placeholder="Category" value="${result.rows[0].CATEGORY}"> <input class="q_input_text" id="q_a1" name="q_a1" type="text" placeholder="Answer #1" required value="${result.rows[0].ANSWER}"> <input class="q_input_text" id="q_a2" name="q_a2" type="text" placeholder="Answer #2" required value="${result.rows[1].ANSWER}"> <input class="q_input_text" id="q_a3" name="q_a3" type="text"
@@ -89,7 +88,12 @@
 					<div class="padded-bottom">
 						Attached image: <input type="file" id="q_image" name="q_image" accept="image/png, image/jpeg">
 					</div>
-					<input id="submit" type="submit" value="CREATE QUESTION">
+					
+					<div class="padded-bottom">
+						<input id="submit" type="submit" name="submit" value="UPDATE">
+					</div>
+
+					<input id="delete" type="submit" name="submit" value="DELETE">
 				</form>
 
 				<!-- Error Message (if set) -->

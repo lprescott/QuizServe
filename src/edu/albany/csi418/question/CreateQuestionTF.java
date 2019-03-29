@@ -32,7 +32,6 @@ public class CreateQuestionTF extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		//Get text, category and correct answer num
 		String question = request.getParameter("q_text");
         String category = request.getParameter("q_category");

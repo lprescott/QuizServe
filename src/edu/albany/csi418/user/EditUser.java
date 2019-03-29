@@ -104,6 +104,7 @@ public class EditUser extends HttpServlet {
 
 	            response.sendRedirect("admin/user/user_management.jsp?message=User%20Updated%20Successfully");
 	            return;
+	            
             } catch (Exception e) {
 	            
 	        	//System.out.println(e);
