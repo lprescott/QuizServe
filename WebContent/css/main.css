@@ -73,3 +73,52 @@ table td {
   padding: .5em;
   border: 1px solid lightgrey;
 }
+
+.manage-container{
+  width: 100%;
+  display: flex;
+  justify-content: left;
+}
+
+.manage-container form{
+	padding: 10px;
+}
+
+.manage-container form input{
+	font-family: "Open Sans", sans-serif;
+	text-transform: uppercase;
+	outline: 0;
+	background: #93cede;
+	width: 100%;
+	border: 0;
+	padding: 15px;
+	color: #ffffff;
+	font-size: 14px;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+}
+
+.manage-container form input:hover{
+	background: #49a5bf;
+}
+
+.row {
+  	display: flex;
+    margin: 30px; 
+}
+
+.column {
+	flex: 50%;
+	background: white;
+	padding: 20px;
+}
+
+.column#left{
+	margin-right: 15px;
+}
+
+.column#right{
+	margin-left: 15px;
+	
+}

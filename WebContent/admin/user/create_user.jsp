@@ -21,7 +21,8 @@
 		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow"
 				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
 				alt="SUNY Albany Seal"></a>
-		<p>Logged in as ${email}.</p>
+		<p style="float: left;">University at Albany</p>
+		<p>Logged in as ${email}.</p>		
 		<a id="link" href="${pageContext.request.contextPath}/admin/user/user_management.jsp">
 			Go back </a>
 		<form action="${pageContext.request.contextPath}/Logout" method="post">

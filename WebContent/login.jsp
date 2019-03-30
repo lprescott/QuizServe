@@ -23,6 +23,7 @@
 		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow"
 				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
 				alt="SUNY Albany Seal"></a>
+		<p style="float: left;">University at Albany</p>
 		<p>Not logged in.</p>
 		<form action="Logout" method="post">
 			<input style="text-decoration: none !important;" type="submit" value="Clear Session">

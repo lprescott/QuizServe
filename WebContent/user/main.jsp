@@ -19,8 +19,9 @@
 		<a class="logo" href="${pageContext.request.contextPath}/user/main.jsp"><img class="shadow"
 				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
 				alt="SUNY Albany Seal"></a>
-		<p>Logged in as ${email}.</p>
-		<form action="y" method="post">
+		<p style="float: left;">University at Albany</p>
+		<p>Logged in as ${email}.</p>		
+		<form action="${pageContext.request.contextPath}/Logout" method="post">
 			<input type="submit" value="Logout?">
 		</form>
 	</div>
@@ -28,7 +29,18 @@
 	<!-- Content -->
 	<div class="main-container">
 		<div class="main shadow">
-			Hello, World!
+			<h2 style="margin: 10px;">User Home</h2>
+		</div>
+
+		<div class="row">
+			<div id="left" class="column shadow">
+				<h3 style="margin: 10px;">Assigned Tests</h3>
+
+			</div>
+			<div id="right" class="column shadow">
+				<h3 style="margin: 10px;">Tests Taken</h3>
+
+			</div>
 		</div>
 	</div>
 
