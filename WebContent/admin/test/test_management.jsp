@@ -38,7 +38,7 @@
 
 			<!-- Connect to DB and select all users -->
 			<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
-			<sql:query dataSource="${snapshot}" var="result"> SELECT TEST_ID, HEADER_TEXT from TEST; </sql:query>
+			<sql:query dataSource="${snapshot}" var="result"> SELECT TEST_ID, HEADER_TEXT, IMAGE_NAME, FOOTER_TEXT FROM TEST WHERE ADMIN_ID = ${id};</sql:query>
 
 			<!-- Print table of all users -->
 			<table class="table" style="width: 100%;">

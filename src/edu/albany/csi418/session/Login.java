@@ -34,6 +34,8 @@ public class Login extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        int id = 0;
+
     	String email = request.getParameter("email");
         String password = request.getParameter("password");
 
@@ -57,10 +59,10 @@ public class Login extends HttpServlet {
 
             // Execute SQL queries
             Statement USER_SQL_Statement = DB_Connnection.createStatement();
-            String USER_SQL_Query = "SELECT EMAIL, PASSWORD, IS_ACTIVE FROM USERS";
+            String USER_SQL_Query = "SELECT USERS_ID, EMAIL, PASSWORD, IS_ACTIVE FROM USERS";
 
             Statement ADMIN_SQL_Statement = DB_Connnection.createStatement();
-            String ADMIN_SQL_Query = "SELECT EMAIL, PASSWORD FROM ADMINISTRATOR";
+            String ADMIN_SQL_Query = "SELECT ADMIN_ID, EMAIL, PASSWORD FROM ADMINISTRATOR";
 
             ResultSet USER_Results = USER_SQL_Statement.executeQuery(USER_SQL_Query);
             ResultSet ADMIN_Results = ADMIN_SQL_Statement.executeQuery(ADMIN_SQL_Query);
@@ -71,6 +73,7 @@ public class Login extends HttpServlet {
                 if (email.equals(USER_Results.getString("EMAIL")) && password.equals(USER_Results.getString("PASSWORD"))) {
                     if (USER_Results.getBoolean("IS_ACTIVE") == true) {
                         isValidUser = true;
+                        id = USER_Results.getInt("USERS_ID");
                     } else {
                         isInactiveUser = true;
                     }
@@ -84,6 +87,7 @@ public class Login extends HttpServlet {
                 while (ADMIN_Results.next()) {
                     if (email.equals(ADMIN_Results.getString("EMAIL")) && password.equals(ADMIN_Results.getString("PASSWORD"))) {
                         isValidAdmin = true;
+                        id = ADMIN_Results.getInt("ADMIN_ID");
                     }
 
                     break;
@@ -103,6 +107,7 @@ public class Login extends HttpServlet {
                 //Add session email attribute, and user-type
                 session.setAttribute("email", email);
                 session.setAttribute("user-type", "user");
+				session.setAttribute("id", id);
                 
                 // Clean-up environment
                 USER_Results.close();
@@ -142,6 +147,7 @@ public class Login extends HttpServlet {
                 //Add session email attribute, and user-type
                 session.setAttribute("email", email);
                 session.setAttribute("user-type", "admin");
+				session.setAttribute("id", id);
                 
                 // Clean-up environment
                 USER_Results.close();
