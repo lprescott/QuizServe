@@ -29,7 +29,7 @@
 		<a id="link" href="${pageContext.request.contextPath}/admin/question/question_management.jsp">
 			Go back </a>
 		<form action="${pageContext.request.contextPath}/Logout" method="post">
-			<input type="submit" value="Logout?">
+			<input type="submit" value="Logout">
 		</form>
 	</div>
 

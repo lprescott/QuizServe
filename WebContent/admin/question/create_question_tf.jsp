@@ -27,7 +27,7 @@
 		<p>Logged in as ${email}.</p>		
 		<a id="link" href="${pageContext.request.contextPath}/admin/question/question_management.jsp"> Go back </a>
 		<form action="${pageContext.request.contextPath}/Logout" method="post">
-			<input class="shadow-button" type="submit" value="Logout?">
+			<input class="shadow-button" type="submit" value="Logout">
 		</form>
 	</div>
 

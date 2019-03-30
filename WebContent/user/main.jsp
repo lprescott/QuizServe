@@ -22,7 +22,7 @@
 		<p style="float: left;">University at Albany, SUNY</p>
 		<p>Logged in as ${email}.</p>		
 		<form action="${pageContext.request.contextPath}/Logout" method="post">
-			<input type="submit" value="Logout?">
+			<input type="submit" value="Logout">
 		</form>
 	</div>
 

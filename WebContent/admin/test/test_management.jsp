@@ -28,7 +28,7 @@
 		<p>Logged in as ${email}.</p>
 		<a id="link" href="${pageContext.request.contextPath}/admin/main.jsp"> Go back </a>
 		<form action="${pageContext.request.contextPath}/Logout" method="post">
-			<input type="submit" value="Logout?">
+			<input type="submit" value="Logout">
 		</form>
 	</div>
 	
@@ -38,13 +38,14 @@
 
 			<!-- Connect to DB and select all users -->
 			<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
-			<sql:query dataSource="${snapshot}" var="result"> SELECT TEST_ID, HEADER_TEXT, IMAGE_NAME, FOOTER_TEXT FROM TEST WHERE ADMIN_ID = ${id};</sql:query>
+			<sql:query dataSource="${snapshot}" var="result"> SELECT TEST_ID, HEADER_TEXT, IMAGE_NAME, FOOTER_TEXT FROM TEST;</sql:query>
 
 			<!-- Print table of all users -->
 			<table class="table" style="width: 100%;">
 				<tr>
-					<th>ID</th>
+					<th>Test ID</th>
 					<th>Test Name</th>
+					<th>Admin ID</th>
 					<th></th>
 				</tr>
 
@@ -52,6 +53,7 @@
 					<tr>
 						<td><c:out value="${row.TEST_ID}" /></td>
 						<td><c:out value="${row.HEADER_TEXT}" /></td>
+						<td><c:out value="${row.ADMIN_ID}" /></td>
 						<td><a class="link-style" href="${pageContext.request.contextPath}/admin/test/edit_test.jsp?TEST_ID=<c:out value="${row.TEST_ID}"/>">edit</a></td>
 					</tr>
 				</c:forEach>
@@ -59,6 +61,8 @@
 				<tr>
 					<td></td>
 					<td><a class="link-style" href="${pageContext.request.contextPath}/admin/test/create_test.jsp">create new test</a></td>
+					<td></td>
+					<td></td>
 				</tr>
 			</table>
 
