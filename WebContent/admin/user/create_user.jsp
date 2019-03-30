@@ -21,7 +21,7 @@
 		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow"
 				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
 				alt="SUNY Albany Seal"></a>
-		<p style="float: left;">University at Albany</p>
+		<p style="float: left;">University at Albany, SUNY</p>
 		<p>Logged in as ${email}.</p>		
 		<a id="link" href="${pageContext.request.contextPath}/admin/user/user_management.jsp">
 			Go back </a>
@@ -46,7 +46,7 @@
 						<label for="inactive_cb">Inactive</label>
 					</div>
 					
-					<input id="submit" type="submit" value="CREATE">
+					<input class="shadow-button" id="submit" type="submit" value="CREATE">
 			</form>
 			
 			<!-- Error Message (if set) -->

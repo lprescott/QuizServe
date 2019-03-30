@@ -24,7 +24,7 @@
 	<!-- Navbar -->
 	<div class="header shadow">
 		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
-		<p style="float: left;">University at Albany</p>
+		<p style="float: left;">University at Albany, SUNY</p>
 		<p>Logged in as ${email}.</p>		
 		<a id="link" href="${pageContext.request.contextPath}/admin/question/question_management.jsp"> Go back </a>
 		<form action="${pageContext.request.contextPath}/Logout" method="post">
@@ -71,10 +71,10 @@
 					</div>
 
 					<div class="padded-bottom">
-						<input id="submit" type="submit" name="submit" value="UPDATE">
+						<input class="shadow-button" id="submit" type="submit" name="submit" value="UPDATE">
 					</div>
 
-					<input id="delete" type="submit" name="submit" value="DELETE">
+					<input class="shadow-button" id="delete" type="submit" name="submit" value="DELETE">
 				</form>
 
 				<!-- Error Message (if set) -->

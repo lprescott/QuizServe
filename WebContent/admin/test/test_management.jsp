@@ -24,7 +24,7 @@
 				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
 				alt="SUNY Albany Seal"></a>
 		<div class="logo-label"></div>
-		<p style="float: left;">University at Albany</p>
+		<p style="float: left;">University at Albany, SUNY</p>
 		<p>Logged in as ${email}.</p>		<form action="${pageContext.request.contextPath}/Logout" method="post">
 			<input type="submit" value="Logout?">
 		</form>
