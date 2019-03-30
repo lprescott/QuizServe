@@ -25,7 +25,9 @@
 				alt="SUNY Albany Seal"></a>
 		<div class="logo-label"></div>
 		<p style="float: left;">University at Albany, SUNY</p>
-		<p>Logged in as ${email}.</p>		<form action="${pageContext.request.contextPath}/Logout" method="post">
+		<p>Logged in as ${email}.</p>
+		<a id="link" href="${pageContext.request.contextPath}/admin/main.jsp"> Go back </a>
+		<form action="${pageContext.request.contextPath}/Logout" method="post">
 			<input type="submit" value="Logout?">
 		</form>
 	</div>
@@ -43,6 +45,7 @@
 				<tr>
 					<th>ID</th>
 					<th>Test Name</th>
+					<th></th>
 				</tr>
 
 				<c:forEach var="row" items="${result.rows}">
