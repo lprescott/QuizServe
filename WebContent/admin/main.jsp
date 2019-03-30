@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<%@page import="java.io.*,java.util.*,java.sql.*"%>
+<%@page import="javax.servlet.http.*,javax.servlet.*"%>
+<%@page import="edu.albany.csi418.session.LoginEnum"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -20,7 +26,7 @@
 		<p style="float: left;">University at Albany, SUNY</p>
 		<p>Logged in as ${email}.</p>		
 		<form action="${pageContext.request.contextPath}/Logout" method="post">
-			<input type="submit" value="Logout?">
+			<input type="submit" value="Logout">
 		</form>
 	</div>
 
@@ -43,12 +49,56 @@
 
 		<div class="row">
 			<div id="left" class="column shadow">
-				<h3 style="margin: 10px;">Current Tests</h3>
+				<h3 style="margin: 20px;">Current Tests</h3>
+				
+				<!-- Connect to DB and select all admin's tests -->
+				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
+				<sql:query dataSource="${snapshot}" var="result"> SELECT TEST_ID, HEADER_TEXT, IMAGE_NAME, FOOTER_TEXT FROM TEST WHERE ADMIN_ID = ${id};</sql:query>
 
+				<!-- Print table of admin's tests -->
+				<table class="table" style="width: 100%;">
+					<tr>
+						<th>ID</th>
+						<th>Test Name</th>
+						<th></th>
+					</tr>
+	
+					<c:forEach var="row" items="${result.rows}">
+						<tr>
+							<td><c:out value="${row.TEST_ID}" /></td>
+							<td><c:out value="${row.HEADER_TEXT}" /></td>
+							<th></th>
+						</tr>
+					</c:forEach>
+	
+				</table>
+			
 			</div>
 			<div id="right" class="column shadow">
-				<h3 style="margin: 10px;">Tests Taken</h3>
+				<h3 style="margin: 20px;">Tests Taken</h3>
+				
+				<!-- Connect to DB and select al] admin's tests -->
+				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
+				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM TEST T INNER JOIN TESTS_TAKEN TT ON T.TEST_ID = TT.TEST_ID INNER JOIN TESTS_TAKEN_RESULTS TTR ON TTR.TEST_TAKEN_ID = TT.TEST_TAKEN_ID INNER JOIN RESULTS R ON TTR.RESULTS_ID = R.RESULTS_ID WHERE T.ADMIN_ID = ${id};</sql:query>
 
+				<!-- Print table of admin's tests -->
+				<table class="table" style="width: 100%;">
+					<tr>
+						<th>ID</th>
+						<th>User ID</th>
+						<th>Test Name</th>
+						<th></th>
+					</tr>
+	
+					<c:forEach var="row" items="${result.rows}">
+						<tr>
+							<td><c:out value="${row.TEST_ID}" /></td>
+							<td><c:out value="${row.USERS_ID}" /></td>
+							<td><c:out value="${row.HEADER_TEXT}" /></td>
+							<th></th>
+						</tr>
+					</c:forEach>
+				</table>
 			</div>
 		</div>
 	</div>
