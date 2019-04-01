@@ -42,7 +42,7 @@
 			<div class="form-container-test">
 				<!-- Connect to DB and select all questions -->
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
-				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM QUESTION Q;</sql:query>
+				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM QUESTION;</sql:query>
 
 				<!-- Form -->
 				<form class="login-form" action="${pageContext.request.contextPath}/CreateTest" method="post">
@@ -75,7 +75,7 @@
 								<td><c:out value="${row.QUESTION_ID}" /></td>
 								<td><c:out value="${row.TEXT}" /></td>
 								<td><c:out value="${row.CATEGORY}" /></td>
-								<td><input class="cb" type="checkbox" id="q_${row.QUESTION_ID}" name="q_${row.QUESTION_ID}"></td>
+								<td><input class="cb" type="checkbox" id="${row.QUESTION_ID}" name="${row.QUESTION_ID}"></td>
 							</tr>
 						</c:forEach>
 
@@ -91,7 +91,7 @@
 				<%
 					if (request.getParameter("success") != null) {
 						if (request.getParameter("success").equals("false")) {
-							out.println("<div id=\"error\"><p>" + request.getParameter("error") + "</p></div>");
+							out.println("<div id=\"error\" style=\"text-align:center; padding-bottom: 5px;\"><p>" + request.getParameter("error") + "</p></div>");
 						}
 					}
 				%>
@@ -100,7 +100,7 @@
 				<%
 					if (request.getParameter("success") != null) {
 						if (request.getParameter("success").equals("true")) {
-							out.println("<div id=\"success\"><p>Successfully Added User</p></div>");
+							out.println("<div id=\"success\" style=\"text-align:center; padding-bottom: 5px;\"><p>Successfully Added Test</p></div>");
 						}
 					}
 				%>
