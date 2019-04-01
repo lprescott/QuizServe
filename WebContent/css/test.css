@@ -1,0 +1,41 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+.form-container-test {
+	position: relative;
+	z-index: 1;
+	background: #ffffff;
+	margin: 0 auto 0;
+}
+
+.form-container-test .t_input_text {
+	font-family: "Open Sans", sans-serif;
+	outline: 0;
+	background: #f2f2f2;
+	width: 100%;
+	border: 0;
+	margin: 0 0 15px;
+	padding: 15px;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+
+.form-container-test #submit {
+	font-family: "Open Sans", sans-serif;
+	text-transform: uppercase;
+	outline: 0;
+	background: #93cede;
+	width: 100%;
+	border: 0;
+	padding: 15px;
+	color: #ffffff;
+	font-size: 14px;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+}
+
+.form-container-test #submit:hover,
+.form #submit:active,
+.form #submit:focus {
+	background: #49a5bf;

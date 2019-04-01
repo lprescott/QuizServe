@@ -42,6 +42,14 @@
     <servlet-name>EditQuestionTF</servlet-name>
     <servlet-class>edu.albany.csi418.question.EditQuestionTF</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>CreateTest</servlet-name>
+    <servlet-class>edu.albany.csi418.test.CreateTest</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>EditTest</servlet-name>
+    <servlet-class>edu.albany.csi418.test.EditTest</servlet-class>
+  </servlet>
   <filter>
     <filter-name>userFilter</filter-name>
     <filter-class>edu.albany.csi418.authentication.UserFilter</filter-class>

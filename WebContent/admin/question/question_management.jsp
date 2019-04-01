@@ -57,10 +57,6 @@
 					<th></th>
 				</tr>
 
-				<%
-					
-				%>
-
 				<c:forEach var="row" items="${result.rows}">
 					<tr>
 						<td><c:out value="${row.QUESTION_ID}" /></td>

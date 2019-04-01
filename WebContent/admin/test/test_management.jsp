@@ -38,14 +38,14 @@
 
 			<!-- Connect to DB and select all users -->
 			<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
-			<sql:query dataSource="${snapshot}" var="result"> SELECT TEST_ID, HEADER_TEXT, IMAGE_NAME, FOOTER_TEXT FROM TEST;</sql:query>
+			<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM TEST T INNER JOIN ADMINISTRATOR A ON T.ADMIN_ID = A.ADMIN_ID;</sql:query>
 
 			<!-- Print table of all users -->
 			<table class="table" style="width: 100%;">
 				<tr>
 					<th>Test ID</th>
 					<th>Test Name</th>
-					<th>Admin ID</th>
+					<th>Admin</th>
 					<th></th>
 				</tr>
 
@@ -53,7 +53,7 @@
 					<tr>
 						<td><c:out value="${row.TEST_ID}" /></td>
 						<td><c:out value="${row.HEADER_TEXT}" /></td>
-						<td><c:out value="${row.ADMIN_ID}" /></td>
+						<td><c:out value="${row.EMAIL}" /></td>
 						<td><a class="link-style" href="${pageContext.request.contextPath}/admin/test/edit_test.jsp?TEST_ID=<c:out value="${row.TEST_ID}"/>">edit</a></td>
 					</tr>
 				</c:forEach>
