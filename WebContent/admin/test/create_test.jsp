@@ -61,7 +61,7 @@
 					</div>
 
 					<div class="filter-box">
-						<i class="fas fa-search filter-icon"></i> <input class="table-filter" type="text" id="filter1" onkeyup="filterTable('filter1', 'table1')" placeholder="Filter the below table by question text or category...">
+						<i class="fas fa-search filter-icon"></i> <input class="table-filter" type="text" id="filter1" onkeyup="filterCreateTest('filter1', 'table1')" placeholder="Filter the below table by question category...">
 					</div>
 
 					<!-- Print table of all questions -->
