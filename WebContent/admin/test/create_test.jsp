@@ -11,7 +11,7 @@
 
 <head>
 <meta content="text/html;" charset="UTF-8">
-<title>Create A Question</title>
+<title>Create A Test</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
@@ -49,7 +49,10 @@
 
 					<div style="padding: 45px">
 
-						<input class="t_input_text" id="test_name" name="test_name" type="text" placeholder="Test Name">
+						<input class="t_input_text" id="test_title" name="test_title" type="text" placeholder="Title">
+						
+						<input class="t_input_text" id="test_subtitle" name="test_subtitle" type="text" placeholder="Subtitle">
+						
 
 						<div style="text-align: center;">
 							Attached image: <input type="file" id="q_image" name="q_image" accept="image/png, image/jpeg">

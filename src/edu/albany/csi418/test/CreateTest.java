@@ -33,8 +33,9 @@ public class CreateTest extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-        String testName = request.getParameter("test_name");
-        
+        String testTitle = request.getParameter("test_title");
+        String testSubtitle = request.getParameter("test_subtitle");
+
         try {
             //Load the Connector/J
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -44,7 +45,7 @@ public class CreateTest extends HttpServlet {
  
             //Insert into TEST Table
             Statement ADD_TEST_Statement = DB_Connnection.createStatement();
-            String ADD_TEST_STRING = "INSERT INTO TEST (ADMIN_ID, HEADER_TEXT) VALUES (" + request.getSession().getAttribute("id") + ", '" + testName + "')";
+            String ADD_TEST_STRING = "INSERT INTO TEST (ADMIN_ID, HEADER_TEXT, FOOTER_TEXT) VALUES (" + request.getSession().getAttribute("id") + ", '" + testTitle + "', '" + testSubtitle + "')";
             ADD_TEST_Statement.executeUpdate(ADD_TEST_STRING);
             
             //Get TEST_ID
