@@ -41,7 +41,7 @@
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM QUESTION WHERE QUESTION_ID=<%=request.getParameter("QUESTION_ID")%>; </sql:query>
 
-				<form class="login-form" action="${pageContext.request.contextPath}/EditQuestionTF" method="post">
+				<form class="login-form" action="${pageContext.request.contextPath}/EditQuestionTF" method="post" enctype="multipart/form-data">
 
 					<!-- Hidden input with ID# -->
 					<input id="QUESTION_ID" type="hidden" name="QUESTION_ID" value="<%=request.getParameter("QUESTION_ID")%>">
@@ -67,7 +67,8 @@
 					</div>
 					
 					<div class="padded-bottom">
-						Attached image: <input type="file" id="q_image" name="q_image" accept="image/png, image/jpeg"> <br>
+						Attached image: <output name="image">${result.rows[0].IMAGE_NAME}</output>
+						<input type="file" id="q_image" name="q_image" accept="image/png, image/jpeg">
 					</div>
 
 					<div class="padded-bottom">

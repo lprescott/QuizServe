@@ -38,7 +38,7 @@ public class Login extends HttpServlet {
 
     	String email = request.getParameter("email");
         String password = request.getParameter("password");
-
+        //System.out.print(email + " " + password);
         // Flags set to true if user or admin is found
         boolean isValidUser = false;
         boolean isValidAdmin = false;
@@ -53,10 +53,10 @@ public class Login extends HttpServlet {
 
             //Load the Connector/J
             Class.forName("com.mysql.cj.jdbc.Driver");
-
+            
             // Open a connection
             Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
-
+            //System.out.println(DB_Connnection);
             // Execute SQL queries
             Statement USER_SQL_Statement = DB_Connnection.createStatement();
             String USER_SQL_Query = "SELECT USERS_ID, EMAIL, PASSWORD, IS_ACTIVE FROM USERS";
