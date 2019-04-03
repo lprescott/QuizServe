@@ -11,7 +11,7 @@
 
 <head>
 <meta content="text/html;" charset="UTF-8">
-<title>Create A Test</title>
+<title>Edit A Test</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
@@ -42,17 +42,20 @@
 			<div class="form-container-test">
 				<!-- Connect to DB and select all questions -->
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
-				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM QUESTION;</sql:query>
-
+				<sql:query dataSource="${snapshot}" var="q_result"> SELECT * FROM QUESTION;</sql:query>
+				<sql:query dataSource="${snapshot}" var="t_result"> SELECT * FROM TEST WHERE TEST_ID=<%=request.getParameter("TEST_ID")%>;</sql:query>
+				
 				<!-- Form -->
-				<form class="login-form" action="${pageContext.request.contextPath}/CreateTest" method="post">
+				<form class="login-form" action="${pageContext.request.contextPath}/EditTest" method="post">
+				
+					<!-- Hidden input with ID# -->
+					<input id="TEST_ID" type="hidden" name="TEST_ID" value="<%=request.getParameter("TEST_ID")%>">  
 
 					<div style="padding: 45px">
 
-						<input class="t_input_text" id="test_title" name="test_title" type="text" placeholder="Title" required>
+						<input class="t_input_text" id="test_title" name="test_title" type="text" placeholder="Title" value="${t_result.rows[0].HEADER_TEXT}" required>
 						
-						<input class="t_input_text" id="test_subtitle" name="test_subtitle" type="text" placeholder="Subtitle" required>
-						
+						<input class="t_input_text" id="test_subtitle" name="test_subtitle" type="text" placeholder="Subtitle" value="${t_result.rows[0].FOOTER_TEXT}" required>
 
 						<div style="text-align: center;">
 							Attached image: <input type="file" id="q_image" name="q_image" accept="image/png, image/jpeg">
@@ -61,7 +64,7 @@
 					</div>
 
 					<div class="filter-box">
-						<i class="fas fa-search filter-icon"></i> <input class="table-filter" type="text" id="filter1" onkeyup="filterCreateTest('filter1', 'table1')" placeholder="Filter the below table by question category...">
+						<i class="fas fa-search filter-icon"></i> <input class="table-filter" type="text" id="filter1" onkeyup="filterTable('filter1', 'table1')" placeholder="Filter the below table by question text or category...">
 					</div>
 
 					<!-- Print table of all questions -->
@@ -73,19 +76,35 @@
 							<th><input class="cb_all" type="checkbox" id="all_cb" name="all_cb" onClick="toggle(this)"></th>
 						</tr>
 
-						<c:forEach var="row" items="${result.rows}">
+						<c:forEach var="row" items="${q_result.rows}">
 							<tr>
 								<td><c:out value="${row.QUESTION_ID}" /></td>
 								<td><c:out value="${row.TEXT}" /></td>
 								<td><c:out value="${row.CATEGORY}" /></td>
-								<td><input class="cb" type="checkbox" id="${row.QUESTION_ID}" name="${row.QUESTION_ID}"></td>
+								
+								<sql:query dataSource="${snapshot}" var="active_result"> SELECT * FROM TEST_QUESTIONS WHERE TEST_ID=<%=request.getParameter("TEST_ID")%> AND QUESTION_ID = ${row.QUESTION_ID};</sql:query>	
+								
+								<!-- question is a part of test -->
+								<c:if test="${active_result.rowCount != 0}">
+									<td><input class="cb" type="checkbox" id="${row.QUESTION_ID}" name="${row.QUESTION_ID}" checked></td>
+								</c:if>
+								
+								<!-- question is not a part of test -->
+								<c:if test="${active_result.rowCount == 0}">
+									<td><input class="cb" type="checkbox" id="${row.QUESTION_ID}" name="${row.QUESTION_ID}"></td>
+								</c:if>
+
 							</tr>
 						</c:forEach>
 
 					</table>
-					
+
 					<div style="padding: 45px">
-						<input class="shadow-button" id="submit" type="submit" value="CREATE TEST">
+						<div class="padded-bottom">
+							<input class="shadow-button" id="submit" type="submit" name="submit" value="UPDATE">
+						</div>
+
+						<input class="shadow-button" id="delete" type="submit" name="submit" value="DELETE">
 					</div>
 
 				</form>
@@ -94,7 +113,8 @@
 				<%
 					if (request.getParameter("success") != null) {
 						if (request.getParameter("success").equals("false")) {
-							out.println("<div id=\"error\" style=\"text-align:center; padding-bottom: 5px;\"><p>" + request.getParameter("error") + "</p></div>");
+							out.println("<div id=\"error\" style=\"text-align:center; padding-bottom: 5px;\"><p>"
+									+ request.getParameter("error") + "</p></div>");
 						}
 					}
 				%>
@@ -103,7 +123,8 @@
 				<%
 					if (request.getParameter("success") != null) {
 						if (request.getParameter("success").equals("true")) {
-							out.println("<div id=\"success\" style=\"text-align:center; padding-bottom: 5px;\"><p>Successfully Added Test</p></div>");
+							out.println(
+									"<div id=\"success\" style=\"text-align:center; padding-bottom: 5px;\"><p>Successfully Added Test</p></div>");
 						}
 					}
 				%>

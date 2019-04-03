@@ -16,6 +16,8 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/filter.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">	
 </head>
 <body>
 <!-- Navbar -->
@@ -40,8 +42,13 @@
 			<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 			<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM TEST T INNER JOIN ADMINISTRATOR A ON T.ADMIN_ID = A.ADMIN_ID;</sql:query>
 
+			<div class="filter-box">
+				<i class="fas fa-search filter-icon"></i>
+				<input class="table-filter" type="text" id="filter1" onkeyup="filterTable('filter1', 'table1')" placeholder="Filter the below table by test name or admin email...">
+			</div>
+				
 			<!-- Print table of all users -->
-			<table class="table" style="width: 100%;">
+			<table id="table1" class="table" style="width: 100%;">
 				<tr>
 					<th>Test ID</th>
 					<th>Test Name</th>
