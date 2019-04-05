@@ -11,7 +11,7 @@
 
 <head>
 <meta content="text/html;" charset="UTF-8">
-<title>Edit A Test</title>
+<title>TakeTest</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
@@ -49,7 +49,7 @@
 																	WHERE TEST_ID=<%=request.getParameter("TEST_ID")%>;</sql:query>
 				
 				<!-- Form -->
-				<form class="login-form" action="${pageContext.request.contextPath}/GradeTest" method="post">
+				<form class="login-form" action="${pageContext.request.contextPath}/user/test/GradeTest.jsp" method="post">
 				
 					<!-- Hidden input with ID# -->
 					<input id="TEST_ID" type="hidden" name="TEST_ID" value="<%=request.getParameter("TEST_ID")%>">  
@@ -75,6 +75,7 @@
 						                                                  QUESTION_ANSWER Q
 						                                                  ON A.ANSWER_ID = Q.ANSWER_ID)
 						                                                  WHERE QUESTION_ID = ${row.QUESTION_ID};</sql:query>
+						                                                  
 						<c:forEach var="ans" items="${answers.rows}">
 							<input type="radio" name="${row.QUESTION_ID}" value="${ans.ANSWER_ID}"><c:out value="${ans.ANSWER}"/><BR>
 						</c:forEach>
