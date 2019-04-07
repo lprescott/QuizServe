@@ -43,6 +43,9 @@
 				<form action="${pageContext.request.contextPath}/admin/user/user_management.jsp">
 					<input class="shadow-button" type="submit" value="User Management" />
 				</form>
+				<form action="${pageContext.request.contextPath}/admin/admin_management.jsp">
+					<input class="shadow-button" type="submit" value="Admin Management" />
+				</form>
 				<form action="${pageContext.request.contextPath}/admin/test/test_management.jsp">
 					<input class="shadow-button" type="submit" value="Test Management" />
 				</form>

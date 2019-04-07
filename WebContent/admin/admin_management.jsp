@@ -11,7 +11,7 @@
 
 <head>
 <meta content="text/html;" charset="UTF-8">
-<title>User Management</title>
+<title>Admin Management</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
@@ -44,32 +44,28 @@
 			
 			<!-- Connect to DB and select all users -->
 			<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
-			<sql:query dataSource="${snapshot}" var="result"> SELECT * from USERS; </sql:query>
+			<sql:query dataSource="${snapshot}" var="result"> SELECT * from ADMINISTRATOR; </sql:query>
 
 			<!-- Print table of all users -->
 			<table id="table" class="table" style="width: 100%;">
 				<tr>
-					<th>User ID</th>
+					<th>Admin ID</th>
 					<th>Email</th>
-					<th>Active</th>
 					<th>Password</th>
 					<th></th>
 				</tr>
 
 				<c:forEach var="row" items="${result.rows}">
 					<tr>
-						<td><c:out value="${row.USERS_ID}" /></td>
 						<td><c:out value="${row.EMAIL}" /></td>
-						<td><c:out value="${row.IS_ACTIVE}" /></td>
 						<td><c:out value="${row.PASSWORD}" /></td>
-						<td><a class="link-style" href="${pageContext.request.contextPath}/admin/user/edit_user.jsp?USERS_ID=<c:out value="${row.USERS_ID}"/>">edit</a></td>
+						<td><a class="link-style" href="${pageContext.request.contextPath}/admin/edit_admin.jsp?ADMIN_ID=<c:out value="${row.ADMIN_ID}"/>">edit</a></td>
 					</tr>
 				</c:forEach>
 
 				<tr>
 					<td></td>
-					<td><a class="link-style" href="${pageContext.request.contextPath}/admin/user/create_user.jsp">create new user</a></td>
-					<td></td>
+					<td><a class="link-style" href="${pageContext.request.contextPath}/admin/create_admin.jsp">create new admin</a></td>
 					<td></td>
 					<td></td>
 				</tr>

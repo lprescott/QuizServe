@@ -26,6 +26,14 @@
     <servlet-name>EditUser</servlet-name>
     <servlet-class>edu.albany.csi418.user.EditUser</servlet-class>
   </servlet>
+    <servlet>
+    <servlet-name>CreateAdmin</servlet-name>
+    <servlet-class>edu.albany.csi418.admin.CreateAdmin</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>EditAdmin</servlet-name>
+    <servlet-class>edu.albany.csi418.admin.EditAdmin</servlet-class>
+  </servlet>
   <servlet>
     <servlet-name>CreateQuestionMC</servlet-name>
     <servlet-class>edu.albany.csi418.question.CreateQuestionMC</servlet-class>
