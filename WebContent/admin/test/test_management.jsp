@@ -38,7 +38,7 @@
 	<div class="main-container" style="max-width: 1000px;">
 		<div class="main shadow" style="padding: 0;">
 
-			<!-- Connect to DB and select all tests -->
+			<!-- Connect to DB and select all users -->
 			<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 			<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM TEST T INNER JOIN ADMINISTRATOR A ON T.ADMIN_ID = A.ADMIN_ID;</sql:query>
 
@@ -53,7 +53,6 @@
 					<th>Test ID</th>
 					<th>Test Name</th>
 					<th>Admin</th>
-					<th>Tools</th>
 					<th></th>
 				</tr>
 
@@ -62,7 +61,6 @@
 						<td><c:out value="${row.TEST_ID}" /></td>
 						<td><c:out value="${row.HEADER_TEXT}" /></td>
 						<td><c:out value="${row.EMAIL}" /></td>
-						<td><a class="link-style" href="${pageContext.request.contextPath}/admin/test/invite_users.jsp?TEST_ID=<c:out value="${row.TEST_ID}"/>">invite_user(s)</a></td>
 						<td><a class="link-style" href="${pageContext.request.contextPath}/admin/test/edit_test.jsp?TEST_ID=<c:out value="${row.TEST_ID}"/>">edit</a></td>
 					</tr>
 				</c:forEach>
@@ -70,7 +68,6 @@
 				<tr>
 					<td></td>
 					<td><a class="link-style" href="${pageContext.request.contextPath}/admin/test/create_test.jsp">create new test</a></td>
-					<td></td>
 					<td></td>
 					<td></td>
 				</tr>
