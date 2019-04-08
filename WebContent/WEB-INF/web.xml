@@ -26,7 +26,7 @@
     <servlet-name>EditUser</servlet-name>
     <servlet-class>edu.albany.csi418.user.EditUser</servlet-class>
   </servlet>
-    <servlet>
+  <servlet>
     <servlet-name>CreateAdmin</servlet-name>
     <servlet-class>edu.albany.csi418.admin.CreateAdmin</servlet-class>
   </servlet>
@@ -57,6 +57,10 @@
   <servlet>
     <servlet-name>EditTest</servlet-name>
     <servlet-class>edu.albany.csi418.test.EditTest</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>InviteUsers</servlet-name>
+    <servlet-class>edu.albany.csi418.test.InviteUsers</servlet-class>
   </servlet>
   <filter>
     <filter-name>userFilter</filter-name>
