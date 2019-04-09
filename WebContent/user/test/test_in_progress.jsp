@@ -77,7 +77,7 @@
 						                                                  WHERE QUESTION_ID = ${row.QUESTION_ID};</sql:query>
 						                                                  
 						<c:forEach var="ans" items="${answers.rows}">
-							<input type="radio" name="${row.QUESTION_ID}" value="${ans.ANSWER_ID}"><c:out value="${ans.ANSWER}"/><BR>
+							<input type="radio" id="${ans.ANSWER_ID}" value="${ans.ANSWER_ID}"><c:out value="${ans.ANSWER}"/><BR>
 						</c:forEach>
 						
 						<BR>
