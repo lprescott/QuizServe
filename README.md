@@ -2,7 +2,7 @@
 
 ### Entity Relationship Diagram
 * A [draw.io](https://www.draw.io) diagram hosted on Google Drive
-![ICSI 418, Group Project, Entity Relationship Diagram](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/er-diagram.png)
+![ICSI 418, Group Project, Entity Relationship Diagram](https://github.com/lprescott/ICSI418-Group-Project/blob/user-invitation/project-logistics/er-diagram.png)
 
 ### [Group Chat Invite Link](https://join.slack.com/t/icsi-418team/shared_invite/enQtNTU4NjUxODQ4NTQ2LTM2MDMwY2ExM2U0YjU0ZjMzNzkzY2JlNGFiMTQ4YWJlMjBkM2JmNTMyZThlMWRkZmYxZjhhZTcxYWQ5M2E5Y2I)
 * [Slack](https://www.slack.com) Team Code: __icsi-418team__.slack.com
