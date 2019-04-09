@@ -53,10 +53,12 @@
 
 					<div style="padding: 45px">
 
-						<input class="t_input_text" id="test_title" name="test_title" type="text" placeholder="Title" value="${t_result.rows[0].HEADER_TEXT}" required>
+						<input class="t_input_text" id="test_title" name="test_title" type="text" placeholder="Title" value="${t_result.rows[0].TITLE}" required>
 						
-						<input class="t_input_text" id="test_subtitle" name="test_subtitle" type="text" placeholder="Subtitle" value="${t_result.rows[0].FOOTER_TEXT}" required>
-
+						<input class="t_input_text" id="test_header" name="test_header" type="text" placeholder="Header" value="${t_result.rows[0].HEADER_TEXT}" required>
+						
+						<input class="t_input_text" id="test_footer" name="test_footer" type="text" placeholder="Footer" value="${t_result.rows[0].FOOTER_TEXT}" required>
+						
 						<div style="text-align: center;">
 							Attached image: <input type="file" id="q_image" name="q_image" accept="image/png, image/jpeg">
 						</div>
@@ -134,7 +136,7 @@
 
 	<!-- Footer -->
 	<div class="footer shadow">
-		<p>A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp" >us</a> for an ICSI 418Y/410 final project, Spring 2019.</p>
+		<p>A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp" >our team</a> for an ICSI 418Y/410 final project, Spring 2019.</p>
 	</div>
 </body>
 

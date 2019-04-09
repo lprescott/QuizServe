@@ -67,7 +67,7 @@
 	
 					<c:forEach var="row" items="${result.rows}">
 						<tr>
-							<td><c:out value="${row.HEADER_TEXT}" /></td>
+							<td><c:out value="${row.TITLE}" /></td>
 							<td><c:out value="${DateTimeUtils.formatDateTime(row.TEST_ASSIGNED)}" /></td>							
 							<td><a class="link-style" href="${pageContext.request.contextPath}/user/test/take_test.jsp?USERS_ID=${id}&TEST_ID=<c:out value="${row.TEST_ID}"/>">take test</a></td>					
 						</tr>
@@ -85,7 +85,7 @@
 
 	<!-- Footer -->
 	<div class="footer shadow">
-		<p>A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp" >us</a> for an ICSI 418Y/410 final project, Spring 2019.</p>
+		<p>A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp" >our team</a> for an ICSI 418Y/410 final project, Spring 2019.</p>
 	</div>
 </body>
 

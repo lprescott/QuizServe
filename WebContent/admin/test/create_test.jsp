@@ -51,7 +51,9 @@
 
 						<input class="t_input_text" id="test_title" name="test_title" type="text" placeholder="Title" required>
 						
-						<input class="t_input_text" id="test_subtitle" name="test_subtitle" type="text" placeholder="Subtitle" required>
+						<input class="t_input_text" id="test_header" name="test_header" type="text" placeholder="Header" required>
+						
+						<input class="t_input_text" id="test_footer" name="test_footer" type="text" placeholder="Footer" required>
 						
 
 						<div style="text-align: center;">
@@ -113,7 +115,7 @@
 
 	<!-- Footer -->
 	<div class="footer shadow">
-		<p>A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp" >us</a> for an ICSI 418Y/410 final project, Spring 2019.</p>
+		<p>A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp" >our team</a> for an ICSI 418Y/410 final project, Spring 2019.</p>
 	</div>
 </body>
 

@@ -70,7 +70,8 @@ public class EditTest extends HttpServlet {
 		} else if(action.equals("UPDATE")){
 			
 	        String testTitle = request.getParameter("test_title");
-	        String testSubtitle = request.getParameter("test_subtitle");
+	        String testHeader = request.getParameter("test_header");
+	        String testFooter = request.getParameter("test_footer");
 	        
 			try {
 	            //Load the Connector/J
@@ -81,7 +82,7 @@ public class EditTest extends HttpServlet {
 	
 	            // Execute SQL queries
 	            Statement UPDATE_TEST_SQL_Statement = DB_Connnection.createStatement();
-	            String UPDATE_TEST_SQL_Query = "UPDATE TEST SET HEADER_TEXT = '" + testTitle + "', FOOTER_TEXT= '" + testSubtitle + "' WHERE TEST_ID = " + request.getParameter("TEST_ID") + ";";
+	            String UPDATE_TEST_SQL_Query = "UPDATE TEST SET TITLE = '" + testTitle + "', HEADER_TEXT = '" + testHeader + "', FOOTER_TEXT = '" + testFooter + "' WHERE TEST_ID = " + request.getParameter("TEST_ID") + ";";
 	            UPDATE_TEST_SQL_Statement.executeUpdate(UPDATE_TEST_SQL_Query);
 
 	            Statement DELETE_TEST_QUESTIONS_SQL_Statement = DB_Connnection.createStatement();

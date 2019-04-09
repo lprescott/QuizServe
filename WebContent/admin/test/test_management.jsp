@@ -60,7 +60,7 @@
 				<c:forEach var="row" items="${result.rows}">
 					<tr>
 						<td><c:out value="${row.TEST_ID}" /></td>
-						<td><c:out value="${row.HEADER_TEXT}" /></td>
+						<td><c:out value="${row.TITLE}" /></td>
 						<td><c:out value="${row.EMAIL}" /></td>
 						<td><a class="link-style" href="${pageContext.request.contextPath}/admin/test/invite_users.jsp?TEST_ID=<c:out value="${row.TEST_ID}"/>">invite_user(s)</a></td>
 						<td><a class="link-style" href="${pageContext.request.contextPath}/admin/test/edit_test.jsp?TEST_ID=<c:out value="${row.TEST_ID}"/>">edit</a></td>
@@ -89,7 +89,7 @@
 
 	<!-- Footer -->
 	<div class="footer shadow">
-		<p>A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp" >us</a> for an ICSI 418Y/410 final project, Spring 2019.</p>
+		<p>A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp" >our team</a> for an ICSI 418Y/410 final project, Spring 2019.</p>
 	</div>
 </body>
 
