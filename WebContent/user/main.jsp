@@ -37,6 +37,11 @@
 	<div class="main-container">
 		<div class="main shadow">
 			<h2 style="margin: 10px;">User Home</h2>
+			<div class="manage-container">
+				<form action="${pageContext.request.contextPath}/user/update_account.jsp">
+					<input class="shadow-button" type="submit" value="Update Your Account" />
+				</form>
+			</div>
 		</div>
 
 		<div class="row">
@@ -80,8 +85,7 @@
 
 	<!-- Footer -->
 	<div class="footer shadow">
-		<p>A quiz application for the ICSI 418Y final project, Spring
-			2019.</p>
+		<p>A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp" >us</a> for an ICSI 418Y/410 final project, Spring 2019.</p>
 	</div>
 </body>
 

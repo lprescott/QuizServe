@@ -62,6 +62,10 @@
     <servlet-name>InviteUsers</servlet-name>
     <servlet-class>edu.albany.csi418.test.InviteUsers</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>UpdateUser</servlet-name>
+    <servlet-class>edu.albany.csi418.user.UpdateUser</servlet-class>
+  </servlet>
   <filter>
     <filter-name>userFilter</filter-name>
     <filter-class>edu.albany.csi418.authentication.UserFilter</filter-class>
