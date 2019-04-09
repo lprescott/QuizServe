@@ -11,7 +11,7 @@
 
 <head>
 <meta content="text/html;" charset="UTF-8">
-<title>Admin Management</title>
+<title>Admin Home</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
@@ -26,59 +26,36 @@
 	<div class="header shadow">
 		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
 		<p style="float: left;">University at Albany, SUNY</p>
-		<p>Logged in as ${email}.</p>		
-		<a id="link" href="${pageContext.request.contextPath}/admin/main.jsp"> Go back </a>
+		<p>Logged in as ${email}.</p>
 		<form action="${pageContext.request.contextPath}/Logout" method="post">
 			<input type="submit" value="Logout">
 		</form>
 	</div>
 
 	<!-- Content -->
-	<div class="main-container" style="max-width: 1000px;">
-		<div class="main shadow" style="padding: 0;">
-		
-			<div class="filter-box">
-				<i class="fas fa-search filter-icon"></i>
-				<input class="table-filter" type="text" id="filter" onkeyup="filterTable('filter', 'table')" placeholder="Filter the below table by user email or active status...">
+	<div class="main-container">
+		<div class="row">
+			<div id="left" class="column shadow">
+				<h3 style="margin: 20px;">Who are we?</h3>
+				<ul>
+					<li style="padding-bottom: 5px;">Luke Prescott</li>
+					<li style="padding-bottom: 5px;">Sean Loucks</li>
+					<li style="padding-bottom: 5px;">Jack Holden</li>
+					<li style="padding-bottom: 5px;">Max Moore</li>
+					<li style="padding-bottom: 5px;">Chin Wa Cheung</li>
+					<li style="padding-bottom: 5px;">Will Dahl</li>
+					<li style="padding-bottom: 5px;">Gary Passarelli</li>
+				</ul>
+
 			</div>
-			
-			<!-- Connect to DB and select all users -->
-			<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
-			<sql:query dataSource="${snapshot}" var="result"> SELECT * from ADMINISTRATOR; </sql:query>
-
-			<!-- Print table of all users -->
-			<table id="table" class="table" style="width: 100%;">
-				<tr>
-					<th>Admin ID</th>
-					<th>Email</th>
-					<th>Password</th>
-					<th></th>
-				</tr>
-
-				<c:forEach var="row" items="${result.rows}">
-					<tr>
-						<td><c:out value="${row.EMAIL}" /></td>
-						<td><c:out value="${row.PASSWORD}" /></td>
-						<td><a class="link-style" href="${pageContext.request.contextPath}/admin/edit_admin.jsp?ADMIN_ID=<c:out value="${row.ADMIN_ID}"/>">edit</a></td>
-					</tr>
-				</c:forEach>
-
-				<tr>
-					<td></td>
-					<td><a class="link-style" href="${pageContext.request.contextPath}/admin/create_admin.jsp">create new admin</a></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</table>
-
-			<!-- Message (if set) -->
-			<%
-				if (request.getParameter("message") != null) {
-					out.println("<div style=\"padding-bottom: 5px; text-align: center;\" id=\"success\"><p>"
-							+ request.getParameter("message") + "</p></div>");
-				}
-			%>
-
+			<div id="right" class="column shadow">
+				<h3 style="margin: 20px;">About the application:</h3>
+				<ul>
+					<li style="padding-bottom: 5px;"><a class="link-style" href="https://github.com/lprescott/ICSI418-Group-Project">GitHub</a></li>
+					<li style="padding-bottom: 5px;"><a class="link-style" href="https://trello.com/b/pfH92DPN/icsi-418-group-project-sprint-1-%F0%9F%9A%80-03-07-19-03-21-19">Trello Board</a></li>
+					<li style="padding-bottom: 5px;"><a class="link-style" href="https://drive.google.com/file/d/1XlezssqVcUBls8oMyGCVEdJGmtN95HkN/view?usp=sharing">ER Diagram</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 
