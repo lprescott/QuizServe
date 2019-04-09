@@ -96,7 +96,7 @@
 				
 				<!-- Connect to DB and select al] admin's tests -->
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
-				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM TEST T INNER JOIN TESTS_TAKEN TT ON T.TEST_ID = TT.TEST_ID INNER JOIN TESTS_TAKEN_RESULTS TTR ON TTR.TEST_TAKEN_ID = TT.TEST_TAKEN_ID INNER JOIN RESULTS R ON TTR.RESULTS_ID = R.RESULTS_ID WHERE T.ADMIN_ID = ${id};</sql:query>
+				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM TEST T INNER JOIN TESTS_TAKEN TT ON T.TEST_ID = TT.TEST_ID INNER JOIN RESULTS R ON TT.TEST_TAKEN_ID = R.TEST_TAKEN_ID WHERE T.ADMIN_ID = ${id};</sql:query>
 
 				<!-- Print table of admin's tests -->
 				<table id="table2" class="table" style="width: 100%;">
@@ -113,7 +113,8 @@
 							<td><c:out value="${row.TEST_ID}" /></td>
 							<td><c:out value="${row.USERS_ID}" /></td>
 							<td><c:out value="${row.TEST_DT}" /></td>
-							<td><c:out value="${row.HEADER_TEXT}" /></td>
+							<td><c:out value="${row.TITLE}" /></td>
+							
 							<td><a class="link-style" href="${pageContext.request.contextPath}/admin/test/test_results.jsp?TEST_ID=<c:out value="${row.TEST_ID}"/>&?USER_ID=<c:out value="${row.USER_ID}"/>">results</a></td>
 						</tr>
 					</c:forEach>
