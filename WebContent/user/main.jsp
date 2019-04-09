@@ -3,6 +3,7 @@
 <%@page import="java.io.*,java.util.*,java.sql.*"%>
 <%@page import="javax.servlet.http.*,javax.servlet.*"%>
 <%@page import="edu.albany.csi418.session.LoginEnum"%>
+<%@page import="edu.albany.csi418.DateTimeUtils"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
@@ -55,12 +56,14 @@
 				<table id="table1" class="table" style="width: 100%;">
 					<tr>
 						<th>Test Name</th>
+						<th>Assigned On</th>
 						<th></th>
 					</tr>
 	
 					<c:forEach var="row" items="${result.rows}">
 						<tr>
 							<td><c:out value="${row.HEADER_TEXT}" /></td>
+							<td><c:out value="${DateTimeUtils.formatDateTime(row.TEST_ASSIGNED)}" /></td>							
 							<td><a class="link-style" href="${pageContext.request.contextPath}/user/test/take_test.jsp?USERS_ID=${id}&TEST_ID=<c:out value="${row.TEST_ID}"/>">take test</a></td>					
 						</tr>
 					</c:forEach>

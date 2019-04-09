@@ -59,7 +59,7 @@ public class InviteUsers extends HttpServlet {
             		
             		//Add into allowed_users table
                     Statement ALLOWED_USERS_Statement2 = DB_Connnection.createStatement();
-                    String ALLOWED_USERS_SQL_Query2 = "INSERT INTO ALLOWED_USERS (USERS_ID, TEST_ID) VALUES ("+USER_RS.getString("USERS_ID")+", "+testID+");";
+                    String ALLOWED_USERS_SQL_Query2 = "INSERT INTO ALLOWED_USERS (USERS_ID, TEST_ID, TEST_ASSIGNED) VALUES ("+USER_RS.getString("USERS_ID")+", "+testID+", NOW());";
                     ALLOWED_USERS_Statement2.executeUpdate(ALLOWED_USERS_SQL_Query2);
             	}
             		
@@ -73,7 +73,7 @@ public class InviteUsers extends HttpServlet {
 			
 		} catch (Exception e) {
 
-			System.out.println(e);
+			//System.out.println(e);
 			response.sendRedirect(
 					"admin/test/invite_users.jsp?TEST_ID=" + testID + "&success=false&error=Unknown%20Error");
 			return;
