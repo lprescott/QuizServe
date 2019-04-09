@@ -71,7 +71,7 @@
 
 	<!-- Footer -->
 	<div class="footer shadow">
-		<p>A quiz application for the ICSI 418Y final project, Spring 2019.</p>
+		<p>A quiz application for the ICSI 418Y/410 final project, Spring 2019.</p>
 	</div>
 </body>
 
