@@ -31,18 +31,30 @@
 		</c:if>
 
 		<p style="float: left;">University at Albany, SUNY</p>
-		<p>Logged in as ${email}.</p>
+
+		<c:if test="${userType != 'user' and userType != 'admin'}">
+			<p>Not logged in.</p>			
+			<form action="${pageContext.request.contextPath}/login.jsp" >
+				<input type="submit" value="Login"/>
+			</form>
+		</c:if>
 
 		<c:if test="${userType == 'user'}">
+			<p>Logged in as ${email}.</p>
 			<a id="link" href="${pageContext.request.contextPath}/user/main.jsp"> Go back </a>
+			<form action="${pageContext.request.contextPath}/Logout" method="post">
+				<input type="submit" value="Logout">
+			</form>
 		</c:if>
 		<c:if test="${userType == 'admin'}">
+			<p>Logged in as ${email}.</p>
 			<a id="link" href="${pageContext.request.contextPath}/admin/main.jsp"> Go back </a>
+			<form action="${pageContext.request.contextPath}/Logout" method="post">
+				<input type="submit" value="Logout">
+			</form>
 		</c:if>
 
-		<form action="${pageContext.request.contextPath}/Logout" method="post">
-			<input type="submit" value="Logout">
-		</form>
+
 	</div>
 
 	<!-- Content -->
