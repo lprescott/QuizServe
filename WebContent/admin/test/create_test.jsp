@@ -40,6 +40,25 @@
 		<div class="main shadow" style="padding: 0;">
 
 			<div class="form-container-test">
+				
+				<!-- Error Message (if set) -->
+				<%
+					if (request.getParameter("success") != null) {
+						if (request.getParameter("success").equals("false")) {
+							out.println("<div id=\"error\" style=\"text-align:center; padding: 5px;\"><p>" + request.getParameter("error") + "</p></div>");
+						}
+					}
+				%>
+
+				<!-- Success Message (if set) -->
+				<%
+					if (request.getParameter("success") != null) {
+						if (request.getParameter("success").equals("true")) {
+							out.println("<div id=\"success\" style=\"text-align:center; padding: 5px;\"><p>Successfully Added Test</p></div>");
+						}
+					}
+				%>
+				
 				<!-- Connect to DB and select all questions -->
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM QUESTION;</sql:query>
@@ -91,24 +110,6 @@
 					</div>
 
 				</form>
-
-				<!-- Error Message (if set) -->
-				<%
-					if (request.getParameter("success") != null) {
-						if (request.getParameter("success").equals("false")) {
-							out.println("<div id=\"error\" style=\"text-align:center; padding-bottom: 5px;\"><p>" + request.getParameter("error") + "</p></div>");
-						}
-					}
-				%>
-
-				<!-- Success Message (if set) -->
-				<%
-					if (request.getParameter("success") != null) {
-						if (request.getParameter("success").equals("true")) {
-							out.println("<div id=\"success\" style=\"text-align:center; padding-bottom: 5px;\"><p>Successfully Added Test</p></div>");
-						}
-					}
-				%>
 			</div>
 		</div>
 	</div>

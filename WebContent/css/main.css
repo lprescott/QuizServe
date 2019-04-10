@@ -115,6 +115,7 @@ table th, table td {
 .row {
 	display: flex;
 	margin: 30px;
+	align-items: flex-start;
 }
 
 .column {

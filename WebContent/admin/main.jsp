@@ -63,7 +63,7 @@
 				
 				<!-- Connect to DB and select all admin's tests -->
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
-				<sql:query dataSource="${snapshot}" var="result"> SELECT TEST_ID, HEADER_TEXT, IMAGE_NAME, FOOTER_TEXT FROM TEST WHERE ADMIN_ID = ${id};</sql:query>
+				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM TEST WHERE ADMIN_ID = ${id};</sql:query>
 
 				<!-- Print table of admin's tests -->
 				<table id="table1" class="table" style="width: 100%;">
@@ -94,7 +94,7 @@
 					<input class="table-filter" type="text" id="filter2" onkeyup="filterTable('filter2', 'table2')" placeholder="Filter the below table by user id or test name...">
 				</div>
 				
-				<!-- Connect to DB and select al] admin's tests -->
+				<!-- Connect to DB and select all admin's tests -->
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM TEST T INNER JOIN TESTS_TAKEN TT ON T.TEST_ID = TT.TEST_ID INNER JOIN RESULTS R ON TT.TEST_TAKEN_ID = R.TEST_TAKEN_ID WHERE T.ADMIN_ID = ${id};</sql:query>
 

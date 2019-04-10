@@ -37,6 +37,26 @@
 	<div class="main-container" style="max-width: 1000px;">
 		<div class="main shadow" style="padding: 0;">
 
+			<!-- Error Message (if set) -->
+			<%
+				if (request.getParameter("success") != null) {
+					if (request.getParameter("success").equals("false")) {
+						out.println("<div id=\"error\" style=\"text-align:center; padding: 5px;margin: 5px;\"><p>"
+								+ request.getParameter("error") + "</p></div>");
+					}
+				}
+			%>
+
+			<!-- Success Message (if set) -->
+			<%
+				if (request.getParameter("success") != null) {
+					if (request.getParameter("success").equals("true")) {
+						out.println(
+								"<div id=\"success\" style=\"text-align:center; padding: 5px;margin: 5px;\"><p>Successfully Updated Invitations</p></div>");
+					}
+				}
+			%>
+
 			<div class="filter-box">
 				<i class="fas fa-search filter-icon"></i> <input class="table-filter" type="text" id="filter" onkeyup="filterTable('filter', 'table')" placeholder="Filter the below table by user email or active status...">
 			</div>
@@ -47,7 +67,7 @@
 
 			<div class="form-container-test">
 				<form class="login-form" action="${pageContext.request.contextPath}/InviteUsers" method="post">
-				
+
 					<!-- Hidden input with ID# -->
 					<input id="TEST_ID" type="hidden" name="TEST_ID" value="<%=request.getParameter("TEST_ID")%>">
 
@@ -65,7 +85,7 @@
 								<td><c:out value="${row.USERS_ID}" /></td>
 								<td><c:out value="${row.EMAIL}" /></td>
 								<td><c:out value="${row.IS_ACTIVE}" /></td>
-								
+
 								<!-- Connect to DB and select all user already invited -->
 								<sql:setDataSource var="snapshot2" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 								<sql:query dataSource="${snapshot2}" var="result2"> SELECT * FROM USERS U INNER JOIN ALLOWED_USERS AU ON U.USERS_ID = AU.USERS_ID WHERE AU.TEST_ID = <%=request.getParameter("TEST_ID")%> AND U.USERS_ID = ${row.USERS_ID};</sql:query>
@@ -74,7 +94,7 @@
 								<c:if test="${row.IS_ACTIVE == true and not empty result2.rows[0]}">
 									<td><input class="cb" type="checkbox" id="${row.USERS_ID}" name="${row.USERS_ID}" checked></td>
 								</c:if>
-								
+
 								<!-- user is active and not invited -->
 								<c:if test="${row.IS_ACTIVE == true and empty result2.rows[0]}">
 									<td><input class="cb" type="checkbox" id="${row.USERS_ID}" name="${row.USERS_ID}"></td>
@@ -94,30 +114,15 @@
 					</div>
 
 				</form>
-				<!-- Error Message (if set) -->
-				<%
-					if (request.getParameter("success") != null) {
-						if (request.getParameter("success").equals("false")) {
-							out.println("<div id=\"error\" style=\"text-align:center; padding-bottom: 5px;\"><p>" + request.getParameter("error") + "</p></div>");
-						}
-					}
-				%>
-				
-				<!-- Success Message (if set) -->
-				<%
-					if (request.getParameter("success") != null) {
-						if (request.getParameter("success").equals("true")) {
-							out.println("<div id=\"success\" style=\"text-align:center; padding-bottom: 5px;\"><p>Successfully Updated Invitations</p></div>");
-						}
-					}
-				%>
 			</div>
 		</div>
 	</div>
 
 	<!-- Footer -->
 	<div class="footer shadow">
-		<p>A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp" >our team</a> for an ICSI 418Y/410 final project, Spring 2019.</p>
+		<p>
+			A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp">our team</a> for an ICSI 418Y/410 final project, Spring 2019.
+		</p>
 	</div>
 </body>
 
