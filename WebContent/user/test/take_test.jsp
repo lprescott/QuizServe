@@ -50,14 +50,16 @@
 	<form class="login-form" action="${pageContext.request.contextPath}/SubmitTest" method="post">
 		<div class="main-container">
 			<div class="main shadow">
+
+				<c:set var="count" value="1" scope="page" />
 				<c:forEach var="row" items="${result2.rows}">
 
-					<h4>${row.TEXT}</h4>
+					<h4>${count}. ${row.TEXT}</h4>
 					<!-- question is mc -->
 					<c:if test="${row.IS_TRUE_FALSE == false}">
 						<sql:query dataSource="${snapshot1}" var="result3"> SELECT * FROM QUESTION Q INNER JOIN QUESTION_ANSWER QA ON Q.QUESTION_ID = QA.QUESTION_ID INNER JOIN ANSWER A ON QA.ANSWER_ID = A.ANSWER_ID WHERE Q.QUESTION_ID = ${row.QUESTION_ID};</sql:query>
 						<c:forEach var="row2" items="${result3.rows}">
-							<input class="${row2.QUESTION_ID}" type="checkbox" id="${row2.ANSWER_ID}" name="${row2.ANSWER_ID}" onchange="checkBoxUpdate(this, '${row2.QUESTION_ID}')">
+							<input class="${row.QUESTION_ID}" type="checkbox" id="${row2.ANSWER_ID}" name="${row2.ANSWER_ID}" onchange="checkBoxUpdate(this, '${row2.QUESTION_ID}')">
 							<label for="${row2.ANSWER_ID}">${row2.ANSWER}</label>
 							<br>
 						</c:forEach>
@@ -69,16 +71,18 @@
 					<c:if test="${row.IS_TRUE_FALSE == true}">
 						<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}')">
 						<label for="${row.QUESTION_ID}_true">True</label>
-
+						<br>
 						<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}')">
 						<label for="${row.QUESTION_ID}_false">False</label>
-						<br> <br>
+						<br>
+						<br>
 						<hr style="margin-left: -20px; margin-right: -20px;">
 					</c:if>
 
+					<c:set var="count" value="${count + 1}" scope="page" />
 				</c:forEach>
 				<div style="padding-top: 30px">
-					<input onClick="validateCheckboxes()" class="shadow-button submit-button" id="submit" type="submit" value="submit">
+					<input onClick="return validateCheckboxes();" class="shadow-button submit-button" id="submit" type="submit" value="submit">
 				</div>
 			</div>
 		</div>
