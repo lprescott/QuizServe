@@ -71,7 +71,6 @@
 						<th>ID</th>
 						<th>Test Name</th>
 						<th></th>
-						<th></th>
 					</tr>
 	
 					<c:forEach var="row" items="${result.rows}">
@@ -79,7 +78,6 @@
 							<td><c:out value="${row.TEST_ID}" /></td>
 							<td><c:out value="${row.TITLE}" /></td>
 							<td><a class="link-style" href="${pageContext.request.contextPath}/admin/test/invite_users.jsp?TEST_ID=<c:out value="${row.TEST_ID}"/>">invite users</a></td>					
-							<td><a class="link-style" href="${pageContext.request.contextPath}/admin/test/edit_test.jsp?TEST_ID=<c:out value="${row.TEST_ID}"/>">edit</a></td>
 						</tr>
 					</c:forEach>
 	

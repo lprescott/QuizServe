@@ -51,7 +51,7 @@ CREATE TABLE `allowed_users` (
   `ALLOWED_USERS_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `USERS_ID` int(10) unsigned NOT NULL,
   `TEST_ID` int(10) unsigned NOT NULL,
-  `TEST_ASSIGNED` datetime NOT NULL,
+  `TEST_ASSIGNED` date NOT NULL,
   PRIMARY KEY (`ALLOWED_USERS_ID`),
   KEY `USERS_ID` (`USERS_ID`),
   KEY `TEST_ID` (`TEST_ID`),
@@ -66,7 +66,7 @@ CREATE TABLE `allowed_users` (
 
 LOCK TABLES `allowed_users` WRITE;
 /*!40000 ALTER TABLE `allowed_users` DISABLE KEYS */;
-INSERT INTO `allowed_users` VALUES (1,1,1,'2019-04-09 21:09:33');
+INSERT INTO `allowed_users` VALUES (1,1,2,'2019-04-10');
 /*!40000 ALTER TABLE `allowed_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -199,11 +199,11 @@ CREATE TABLE `test` (
   `TITLE` varchar(25) NOT NULL,
   `HEADER_TEXT` varchar(25) NOT NULL,
   `FOOTER_TEXT` varchar(25) NOT NULL,
-  `TEST_DUE` datetime DEFAULT NULL,
+  `TEST_DUE` date DEFAULT NULL,
   PRIMARY KEY (`TEST_ID`),
   KEY `ADMIN_ID` (`ADMIN_ID`),
   CONSTRAINT `test_ibfk_1` FOREIGN KEY (`ADMIN_ID`) REFERENCES `administrator` (`ADMIN_ID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,7 +212,7 @@ CREATE TABLE `test` (
 
 LOCK TABLES `test` WRITE;
 /*!40000 ALTER TABLE `test` DISABLE KEYS */;
-INSERT INTO `test` VALUES (1,1,NULL,'Astronomy Test','Look to the stars.','Stay grounded.',NULL);
+INSERT INTO `test` VALUES (2,1,NULL,'Astronomy Test','TEST','TEST','2019-04-13');
 /*!40000 ALTER TABLE `test` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -232,7 +232,7 @@ CREATE TABLE `test_questions` (
   KEY `QUESTION_ID` (`QUESTION_ID`),
   CONSTRAINT `test_questions_ibfk_1` FOREIGN KEY (`TEST_ID`) REFERENCES `test` (`TEST_ID`) ON DELETE CASCADE,
   CONSTRAINT `test_questions_ibfk_2` FOREIGN KEY (`QUESTION_ID`) REFERENCES `question` (`QUESTION_ID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -241,7 +241,7 @@ CREATE TABLE `test_questions` (
 
 LOCK TABLES `test_questions` WRITE;
 /*!40000 ALTER TABLE `test_questions` DISABLE KEYS */;
-INSERT INTO `test_questions` VALUES (16,1,1),(17,1,2),(18,1,5),(19,1,6),(20,1,7),(21,1,8),(22,1,9);
+INSERT INTO `test_questions` VALUES (8,2,1),(9,2,2),(10,2,5),(11,2,6),(12,2,7),(13,2,8),(14,2,9);
 /*!40000 ALTER TABLE `test_questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,7 +256,7 @@ CREATE TABLE `tests_taken` (
   `TEST_TAKEN_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `USERS_ID` int(10) unsigned NOT NULL,
   `TEST_ID` int(10) unsigned NOT NULL,
-  `TEST_DT` datetime NOT NULL,
+  `TEST_DATE` date NOT NULL,
   `SCORE` decimal(5,2) NOT NULL,
   PRIMARY KEY (`TEST_TAKEN_ID`),
   KEY `USERS_ID` (`USERS_ID`),
@@ -310,4 +310,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-09 22:58:02
+-- Dump completed on 2019-04-10 12:18:46

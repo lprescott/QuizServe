@@ -53,7 +53,8 @@
 					<th>Test ID</th>
 					<th>Test Name</th>
 					<th>Admin</th>
-					<th>Tools</th>
+					<th>Due Date</th>
+					<th></th>
 					<th></th>
 				</tr>
 
@@ -62,6 +63,7 @@
 						<td><c:out value="${row.TEST_ID}" /></td>
 						<td><c:out value="${row.TITLE}" /></td>
 						<td><c:out value="${row.EMAIL}" /></td>
+						<td><c:out value="${row.TEST_DUE}" /></td>
 						<td><a class="link-style" href="${pageContext.request.contextPath}/admin/test/invite_users.jsp?TEST_ID=<c:out value="${row.TEST_ID}"/>">invite_user(s)</a></td>
 						<td><a class="link-style" href="${pageContext.request.contextPath}/admin/test/edit_test.jsp?TEST_ID=<c:out value="${row.TEST_ID}"/>">edit</a></td>
 					</tr>

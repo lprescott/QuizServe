@@ -63,7 +63,7 @@
 
 			</div>
 			<div id="right" class="column shadow">
-				<h3 style="margin: 20px;">About the application:</h3>
+				<h3 style="margin: 20px;">Quick Links:</h3>
 				<ul>
 					<li style="padding-bottom: 5px;"><a class="link-style" href="https://github.com/lprescott/ICSI418-Group-Project">GitHub</a></li>
 					<li style="padding-bottom: 5px;"><a class="link-style" href="https://trello.com/b/pfH92DPN/icsi-418-group-project-sprint-1-%F0%9F%9A%80-03-07-19-03-21-19">Trello Board</a></li>
