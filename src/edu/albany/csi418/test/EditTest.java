@@ -72,6 +72,8 @@ public class EditTest extends HttpServlet {
 	        String testTitle = request.getParameter("test_title");
 	        String testHeader = request.getParameter("test_header");
 	        String testFooter = request.getParameter("test_footer");
+	        String testDue = request.getParameter("test_due");
+
 	        
 			try {
 	            //Load the Connector/J
@@ -80,11 +82,20 @@ public class EditTest extends HttpServlet {
 	            // Open a connection
 	            Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 	
-	            // Execute SQL queries
-	            Statement UPDATE_TEST_SQL_Statement = DB_Connnection.createStatement();
-	            String UPDATE_TEST_SQL_Query = "UPDATE TEST SET TITLE = '" + testTitle + "', HEADER_TEXT = '" + testHeader + "', FOOTER_TEXT = '" + testFooter + "' WHERE TEST_ID = " + request.getParameter("TEST_ID") + ";";
-	            UPDATE_TEST_SQL_Statement.executeUpdate(UPDATE_TEST_SQL_Query);
+	            if(testDue != null) {
+	            	Statement UPDATE_TEST_SQL_Statement = DB_Connnection.createStatement();
+		            String UPDATE_TEST_SQL_Query = "UPDATE TEST SET TITLE = '" + testTitle + "', HEADER_TEXT = '" + testHeader + "', FOOTER_TEXT = '" + testFooter + "', TEST_DUE = '" + testDue + "' WHERE TEST_ID = " + request.getParameter("TEST_ID") + ";";
+		            UPDATE_TEST_SQL_Statement.executeUpdate(UPDATE_TEST_SQL_Query);
+		            UPDATE_TEST_SQL_Statement.close();
 
+	            } else {
+	            	// Execute SQL queries
+		            Statement UPDATE_TEST_SQL_Statement = DB_Connnection.createStatement();
+		            String UPDATE_TEST_SQL_Query = "UPDATE TEST SET TITLE = '" + testTitle + "', HEADER_TEXT = '" + testHeader + "', FOOTER_TEXT = '" + testFooter + "' WHERE TEST_ID = " + request.getParameter("TEST_ID") + ";";
+		            UPDATE_TEST_SQL_Statement.executeUpdate(UPDATE_TEST_SQL_Query);
+		            UPDATE_TEST_SQL_Statement.close();
+	            }
+	           
 	            Statement DELETE_TEST_QUESTIONS_SQL_Statement = DB_Connnection.createStatement();
 	            String DELETE_TEST_QUESTIONS_SQL_Query = "DELETE TQ FROM TEST_QUESTIONS AS TQ WHERE TEST_ID ="+request.getParameter("TEST_ID")+";";
 	            DELETE_TEST_QUESTIONS_SQL_Statement.executeUpdate(DELETE_TEST_QUESTIONS_SQL_Query);
@@ -108,7 +119,6 @@ public class EditTest extends HttpServlet {
 	            }
 	            
 	            // Clean-up environment
-	            UPDATE_TEST_SQL_Statement.close();
 	            DELETE_TEST_QUESTIONS_SQL_Statement.close();
 	            QUESTION_SQL_Statement.close();
 	            ADD_TEST_QUESTION_Statement.close();

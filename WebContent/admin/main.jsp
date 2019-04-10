@@ -103,7 +103,7 @@
 					<tr>
 						<th>ID</th>
 						<th>User ID</th>
-						<th>Date/Time Taken</th>
+						<th>Date Taken</th>
 						<th>Test Name</th>
 						<th></th>
 					</tr>

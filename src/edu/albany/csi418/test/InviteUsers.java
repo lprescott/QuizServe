@@ -59,7 +59,7 @@ public class InviteUsers extends HttpServlet {
             		
             		//Add into allowed_users table
                     Statement ALLOWED_USERS_Statement2 = DB_Connnection.createStatement();
-                    String ALLOWED_USERS_SQL_Query2 = "INSERT INTO ALLOWED_USERS (USERS_ID, TEST_ID, TEST_ASSIGNED) VALUES ("+USER_RS.getString("USERS_ID")+", "+testID+", NOW());";
+                    String ALLOWED_USERS_SQL_Query2 = "INSERT INTO ALLOWED_USERS (USERS_ID, TEST_ID, TEST_ASSIGNED) VALUES ("+USER_RS.getString("USERS_ID")+", "+testID+", CURDATE());";
                     ALLOWED_USERS_Statement2.executeUpdate(ALLOWED_USERS_SQL_Query2);
             	}
             		

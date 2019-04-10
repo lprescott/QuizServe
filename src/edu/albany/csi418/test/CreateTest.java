@@ -36,19 +36,30 @@ public class CreateTest extends HttpServlet {
         String testTitle = request.getParameter("test_title");
         String testHeader = request.getParameter("test_header");
         String testFooter = request.getParameter("test_footer");
-
+        String testDue = request.getParameter("test_due");
+        
         try {
             //Load the Connector/J
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Open a connection
             Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
- 
-            //Insert into TEST Table
-            Statement ADD_TEST_Statement = DB_Connnection.createStatement();
-            String ADD_TEST_STRING = "INSERT INTO TEST (ADMIN_ID, TITLE, HEADER_TEXT, FOOTER_TEXT) VALUES (" + request.getSession().getAttribute("id") + ", '" + testTitle + "', '" + testHeader + "', '" + testFooter + "')";
-            ADD_TEST_Statement.executeUpdate(ADD_TEST_STRING);
+            Statement ADD_TEST_Statement;
             
+            if(testDue != null) {
+                //Insert into TEST Table
+                ADD_TEST_Statement = DB_Connnection.createStatement();
+                String ADD_TEST_STRING = "INSERT INTO TEST (ADMIN_ID, TITLE, HEADER_TEXT, FOOTER_TEXT, TEST_DUE) VALUES (" + request.getSession().getAttribute("id") + ", '" + testTitle + "', '" + testHeader + "', '" + testFooter + "', '" + testDue + "')";
+                ADD_TEST_Statement.executeUpdate(ADD_TEST_STRING);
+                
+            } else {
+                //Insert into TEST Table
+                ADD_TEST_Statement = DB_Connnection.createStatement();
+                String ADD_TEST_STRING = "INSERT INTO TEST (ADMIN_ID, TITLE, HEADER_TEXT, FOOTER_TEXT) VALUES (" + request.getSession().getAttribute("id") + ", '" + testTitle + "', '" + testHeader + "', '" + testFooter + "')";
+                ADD_TEST_Statement.executeUpdate(ADD_TEST_STRING);
+                
+            }
+
             //Get TEST_ID
             Statement GET_TEST_ID_Statement = DB_Connnection.createStatement();
             ResultSet TEST_RS = GET_TEST_ID_Statement.executeQuery("SELECT * FROM TEST;");
@@ -91,7 +102,7 @@ public class CreateTest extends HttpServlet {
             
         } catch (Exception e) {
             
-        	//System.out.println(e);
+        	System.out.println(e);
             response.sendRedirect("admin/test/create_test.jsp?success=false&error=Unknown%20Error");
             return;
         }

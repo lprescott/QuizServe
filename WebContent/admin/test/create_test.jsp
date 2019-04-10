@@ -74,9 +74,9 @@
 						
 						<input class="t_input_text" id="test_footer" name="test_footer" type="text" placeholder="Footer" required>
 						
-
 						<div style="text-align: center;">
-							Attached image: <input type="file" id="q_image" name="q_image" accept="image/png, image/jpeg">
+							Attached image: <input type="file" id="q_image" name="q_image" accept="image/png, image/jpeg"> <br><br>
+							Due Date: <input type="date" id="test_due" name="test_due" >
 						</div>
 
 					</div>
