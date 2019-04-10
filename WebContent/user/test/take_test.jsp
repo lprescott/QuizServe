@@ -48,40 +48,40 @@
 	<sql:query dataSource="${snapshot1}" var="result2"> SELECT * FROM TEST T INNER JOIN TEST_QUESTIONS TQ ON T.TEST_ID = TQ.TEST_ID INNER JOIN QUESTION Q ON TQ.QUESTION_ID = Q.QUESTION_ID WHERE T.TEST_ID = <%=request.getParameter("TEST_ID")%>; </sql:query>
 
 	<form class="login-form" action="${pageContext.request.contextPath}/SubmitTest" method="post">
+		<div class="main-container">
+			<div class="main shadow">
+				<c:forEach var="row" items="${result2.rows}">
 
-
-		<c:forEach var="row" items="${result2.rows}">
-			<div class="main-container">
-				<div class="main shadow">${row.TEXT}
+					<h4>${row.TEXT}</h4>
 					<!-- question is mc -->
-					<c:if test="${row.IS_TRUE_FALSE == false}"><br>
+					<c:if test="${row.IS_TRUE_FALSE == false}">
 						<sql:query dataSource="${snapshot1}" var="result3"> SELECT * FROM QUESTION Q INNER JOIN QUESTION_ANSWER QA ON Q.QUESTION_ID = QA.QUESTION_ID INNER JOIN ANSWER A ON QA.ANSWER_ID = A.ANSWER_ID WHERE Q.QUESTION_ID = ${row.QUESTION_ID};</sql:query>
 						<c:forEach var="row2" items="${result3.rows}">
-							<br>
 							<input class="${row2.QUESTION_ID}" type="checkbox" id="${row2.ANSWER_ID}" name="${row2.ANSWER_ID}" onchange="checkBoxUpdate(this, '${row2.QUESTION_ID}')">
 							<label for="${row2.ANSWER_ID}">${row2.ANSWER}</label>
+							<br>
 						</c:forEach>
+						<br>
+						<hr style="margin-left: -20px; margin-right: -20px;">
+
 					</c:if>
 					<!-- question is t/f -->
 					<c:if test="${row.IS_TRUE_FALSE == true}">
-						<br>
-						<br>
 						<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}')">
 						<label for="${row.QUESTION_ID}_true">True</label>
 
 						<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}')">
 						<label for="${row.QUESTION_ID}_false">False</label>
+						<br> <br>
+						<hr style="margin-left: -20px; margin-right: -20px;">
 					</c:if>
+
+				</c:forEach>
+				<div style="padding-top: 30px">
+					<input onClick="validateCheckboxes()" class="shadow-button submit-button" id="submit" type="submit" value="submit">
 				</div>
 			</div>
-		</c:forEach>
-
-		<div class="main-container">
-			<div class="main shadow">
-				<input style="text-transform: uppercase; outline: 0; background: #93cede; width: 100%; border: 0; padding: 15px; color: #ffffff; font-size: 14px; -webkit-transition: all 0.3 ease; transition: all 0.3 ease; cursor: pointer;" class="shadow-button" id="submit" type="submit" value="submit">
-			</div>
 		</div>
-
 	</form>
 
 

@@ -131,6 +131,20 @@ table th, table td {
 	margin-left: 15px;
 }
 
+.submit-button {
+	text-transform: uppercase;
+	outline: 0;
+	background: #93cede;
+	width: 100%;
+	border: 0;
+	padding: 15px;
+	color: #ffffff;
+	font-size: 14px;
+	-webkit-transition: all 0.3 ease;
+	transition: all 0.3 ease;
+	cursor: pointer;
+}
+
 .shadow-button:hover {
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px
@@ -150,7 +164,8 @@ table th, table td {
 
 .table-filter {
 	font-family: "Open Sans", sans-serif;
-	width: 100%; outline : 0;
+	width: 100%;
+	outline: 0;
 	border: 0;
 	padding: 15px;
 	font-size: 14px;
