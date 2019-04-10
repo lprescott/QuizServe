@@ -34,7 +34,7 @@
 				<input id="email" name="email" type="email" placeholder="email" required> <input id="password" name="password" type="password" placeholder="password" required> <input id="password-confirm" name="password-confirm" type="password" placeholder="confirm password" required>
 
 				<div class="padded-bottom">
-					<input class="cb" type="checkbox" id="active_cb" name="active_cb" value="active_cb" onchange="checkBoxUpdate(this)" checked> <label for="active_cb">Active</label> <input class="cb" type="checkbox" id="inactive_cb" name="inactive_cb" value="inactive_cb" onchange="checkBoxUpdate(this)"> <label for="inactive_cb">Inactive</label>
+					<input class="cb" type="checkbox" id="active_cb" name="active_cb" value="active_cb" onchange="checkBoxUpdate(this, 'cb')" checked> <label for="active_cb">Active</label> <input class="cb" type="checkbox" id="inactive_cb" name="inactive_cb" value="inactive_cb" onchange="checkBoxUpdate(this, 'cb')"> <label for="inactive_cb">Inactive</label>
 				</div>
 
 				<input class="shadow-button" id="submit" type="submit" value="CREATE">

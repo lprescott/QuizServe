@@ -40,7 +40,7 @@
 					<textarea class="q_input_text" id="q_text" name="q_text" rows="10" cols="30" placeholder="Question text goes here..." required></textarea>
 					<input class="q_input_text" id="q_category" name="q_category" type="text" placeholder="Category">
 					<div class="padded-bottom">
-						Answer: <input class="cb" type="checkbox" id="true_cb" name="true_cb" onchange="checkBoxUpdate(this)"> <label for="true">True</label> <input class="cb" type="checkbox" id="false_cb" name="false_cb" onchange="checkBoxUpdate(this)"> <label for="false">False</label>
+						Answer: <input class="cb" type="checkbox" id="true_cb" name="true_cb" onchange="checkBoxUpdate(this, 'cb')"> <label for="true">True</label> <input class="cb" type="checkbox" id="false_cb" name="false_cb" onchange="checkBoxUpdate(this, 'cb')"> <label for="false">False</label>
 					</div>
 					<div class="padded-bottom">
 						Attached image: <input type="file" id="q_image" name="q_image" accept="image/png, image/jpeg"> <br>

@@ -58,7 +58,7 @@
 						<sql:query dataSource="${snapshot1}" var="result3"> SELECT * FROM QUESTION Q INNER JOIN QUESTION_ANSWER QA ON Q.QUESTION_ID = QA.QUESTION_ID INNER JOIN ANSWER A ON QA.ANSWER_ID = A.ANSWER_ID WHERE Q.QUESTION_ID = ${row.QUESTION_ID};</sql:query>
 						<c:forEach var="row2" items="${result3.rows}">
 							<br>
-							<input class="${row2.QUESTION_ID}" type="checkbox" id="${row2.ANSWER_ID}" name="${row2.ANSWER_ID}" onchange="">
+							<input class="${row2.QUESTION_ID}" type="checkbox" id="${row2.ANSWER_ID}" name="${row2.ANSWER_ID}" onchange="checkBoxUpdate(this, '${row2.QUESTION_ID}')">
 							<label for="${row2.ANSWER_ID}">${row2.ANSWER}</label>
 						</c:forEach>
 					</c:if>
@@ -66,10 +66,10 @@
 					<c:if test="${row.IS_TRUE_FALSE == true}">
 						<br>
 						<br>
-						<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="">
+						<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}')">
 						<label for="${row.QUESTION_ID}_true">True</label>
 
-						<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="">
+						<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}')">
 						<label for="${row.QUESTION_ID}_false">False</label>
 					</c:if>
 				</div>

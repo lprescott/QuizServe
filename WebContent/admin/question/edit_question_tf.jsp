@@ -51,16 +51,16 @@
 					<div class="padded-bottom">
 
 						<c:if test="${result.rows[0].TF_IS_TRUE}">
-						Answer: <input class="cb" type="checkbox" id="true_cb" name="true_cb" onchange="checkBoxUpdate(this)" checked>
+						Answer: <input class="cb" type="checkbox" id="true_cb" name="true_cb" onchange="checkBoxUpdate(this, 'cb')" checked>
 							<label for="true">True</label>
-							<input class="cb" type="checkbox" id="false_cb" name="false_cb" onchange="checkBoxUpdate(this)">
+							<input class="cb" type="checkbox" id="false_cb" name="false_cb" onchange="checkBoxUpdate(this, 'cb')">
 							<label for="false">False</label>
 						</c:if>
 
 						<c:if test="${!result.rows[0].TF_IS_TRUE}">
-						Answer: <input class="cb" type="checkbox" id="true_cb" name="true_cb" onchange="checkBoxUpdate(this)">
+						Answer: <input class="cb" type="checkbox" id="true_cb" name="true_cb" onchange="checkBoxUpdate(this, 'cb')">
 							<label for="true">True</label>
-							<input class="cb" type="checkbox" id="false_cb" name="false_cb" onchange="checkBoxUpdate(this)" checked>
+							<input class="cb" type="checkbox" id="false_cb" name="false_cb" onchange="checkBoxUpdate(this, 'cb')" checked>
 							<label for="false">False</label>
 						</c:if>
 						

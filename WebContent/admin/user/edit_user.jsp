@@ -54,9 +54,9 @@
 					<!-- If user is active, mark active check box -->
 					<c:if test="${result.rows[0].IS_ACTIVE}">
 					<div class="padded-bottom">
-						<input class="cb" type="checkbox" id="active_cb" name="active_cb" value="active_cb" onchange="checkBoxUpdate(this)" checked> 
+						<input class="cb" type="checkbox" id="active_cb" name="active_cb" value="active_cb" onchange="checkBoxUpdate(this, 'cb')" checked> 
 						<label for="active_cb">Active</label> 
-						<input class="cb" type="checkbox" id="inactive_cb" name="inactive_cb" value="inactive_cb" onchange="checkBoxUpdate(this)">
+						<input class="cb" type="checkbox" id="inactive_cb" name="inactive_cb" value="inactive_cb" onchange="checkBoxUpdate(this, 'cb')">
 						<label for="inactive_cb">Inactive</label>
 					</div>
 					</c:if>
@@ -64,9 +64,9 @@
 					<!-- If user is inactive, mark inactive check box -->
 					<c:if test="${!result.rows[0].IS_ACTIVE}">
 					<div class="padded-bottom">
-						<input class="cb" type="checkbox" id="active_cb" name="active_cb" value="active_cb" onchange="checkBoxUpdate(this)"> 
+						<input class="cb" type="checkbox" id="active_cb" name="active_cb" value="active_cb" onchange="checkBoxUpdate(this, 'cb')"> 
 						<label for="active_cb">Active</label> 
-						<input class="cb" type="checkbox" id="inactive_cb" name="inactive_cb" value="inactive_cb" onchange="checkBoxUpdate(this)" checked>
+						<input class="cb" type="checkbox" id="inactive_cb" name="inactive_cb" value="inactive_cb" onchange="checkBoxUpdate(this, 'cb')" checked>
 						<label for="inactive_cb">Inactive</label>
 					</div>
 					</c:if>
