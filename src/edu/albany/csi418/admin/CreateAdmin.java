@@ -104,7 +104,7 @@ public class CreateAdmin extends HttpServlet {
             ADD_ADMIN_Statement.executeUpdate(ADD_ADMIN_STRING);
 
             //Email User Information
-            MailUtils.newUserMail(email, password);
+            MailUtils.newUserMail(email, password, 1);
 
             // Clean-up environment
             USER_Results.close();

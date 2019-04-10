@@ -26,8 +26,8 @@ public class MailUtils {
 	 * @throws AddressException
 	 * @throws MessagingException
 	 */
-	public static void newUserMail(String userEmail, String userPassword) throws AddressException, MessagingException {
-		
+	public static void newUserMail(String userEmail, String userPassword, int type) throws AddressException, MessagingException {
+
         // sets SMTP server properties
 		Properties properties = new Properties();
 		properties.put("mail.smtp.host", "smtp.gmail.com");
@@ -53,8 +53,17 @@ public class MailUtils {
 				InternetAddress.parse(userEmail));
 			msg.setSubject("Newly Created Account Information");
 			msg.setSentDate(new Date());
+			String userType;
+			
+			if(type == 0) {
+				userType = "user";
+			} else {
+				userType = "admin";
+			}
+			
 			msg.setText("Dear " + userEmail + ","
 				+ "\n\nYour password is: \"" + userPassword + "\""
+				+ "\nAnd you are a(n) " + userType + "."
 				+ "\n\nSincerely,"
 				+ "\nICSI-418 Team");
 

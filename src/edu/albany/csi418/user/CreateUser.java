@@ -130,7 +130,7 @@ public class CreateUser extends HttpServlet {
             ADD_USER_Statement.executeUpdate(ADD_USER_STRING);
 
             //Email User Information
-            MailUtils.newUserMail(email, password);
+            MailUtils.newUserMail(email, password, 0);
 
             // Clean-up environment
             USER_Results.close();

@@ -24,9 +24,23 @@
 <body>
 	<!-- Navbar -->
 	<div class="header shadow">
-		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
+		<c:if test="${userType == 'user'}">
+			<a class="logo" href="${pageContext.request.contextPath}/user/main.jsp"><img class="shadow" style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
+		</c:if>
+		<c:if test="${userType == 'admin'}">
+			<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
+		</c:if>
+
 		<p style="float: left;">University at Albany, SUNY</p>
 		<p>Logged in as ${email}.</p>
+
+		<c:if test="${userType == 'user'}">
+			<a id="link" href="${pageContext.request.contextPath}/user/main.jsp"> Go back </a>
+		</c:if>
+		<c:if test="${userType == 'admin'}">
+			<a id="link" href="${pageContext.request.contextPath}/admin/main.jsp"> Go back </a>
+		</c:if>
+
 		<form action="${pageContext.request.contextPath}/Logout" method="post">
 			<input type="submit" value="Logout">
 		</form>
@@ -61,7 +75,9 @@
 
 	<!-- Footer -->
 	<div class="footer shadow">
-		<p>A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp" >our team</a> for an ICSI 418Y/410 final project, Spring 2019.</p>
+		<p>
+			A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp">our team</a> for an ICSI 418Y/410 final project, Spring 2019.
+		</p>
 	</div>
 </body>
 

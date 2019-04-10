@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.albany.csi418.MailUtils;
 import edu.albany.csi418.session.LoginEnum;
 
 /**
@@ -61,9 +60,6 @@ public class UpdateUser extends HttpServlet {
             // Clean-up environment
             UPDATE_USER_SQL_Statement.close();
             DB_Connnection.close();
-            
-            //Email User Information
-            MailUtils.newUserMail(email, password);
 
             response.sendRedirect("user/update_account.jsp?success=true");
             return;

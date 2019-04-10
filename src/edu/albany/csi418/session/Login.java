@@ -106,7 +106,7 @@ public class Login extends HttpServlet {
                 
                 //Add session email attribute, and user-type
                 session.setAttribute("email", email);
-                session.setAttribute("user-type", "user");
+                session.setAttribute("userType", "user");
 				session.setAttribute("id", id);
                 
                 // Clean-up environment
@@ -146,7 +146,7 @@ public class Login extends HttpServlet {
                 
                 //Add session email attribute, and user-type
                 session.setAttribute("email", email);
-                session.setAttribute("user-type", "admin");
+                session.setAttribute("userType", "admin");
 				session.setAttribute("id", id);
                 
                 // Clean-up environment

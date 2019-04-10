@@ -18,6 +18,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
+<script src="${pageContext.request.contextPath}/js/checkBox.js"></script>
 
 </head>
 
@@ -44,14 +45,34 @@
 		</div>
 	</div>
 
-	<sql:query dataSource="${snapshot1}" var="result2"> SELECT * FROM QUESTION Q INNER JOIN TEST_QUESTIONS TQ ON Q.QUESTION_ID = TQ.QUESTION_ID WHERE TQ.TEST_ID = <%=request.getParameter("TEST_ID")%>; </sql:query>
+	<sql:query dataSource="${snapshot1}" var="result2"> SELECT * FROM TEST T INNER JOIN TEST_QUESTIONS TQ ON T.TEST_ID = TQ.TEST_ID INNER JOIN QUESTION Q ON TQ.QUESTION_ID = Q.QUESTION_ID WHERE T.TEST_ID = <%=request.getParameter("TEST_ID")%>; </sql:query>
 
 	<form class="login-form" action="${pageContext.request.contextPath}/SubmitTest" method="post">
 
 
 		<c:forEach var="row" items="${result2.rows}">
 			<div class="main-container">
-				<div class="main shadow">${row.TEXT}</div>
+				<div class="main shadow">${row.TEXT}
+					<!-- question is mc -->
+					<c:if test="${row.IS_TRUE_FALSE == false}"><br>
+						<sql:query dataSource="${snapshot1}" var="result3"> SELECT * FROM QUESTION Q INNER JOIN QUESTION_ANSWER QA ON Q.QUESTION_ID = QA.QUESTION_ID INNER JOIN ANSWER A ON QA.ANSWER_ID = A.ANSWER_ID WHERE Q.QUESTION_ID = ${row.QUESTION_ID};</sql:query>
+						<c:forEach var="row2" items="${result3.rows}">
+							<br>
+							<input class="${row2.QUESTION_ID}" type="checkbox" id="${row2.ANSWER_ID}" name="${row2.ANSWER_ID}" onchange="">
+							<label for="${row2.ANSWER_ID}">${row2.ANSWER}</label>
+						</c:forEach>
+					</c:if>
+					<!-- question is t/f -->
+					<c:if test="${row.IS_TRUE_FALSE == true}">
+						<br>
+						<br>
+						<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="">
+						<label for="${row.QUESTION_ID}_true">True</label>
+
+						<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="">
+						<label for="${row.QUESTION_ID}_false">False</label>
+					</c:if>
+				</div>
 			</div>
 		</c:forEach>
 
