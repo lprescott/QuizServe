@@ -11,7 +11,7 @@
 
 <head>
 <meta content="text/html;" charset="UTF-8">
-<title>Test A Test</title>
+<title>Test Results</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
@@ -24,6 +24,8 @@
 <body>
 	<sql:setDataSource var="snapshot1" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 	<sql:query dataSource="${snapshot1}" var="result1"> SELECT * FROM TEST T INNER JOIN ADMINISTRATOR A ON T.ADMIN_ID = A.ADMIN_ID WHERE TEST_ID = <%=request.getParameter("TEST_ID")%>; </sql:query>
+	<sql:query dataSource="${snapshot1}" var="result4"> SELECT * FROM USERS U INNER JOIN TESTS_TAKEN TT ON U.USERS_ID = TT.USERS_ID WHERE TEST_TAKEN_ID = ${currentTestTakenID}; </sql:query>
+	<sql:query dataSource="${snapshot1}" var="result5"> SELECT * FROM ALLOWED_USERS WHERE USERS_ID = ${id} AND TEST_ID = <%=request.getParameter("TEST_ID")%>; </sql:query>
 
 	<!-- Navbar -->
 	<div class="header shadow">
@@ -38,9 +40,27 @@
 
 	<!-- Content -->
 	<div class="main-container">
-		<div class="main shadow">
-			<h2 style="margin: 10px;">${result1.rows[0].TITLE}</h2>
-			<h3 style="margin: 10px;">Administered by ${result1.rows[0].EMAIL}</h3>
+		<div class="main shadow" style="padding: 0;">
+			<h2 style="margin: 10px; padding: 20px;">${result1.rows[0].TITLE}</h2>
+			
+			<table style="width: 100%;">
+					<tr>
+						<th>Administrator</th>
+						<th>Assigned Date</th>
+						<th>User</th>
+						<th>Taken Date</th>
+						<th>Score</th>
+					</tr>
+					
+					<tr>
+						<th>${result1.rows[0].EMAIL}</th>
+						<th>${result5.rows[0].TEST_ASSIGNED}</th>
+						<th>${result4.rows[0].EMAIL}</th>
+						<th>${result4.rows[0].TEST_DATE}</th>
+						<th>${result4.rows[0].SCORE}</th>
+					</tr>
+			</table>
+			
 		</div>
 	</div>
 
@@ -63,7 +83,7 @@
 					<c:if test="${row.IS_TRUE_FALSE == false}">
 						<sql:query dataSource="${snapshot1}" var="result3"> SELECT * FROM QUESTION Q INNER JOIN QUESTION_ANSWER QA ON Q.QUESTION_ID = QA.QUESTION_ID INNER JOIN ANSWER A ON QA.ANSWER_ID = A.ANSWER_ID WHERE Q.QUESTION_ID = ${row.QUESTION_ID} ORDER BY RAND(${id});</sql:query>
 						<c:forEach var="row2" items="${result3.rows}">
-							<input class="${row.QUESTION_ID}" type="checkbox" id="answer_${row2.ANSWER_ID}" name="answer_${row2.ANSWER_ID}" onchange="checkBoxUpdate(this, '${row2.QUESTION_ID}');">
+							<input disabled class="${row.QUESTION_ID}" type="checkbox" id="answer_${row2.ANSWER_ID}" name="answer_${row2.ANSWER_ID}" onchange="checkBoxUpdate(this, '${row2.QUESTION_ID}');">
 							<label for="${row2.ANSWER_ID}">${row2.ANSWER}</label>
 							<br>
 						</c:forEach>
@@ -73,10 +93,10 @@
 					</c:if>
 					<!-- question is t/f -->
 					<c:if test="${row.IS_TRUE_FALSE == true}">
-						<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}');">
+						<input disabled class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}');">
 						<label for="${row.QUESTION_ID}_true">True</label>
 						<br>
-						<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}');">
+						<input disabled class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}');">
 						<label for="${row.QUESTION_ID}_false">False</label>
 						<br>
 						<br>
@@ -85,9 +105,6 @@
 
 					<c:set var="count" value="${count + 1}" scope="page" />
 				</c:forEach>
-				<div style="padding-top: 30px">
-					<input onClick="return validateCheckboxes();" class="shadow-button submit-button" name="submitTest" id="submitTest" type="submit" value="SUBMIT">
-				</div>
 			</div>
 		</div>
 	</form>

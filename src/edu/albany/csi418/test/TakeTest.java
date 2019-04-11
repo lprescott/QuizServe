@@ -181,12 +181,16 @@ public class TakeTest extends HttpServlet {
 				test_question_rs.close();
 				
 				//TODO success
+				response.sendRedirect("user/test/test_results.jsp?success=true&USERS_ID=" + userID + "&TEST_ID=" + testID);
+	            return;
 
 				
 			} catch (Exception e) {
 				
 				//System.out.println(e);
 				//TODO error
+				response.sendRedirect("user/test/test_results.jsp?success=false&error=Unknown%20Error");
+	            return;
 			}
 
 		}
