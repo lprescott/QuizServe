@@ -181,6 +181,7 @@ public class TakeTest extends HttpServlet {
 				test_question_rs.close();
 				
 				//TODO success
+				request.getRequestDispatcher("/user/main.jsp").forward(request, response);
 
 				
 			} catch (Exception e) {
