@@ -54,7 +54,7 @@
 				
 				<!-- Connect to DB and select all admin's tests -->
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
-				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM TEST T INNER JOIN ALLOWED_USERS AU ON T.TEST_ID = AU.TEST_ID WHERE AU.USERS_ID = ${id};</sql:query>
+				<sql:query dataSource="${snapshot}" var="result"> SELECT t.TITLE, AU.TEST_ASSIGNED,T.TEST_DUE, t.test_id  FROM TEST T INNER JOIN ALLOWED_USERS AU ON T.TEST_ID = AU.TEST_ID left join tests_taken on T.test_id = tests_taken.test_id WHERE AU.USERS_ID = ${id} and TEST_TAKEN_ID is null;</sql:query>
 
 				<!-- Print table of user's tests -->
 				<table id="table1" class="table" style="width: 100%;">
