@@ -52,9 +52,9 @@
 					<input class="table-filter" type="text" id="filter1" onkeyup="filterTable('filter1', 'table1')" placeholder="Filter the below table by test name...">
 				</div>
 				
-				<!-- Connect to DB and select all admin's tests -->
+				<!-- Connect to DB and select all user's assigned tests -->
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
-				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM TEST T INNER JOIN ALLOWED_USERS AU ON T.TEST_ID = AU.TEST_ID WHERE AU.USERS_ID = ${id};</sql:query>
+				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM TEST T INNER JOIN ALLOWED_USERS AU ON T.TEST_ID = AU.TEST_ID WHERE AU.USERS_ID = ${id} AND T.TEST_DUE >= CURDATE();</sql:query>
 
 				<!-- Print table of user's tests -->
 				<table id="table1" class="table" style="width: 100%;">
@@ -69,8 +69,20 @@
 						<tr>
 							<td><c:out value="${row.TITLE}" /></td>
 							<td><c:out value="${row.TEST_ASSIGNED}" /></td>		
-							<td><c:out value="${row.TEST_DUE}" /></td>												
-							<td><a class="link-style" href="${pageContext.request.contextPath}/user/test/take_test.jsp?USERS_ID=${id}&TEST_ID=<c:out value="${row.TEST_ID}"/>">take test</a></td>					
+							<td><c:out value="${row.TEST_DUE}" /></td>	
+							
+							<sql:query dataSource="${snapshot}" var="result1"> SELECT * FROM TESTS_TAKEN WHERE TEST_ID = ${row.TEST_ID} AND USERS_ID = ${id}; </sql:query>
+							
+							<c:if test="${result1.rowCount == 0}">
+								<td><a class="link-style" href="${pageContext.request.contextPath}/user/test/take_test.jsp?USERS_ID=${id}&TEST_ID=<c:out value="${row.TEST_ID}"/>">take test</a></td>					
+							</c:if>
+							
+							<c:if test="${result1.rowCount != 0}">
+								<td><a class="link-style" onclick="alert('Test has been taken.');" href="#"><del>take test</del></a></td>					
+							</c:if>
+							
+							
+																		
 						</tr>
 					</c:forEach>
 	
@@ -79,6 +91,34 @@
 			</div>
 			<div id="right" class="column shadow">
 				<h3 style="margin: 20px;">Tests Taken</h3>
+				
+				<div class="filter-box">
+					<i class="fas fa-search filter-icon"></i>
+					<input class="table-filter" type="text" id="filter2" onkeyup="filterTable('filter2', 'table2')" placeholder="Filter the below table by test name...">
+				</div>
+				
+				<!-- Connect to DB and select all user's taken tests -->
+				<sql:query dataSource="${snapshot}" var="result2"> SELECT * FROM TESTS_TAKEN TT INNER JOIN TEST T ON TT.TEST_ID = T.TEST_ID WHERE USERS_ID = ${id};</sql:query>
+
+				<!-- Print table of user's tests -->
+				<table id="table2" class="table" style="width: 100%;">
+					<tr>
+						<th>Test Name</th>
+						<th>Taken On</th>
+						<th>Score</th>
+						<th></th>
+					</tr>
+	
+					<c:forEach var="row" items="${result2.rows}">
+						<tr>
+							<td><c:out value="${row.TITLE}" /></td>
+							<td><c:out value="${row.TEST_DATE}" /></td>		
+							<td><c:out value="${row.SCORE}" /></td>								
+							<td><a class="link-style" href="${pageContext.request.contextPath}/user/test/test_results.jsp?success=true&USERS_ID=${id}&TEST_ID=${row.TEST_ID}">view results</a></td>												
+						</tr>
+					</c:forEach>
+	
+				</table>
 
 			</div>
 		</div>
