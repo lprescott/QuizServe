@@ -78,8 +78,36 @@
 
 			</div>
 			<div id="right" class="column shadow">
-				<h3 style="margin: 20px;">Tests Taken</h3>
+				<h3 style="margin: 20px;">Assigned Tests</h3>
+				
+				<div class="filter-box">
+					<i class="fas fa-search filter-icon"></i>
+					<input class="table-filter" type="text" id="filter1" onkeyup="filterTable('filter1', 'table1')" placeholder="Filter the below table by test name...">
+				</div>
+				
+				<!-- Connect to DB and select all admin's tests -->
+				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
+				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM TEST T INNER JOIN tests_taken AU ON T.TEST_ID = AU.TEST_ID WHERE AU.USERS_ID = ${id};</sql:query>
 
+				<!-- Print table of user's tests -->
+				<table id="table1" class="table" style="width: 100%;">
+					<tr>
+						<th>Test Name</th>
+						<th>Taken Date</th>
+						<th>Score</th>
+						<th></th>
+					</tr>
+	
+					<c:forEach var="row" items="${result.rows}">
+						<tr>
+							<td><c:out value="${row.TITLE}" /></td>
+							<td><c:out value="${row.TEST_DATE}" /></td>		
+							<td><c:out value="${row.SCORE}" /></td>												
+							<td><a class="link-style" href="../TestResult?USERS_ID=${id}&TEST_ID=<c:out value="${row.TEST_ID}"/>">test details</a></td>					
+						</tr>
+					</c:forEach>
+	
+				</table>
 			</div>
 		</div>
 	</div>
