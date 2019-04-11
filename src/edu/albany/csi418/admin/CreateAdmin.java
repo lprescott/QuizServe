@@ -50,13 +50,13 @@ public class CreateAdmin extends HttpServlet {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Open a connection
-            Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
+            Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 
             // Execute SQL queries
-            Statement USER_SQL_Statement = DB_Connnection.createStatement();
+            Statement USER_SQL_Statement = DB_Connection.createStatement();
             String USER_SQL_Query = "SELECT EMAIL FROM USERS";
 
-            Statement ADMIN_SQL_Statement = DB_Connnection.createStatement();
+            Statement ADMIN_SQL_Statement = DB_Connection.createStatement();
             String ADMIN_SQL_Query = "SELECT EMAIL FROM ADMINISTRATOR";
 
             ResultSet USER_Results = USER_SQL_Statement.executeQuery(USER_SQL_Query);
@@ -73,7 +73,7 @@ public class CreateAdmin extends HttpServlet {
                     USER_SQL_Statement.close();
                     ADMIN_SQL_Statement.close();
 
-                    DB_Connnection.close();
+                    DB_Connection.close();
 
                     response.sendRedirect("admin/create_admin.jsp?success=false&error=Existing%20User%20Email");
                     return;
@@ -91,7 +91,7 @@ public class CreateAdmin extends HttpServlet {
                     USER_SQL_Statement.close();
                     ADMIN_SQL_Statement.close();
 
-                    DB_Connnection.close();
+                    DB_Connection.close();
 
                     response.sendRedirect("admin/create_admin.jsp?success=false&error=Existing%20Admin%20Email");
                     return;
@@ -99,7 +99,7 @@ public class CreateAdmin extends HttpServlet {
             }
 
             //Insert into DB
-            Statement ADD_ADMIN_Statement = DB_Connnection.createStatement();
+            Statement ADD_ADMIN_Statement = DB_Connection.createStatement();
             String ADD_ADMIN_STRING = "INSERT INTO ADMINISTRATOR (EMAIL, PASSWORD) VALUES ('" + email + "', '" + password + "')";
             ADD_ADMIN_Statement.executeUpdate(ADD_ADMIN_STRING);
 
@@ -114,7 +114,7 @@ public class CreateAdmin extends HttpServlet {
             ADMIN_SQL_Statement.close();
             ADD_ADMIN_Statement.close();
 
-            DB_Connnection.close();
+            DB_Connection.close();
 
             response.sendRedirect("admin/create_admin.jsp?success=true");
         } catch (Exception e) {

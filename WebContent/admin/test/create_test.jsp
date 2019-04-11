@@ -64,7 +64,7 @@
 				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM QUESTION;</sql:query>
 
 				<!-- Form -->
-				<form class="login-form" action="${pageContext.request.contextPath}/CreateTest" method="post">
+				<form class="quiz-form" action="${pageContext.request.contextPath}/CreateTest" method="post">
 
 					<div style="padding: 45px">
 

@@ -52,13 +52,13 @@ public class CreateUser extends HttpServlet {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Open a connection
-            Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
+            Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 
             // Execute SQL queries
-            Statement USER_SQL_Statement = DB_Connnection.createStatement();
+            Statement USER_SQL_Statement = DB_Connection.createStatement();
             String USER_SQL_Query = "SELECT EMAIL FROM USERS";
 
-            Statement ADMIN_SQL_Statement = DB_Connnection.createStatement();
+            Statement ADMIN_SQL_Statement = DB_Connection.createStatement();
             String ADMIN_SQL_Query = "SELECT EMAIL FROM ADMINISTRATOR";
 
             ResultSet USER_Results = USER_SQL_Statement.executeQuery(USER_SQL_Query);
@@ -75,7 +75,7 @@ public class CreateUser extends HttpServlet {
                     USER_SQL_Statement.close();
                     ADMIN_SQL_Statement.close();
 
-                    DB_Connnection.close();
+                    DB_Connection.close();
 
                     response.sendRedirect("admin/user/create_user.jsp?success=false&error=Existing%20User%20Email");
                     return;
@@ -93,7 +93,7 @@ public class CreateUser extends HttpServlet {
                     USER_SQL_Statement.close();
                     ADMIN_SQL_Statement.close();
 
-                    DB_Connnection.close();
+                    DB_Connection.close();
 
                     response.sendRedirect("admin/user/create_user.jsp?success=false&error=Existing%20Admin%20Email");
                     return;
@@ -118,14 +118,14 @@ public class CreateUser extends HttpServlet {
                 USER_SQL_Statement.close();
                 ADMIN_SQL_Statement.close();
 
-                DB_Connnection.close();
+                DB_Connection.close();
                 
                 response.sendRedirect("admin/user/create_user.jsp?success=false&error=Invalid%20Input");
                 return;
             }
 
             //Insert into DB
-            Statement ADD_USER_Statement = DB_Connnection.createStatement();
+            Statement ADD_USER_Statement = DB_Connection.createStatement();
             String ADD_USER_STRING = "INSERT INTO USERS (EMAIL, PASSWORD, IS_ACTIVE) VALUES ('" + email + "', '" + password + "', " + IS_ACTIVE + ")";
             ADD_USER_Statement.executeUpdate(ADD_USER_STRING);
 
@@ -140,7 +140,7 @@ public class CreateUser extends HttpServlet {
             ADMIN_SQL_Statement.close();
             ADD_USER_Statement.close();
 
-            DB_Connnection.close();
+            DB_Connection.close();
 
             response.sendRedirect("admin/user/create_user.jsp?success=true");
         } catch (Exception e) {

@@ -43,7 +43,7 @@
 				url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 			<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM ADMINISTRATOR WHERE ADMIN_ID=<%=request.getParameter("ADMIN_ID")%>; </sql:query>
 			
-			<form class="login-form" action="${pageContext.request.contextPath}/EditAdmin" method="post">
+			<form class="quiz-form" action="${pageContext.request.contextPath}/EditAdmin" method="post">
 			
 					<!-- Hidden input with ID# -->
 					<input id="ADMIN_ID" type="hidden" name="ADMIN_ID" value="<%=request.getParameter("ADMIN_ID")%>">  

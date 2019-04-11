@@ -50,16 +50,16 @@ public class UpdateUser extends HttpServlet {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Open a connection
-            Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
+            Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 
             // Execute SQL query
-            Statement UPDATE_USER_SQL_Statement = DB_Connnection.createStatement();
+            Statement UPDATE_USER_SQL_Statement = DB_Connection.createStatement();
             String UPDATE_USER_SQL_Query = "UPDATE USERS SET EMAIL = '" + email + "', PASSWORD= '" + password + "' WHERE USERS_ID = " + USERS_ID + ";";
             UPDATE_USER_SQL_Statement.executeUpdate(UPDATE_USER_SQL_Query);
             
             // Clean-up environment
             UPDATE_USER_SQL_Statement.close();
-            DB_Connnection.close();
+            DB_Connection.close();
 
             response.sendRedirect("user/update_account.jsp?success=true");
             return;

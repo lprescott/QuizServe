@@ -41,16 +41,16 @@ public class InviteUsers extends HttpServlet {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			// Open a connection
-			Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(),
+			Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(),
 					LoginEnum.username.getValue(), LoginEnum.password.getValue());
 			
 			//Delete entries in allowed users table
-            Statement ALLOWED_USERS_Statement = DB_Connnection.createStatement();
+            Statement ALLOWED_USERS_Statement = DB_Connection.createStatement();
             String ALLOWED_USERS_SQL_Query = "DELETE FROM ALLOWED_USERS WHERE TEST_ID = "+testID+";";
             ALLOWED_USERS_Statement.executeUpdate(ALLOWED_USERS_SQL_Query);
             
             //Search users
-            Statement USER_Statement = DB_Connnection.createStatement();
+            Statement USER_Statement = DB_Connection.createStatement();
             String USER_SQL_Query = "SELECT * FROM USERS;";
             ResultSet USER_RS = USER_Statement.executeQuery(USER_SQL_Query);
             
@@ -58,7 +58,7 @@ public class InviteUsers extends HttpServlet {
             	if(request.getParameter(USER_RS.getString("USERS_ID")) != null) {
             		
             		//Add into allowed_users table
-                    Statement ALLOWED_USERS_Statement2 = DB_Connnection.createStatement();
+                    Statement ALLOWED_USERS_Statement2 = DB_Connection.createStatement();
                     String ALLOWED_USERS_SQL_Query2 = "INSERT INTO ALLOWED_USERS (USERS_ID, TEST_ID, TEST_ASSIGNED) VALUES ("+USER_RS.getString("USERS_ID")+", "+testID+", CURDATE());";
                     ALLOWED_USERS_Statement2.executeUpdate(ALLOWED_USERS_SQL_Query2);
             	}

@@ -66,7 +66,7 @@
 			<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM USERS;</sql:query>
 
 			<div class="form-container-test">
-				<form class="login-form" action="${pageContext.request.contextPath}/InviteUsers" method="post">
+				<form class="quiz-form" action="${pageContext.request.contextPath}/InviteUsers" method="post">
 
 					<!-- Hidden input with ID# -->
 					<input id="TEST_ID" type="hidden" name="TEST_ID" value="<%=request.getParameter("TEST_ID")%>">

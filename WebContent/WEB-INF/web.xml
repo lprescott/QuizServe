@@ -66,6 +66,10 @@
     <servlet-name>UpdateUser</servlet-name>
     <servlet-class>edu.albany.csi418.user.UpdateUser</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>TakeTest</servlet-name>
+    <servlet-class>edu.albany.csi418.test.TakeTest</servlet-class>
+  </servlet>
   <filter>
     <filter-name>userFilter</filter-name>
     <filter-class>edu.albany.csi418.authentication.UserFilter</filter-class>

@@ -34,7 +34,7 @@
 	<div class="login-main">
 		<div class="form-container shadow">
 			<!-- Form -->
-			<form class="login-form" action="${pageContext.request.contextPath}/CreateAdmin" method="post">
+			<form class="quiz-form" action="${pageContext.request.contextPath}/CreateAdmin" method="post">
 				<input id="email" name="email" type="email" placeholder="email" required> 
 				<input id="password" name="password" type="password" placeholder="password" required> 
 				<input id="password-confirm" name="password-confirm" type="password" placeholder="confirm password" required> 

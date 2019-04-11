@@ -43,7 +43,7 @@
 				url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 			<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM USERS WHERE USERS_ID=<%=request.getParameter("USERS_ID")%>; </sql:query>
 			
-			<form class="login-form" action="${pageContext.request.contextPath}/EditUser" method="post">
+			<form class="quiz-form" action="${pageContext.request.contextPath}/EditUser" method="post">
 			
 					<!-- Hidden input with ID# -->
 					<input id="USERS_ID" type="hidden" name="USERS_ID" value="<%=request.getParameter("USERS_ID")%>">  

@@ -40,7 +40,7 @@
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM QUESTION Q INNER JOIN QUESTION_ANSWER QA ON Q.QUESTION_ID = QA.QUESTION_ID INNER JOIN ANSWER A ON QA.ANSWER_ID = A.ANSWER_ID WHERE Q.QUESTION_ID=<%=request.getParameter("QUESTION_ID")%>; </sql:query>
 
-				<form class="login-form" action="${pageContext.request.contextPath}/EditQuestionMC" method="post" enctype="multipart/form-data">
+				<form class="quiz-form" action="${pageContext.request.contextPath}/EditQuestionMC" method="post" enctype="multipart/form-data">
 
 					<!-- Hidden input with ID# -->
 					<input id="QUESTION_ID" type="hidden" name="QUESTION_ID" value="<%=request.getParameter("QUESTION_ID")%>">

@@ -49,16 +49,16 @@ public class EditQuestionMC extends HttpServlet {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	
 	            // Open a connection
-	            Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
+	            Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 	
 	            // Execute SQL queries
-	            Statement DELETE_QUESTION_SQL_Statement = DB_Connnection.createStatement();
+	            Statement DELETE_QUESTION_SQL_Statement = DB_Connection.createStatement();
 	            String DELETE_QUESTION_SQL_Query = "DELETE Q FROM QUESTION AS Q INNER JOIN QUESTION_ANSWER AS QA ON Q.QUESTION_ID = QA.QUESTION_ID INNER JOIN ANSWER AS A ON QA.ANSWER_ID = A.ANSWER_ID WHERE Q.QUESTION_ID=" + request.getParameter("QUESTION_ID")+";";
 	            DELETE_QUESTION_SQL_Statement.executeUpdate(DELETE_QUESTION_SQL_Query);
 
 	            // Clean-up environment
 	            DELETE_QUESTION_SQL_Statement.close();
-	            DB_Connnection.close();
+	            DB_Connection.close();
 	            
 	            response.sendRedirect("admin/question/question_management.jsp?message_mc=Question%20Deleted%20Successfully");
 	            return;
@@ -90,16 +90,16 @@ public class EditQuestionMC extends HttpServlet {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	
 	            // Open a connection
-	            Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
+	            Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 	
 	            // Execute SQL queries
-	            Statement DELETE_QUESTION_SQL_Statement = DB_Connnection.createStatement();
+	            Statement DELETE_QUESTION_SQL_Statement = DB_Connection.createStatement();
 	            String DELETE_QUESTION_SQL_Query = "DELETE Q FROM QUESTION AS Q INNER JOIN QUESTION_ANSWER AS QA ON Q.QUESTION_ID = QA.QUESTION_ID INNER JOIN ANSWER AS A ON QA.ANSWER_ID = A.ANSWER_ID WHERE Q.QUESTION_ID=" + request.getParameter("QUESTION_ID")+";";
 	            DELETE_QUESTION_SQL_Statement.executeUpdate(DELETE_QUESTION_SQL_Query);
 
 	            // Clean-up environment
 	            DELETE_QUESTION_SQL_Statement.close();
-	            DB_Connnection.close();
+	            DB_Connection.close();
 	           
 			
 	        } catch (Exception e) {
@@ -160,19 +160,19 @@ public class EditQuestionMC extends HttpServlet {
 	            }
 
 	            // Open a connection
-	            Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
+	            Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 
 	            //Insert into QUESTION Table
-	            Statement ADD_QUESTION_Statement = DB_Connnection.createStatement();
+	            Statement ADD_QUESTION_Statement = DB_Connection.createStatement();
 	            String ADD_QUESTION_STRING = "INSERT INTO QUESTION (QUESTION_ID, TEXT, CATEGORY, IS_TRUE_FALSE, NUM_ANSWERS, IMAGE_NAME) VALUES (" + QUESTION_ID + ", '" + question + "', '" + category + "', 0, " + numAnswers + ",'" + fileName + "')";
 	            ADD_QUESTION_Statement.executeUpdate(ADD_QUESTION_STRING);
 	                       
 	            
 	            //Variables for inserting into ANSWER Table
-	            Statement GET_ANSWER_ID_Statement = DB_Connnection.createStatement();
+	            Statement GET_ANSWER_ID_Statement = DB_Connection.createStatement();
 	            ResultSet answerRS = null;
 	            
-	            Statement ADD_ANSWER_Statement = DB_Connnection.createStatement();
+	            Statement ADD_ANSWER_Statement = DB_Connection.createStatement();
 	            String ADD_ANSWER_STRING;
 	            
 	            
@@ -191,7 +191,7 @@ public class EditQuestionMC extends HttpServlet {
 	            }
 	            
 	            //Variables for inserting into QUESTION_ANSWER Table
-	       	 	Statement ADD_QUESTION_ANSWER_Statement = DB_Connnection.createStatement();
+	       	 	Statement ADD_QUESTION_ANSWER_Statement = DB_Connection.createStatement();
 	       	 	String ADD_QUESTION_ANSWER_STRING;
 	            
 	            //Insert into QUESTION-ANSWER Table
@@ -222,7 +222,7 @@ public class EditQuestionMC extends HttpServlet {
 	            
 	            answerRS.close();
 	            
-	            DB_Connnection.close();
+	            DB_Connection.close();
 
 	            //success
 	            response.sendRedirect("admin/question/question_management.jsp?message_mc=Question%20Updated%20Successfully");

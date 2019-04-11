@@ -94,17 +94,17 @@ public class CreateQuestionTF extends HttpServlet {
             }
             
             // Open a connection
-            Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
+            Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 
             //Insert into QUESTION Table
-            Statement ADD_QUESTION_Statement = DB_Connnection.createStatement();
+            Statement ADD_QUESTION_Statement = DB_Connection.createStatement();
             String ADD_QUESTION_STRING = "INSERT INTO QUESTION (TEXT, CATEGORY, IS_TRUE_FALSE, TF_IS_TRUE, IMAGE_NAME) VALUES ('" + question + "', '" + category + "', 1, " + tf + ", '" + fileName + "')";
             ADD_QUESTION_Statement.executeUpdate(ADD_QUESTION_STRING);
 
             // Clean-up environment
             ADD_QUESTION_Statement.close();
             
-            DB_Connnection.close();
+            DB_Connection.close();
             
             //success
             response.sendRedirect("admin/question/create_question_tf.jsp?success=true");
