@@ -93,7 +93,7 @@
 						<input class="shadow-button" id="submit" type="submit" name="submit" value="UPDATE">
 					</div>
 
-					<input class="shadow-button" id="delete" type="submit" name="submit" value="DELETE">
+					<input class="shadow-button" id="delete" onclick="return confirm('Are you sure?');" type="submit" name="submit" value="DELETE">
 				</form>
 			</div>
 		</div>

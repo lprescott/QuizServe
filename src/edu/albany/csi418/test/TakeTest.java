@@ -181,7 +181,7 @@ public class TakeTest extends HttpServlet {
 				test_question_rs.close();
 				
 				//TODO success
-				response.sendRedirect("user/test/test_results.jsp?success=true&USERS_ID=" + userID + "&TEST_ID=" + testID);
+				response.sendRedirect("user/test/test_results.jsp?success=true&USERS_ID=" + userID + "&TEST_ID=" + testID + "&TEST_TAKEN_ID=" + testTakenID);
 	            return;
 
 				

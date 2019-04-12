@@ -115,7 +115,7 @@
 							<td><c:out value="${row.TEST_DATE}" /></td>
 							<td><c:out value="${row.SCORE}" /></td>
 
-							<td><a class="link-style" href="${pageContext.request.contextPath}/admin/test/test_results.jsp?TEST_TAKEN_ID=${row.TEST_TAKEN_ID}&TEST_ID=<c:out value="${row.TEST_ID}"/>&?USER_ID=<c:out value="${row.USER_ID}"/>">results</a></td>
+							<td><a class="link-style" href="${pageContext.request.contextPath}/admin/test/test_results.jsp?TEST_TAKEN_ID=${row.TEST_TAKEN_ID}&TEST_ID=<c:out value="${row.TEST_ID}"/>&?USERS_ID=<c:out value="${row.USERS_ID}"/>">results</a></td>
 						</tr>
 					</c:forEach>
 				</table>
