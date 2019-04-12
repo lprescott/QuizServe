@@ -184,6 +184,7 @@ public class TakeTest extends HttpServlet {
 				//TODO success
 				response.sendRedirect("user/test/test_results.jsp?success=true&USERS_ID=" + userID + "&TEST_ID=" + testID + "&TEST_TAKEN_ID=" + testTakenID);
 	            return;
+
 				
 			} catch (Exception e) {
 				
