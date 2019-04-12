@@ -4,7 +4,7 @@
  * a test id, and number of questions. This will output a list of
  * random questions with answers in random order. 
  */
-package tester;
+package edu.albany.csi418.testGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

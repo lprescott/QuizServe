@@ -1,4 +1,4 @@
-package tester;
+package edu.albany.csi418.testGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
