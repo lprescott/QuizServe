@@ -29,6 +29,25 @@
 	<!-- Content -->
 	<div class="login-main">
 		<div class="form-container shadow">
+
+			<!-- Error Message (if set) -->
+			<%
+				if (request.getParameter("success") != null) {
+					if (request.getParameter("success").equals("false")) {
+						out.println("<div style=\"padding-bottom:15px; margin: 5px\" id=\"error\"><p>" + request.getParameter("error") + "</p></div>");
+					}
+				}
+			%>
+
+			<!-- Success Message (if set) -->
+			<%
+				if (request.getParameter("success") != null) {
+					if (request.getParameter("success").equals("true")) {
+						out.println("<div id=\"success\" style=\"text-align:center; padding: 5px;\"><p>User Successfully Created</p></div>");
+					}
+				}
+			%>
+
 			<!-- Form -->
 			<form class="quiz-form" action="${pageContext.request.contextPath}/CreateUser" method="post">
 				<input id="email" name="email" type="email" placeholder="email" required> <input id="password" name="password" type="password" placeholder="password" required> <input id="password-confirm" name="password-confirm" type="password" placeholder="confirm password" required>
@@ -39,24 +58,6 @@
 
 				<input class="shadow-button" id="submit" type="submit" value="CREATE">
 			</form>
-
-			<!-- Error Message (if set) -->
-			<%
-				if (request.getParameter("success") != null) {
-					if (request.getParameter("success").equals("false")) {
-						out.println("<div id=\"error\"><p>" + request.getParameter("error") + "</p></div>");
-					}
-				}
-			%>
-
-			<!-- Success Message (if set) -->
-			<%
-				if (request.getParameter("success") != null) {
-					if (request.getParameter("success").equals("true")) {
-						out.println("<div id=\"success\"><p>Successfully Added User</p></div>");
-					}
-				}
-			%>
 		</div>
 	</div>
 

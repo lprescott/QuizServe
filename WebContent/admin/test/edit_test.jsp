@@ -56,7 +56,7 @@
 					if (request.getParameter("success") != null) {
 						if (request.getParameter("success").equals("true")) {
 							out.println(
-									"<div id=\"success\" style=\"text-align:center; padding: 5px;\"><p>Successfully Added Test</p></div>");
+									"<div id=\"success\" style=\"text-align:center; padding: 5px;\"><p>Test Successfully Updated</p></div>");
 						}
 					}
 				%>

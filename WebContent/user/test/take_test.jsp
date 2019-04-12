@@ -49,8 +49,7 @@
 	<form id="test-form" class="quiz-form" action="${pageContext.request.contextPath}/TakeTest" method="post">
 
 		<!-- Hidden inputs with ID #s -->
-		<input id="TEST_ID" type="hidden" name="TEST_ID" value="<%=request.getParameter("TEST_ID")%>">
-		<input id="USERS_ID" type="hidden" name="USERS_ID" value="<%=request.getParameter("USERS_ID")%>">
+		<input id="TEST_ID" type="hidden" name="TEST_ID" value="<%=request.getParameter("TEST_ID")%>"> <input id="USERS_ID" type="hidden" name="USERS_ID" value="<%=request.getParameter("USERS_ID")%>">
 
 		<div class="main-container">
 			<div class="main shadow">

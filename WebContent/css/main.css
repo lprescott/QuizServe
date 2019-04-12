@@ -87,6 +87,7 @@ table th, table td {
 	width: 100%;
 	display: flex;
 	justify-content: left;
+	flex-wrap: wrap;
 }
 
 .manage-container form {
@@ -110,6 +111,19 @@ table th, table td {
 
 .manage-container form input:hover {
 	background: #49a5bf;
+}
+
+@media only screen and (max-width: 900px) {
+	.row {
+		flex-wrap: force-wrap;
+	}
+	.column#left, .column#right {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+	}
+	.column#left {
+		margin-bottom: 30px;
+	}
 }
 
 .row {

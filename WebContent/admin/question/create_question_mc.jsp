@@ -37,6 +37,24 @@
 	<div class="main-container">
 		<div class="main shadow">
 			<div class="form-container-question">
+				<!-- Error Message (if set) -->
+				<%
+					if (request.getParameter("success") != null) {
+						if (request.getParameter("success").equals("false")) {
+							out.println("<div style=\"padding-bottom:15px; margin: 5px\" id=\"error\"><p>" + request.getParameter("error") + "</p></div>");
+						}
+					}
+				%>
+				
+				<!-- Success Message (if set) -->
+				<%
+					if (request.getParameter("success") != null) {
+						if (request.getParameter("success").equals("true")) {
+							out.println("<div style=\"padding-bottom:15px; margin: 5px\" id=\"success\">Question Successfully Created</div>");
+						}
+					}
+				%>
+				
 				<!-- Form -->
 				<form class="quiz-form" action="${pageContext.request.contextPath}/CreateQuestionMC" method="post" enctype="multipart/form-data">
 					<textarea class="q_input_text" id="q_text" name="q_text" rows="10" cols="30"
@@ -57,24 +75,6 @@
 					</div>
 					<input class="shadow-button" id="submit" type="submit" value="CREATE QUESTION">
 				</form>
-				
-				<!-- Error Message (if set) -->
-				<%
-					if (request.getParameter("success") != null) {
-						if (request.getParameter("success").equals("false")) {
-							out.println("<div id=\"error\"><p>" + request.getParameter("error") + "</p></div>");
-						}
-					}
-				%>
-				
-				<!-- Success Message (if set) -->
-				<%
-					if (request.getParameter("success") != null) {
-						if (request.getParameter("success").equals("true")) {
-							out.println("<div id=\"success\"><p>Successfully Added Question</p></div>");
-						}
-					}
-				%>
 			</div>
 		</div>
 	</div>

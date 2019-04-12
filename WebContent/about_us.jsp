@@ -33,9 +33,9 @@
 		<p style="float: left;">University at Albany, SUNY</p>
 
 		<c:if test="${userType != 'user' and userType != 'admin'}">
-			<p>Not logged in.</p>			
-			<form action="${pageContext.request.contextPath}/login.jsp" >
-				<input type="submit" value="Login"/>
+			<p>Not logged in.</p>
+			<form action="${pageContext.request.contextPath}/login.jsp">
+				<input type="submit" value="Login" />
 			</form>
 		</c:if>
 

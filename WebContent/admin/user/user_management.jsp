@@ -26,7 +26,7 @@
 	<div class="header shadow">
 		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
 		<p style="float: left;">University at Albany, SUNY</p>
-		<p>Logged in as ${email}.</p>		
+		<p>Logged in as ${email}.</p>
 		<a id="link" href="${pageContext.request.contextPath}/admin/main.jsp"> Go back </a>
 		<form action="${pageContext.request.contextPath}/Logout" method="post">
 			<input type="submit" value="Logout">
@@ -36,12 +36,19 @@
 	<!-- Content -->
 	<div class="main-container" style="max-width: 1000px;">
 		<div class="main shadow" style="padding: 0;">
-		
+
+			<!-- Message (if set) -->
+			<%
+				if (request.getParameter("message") != null) {
+					out.println("<div style=\"padding-top: 5px; margin: 5px; text-align: center;\" id=\"success\"><p>"
+							+ request.getParameter("message") + "</p></div>");
+				}
+			%>
+
 			<div class="filter-box">
-				<i class="fas fa-search filter-icon"></i>
-				<input class="table-filter" type="text" id="filter" onkeyup="filterTable('filter', 'table')" placeholder="Filter the below table by user email or active status...">
+				<i class="fas fa-search filter-icon"></i> <input class="table-filter" type="text" id="filter" onkeyup="filterTable('filter', 'table')" placeholder="Filter the below table by user email or active status...">
 			</div>
-			
+
 			<!-- Connect to DB and select all users -->
 			<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 			<sql:query dataSource="${snapshot}" var="result"> SELECT * from USERS; </sql:query>
@@ -74,21 +81,14 @@
 					<td></td>
 				</tr>
 			</table>
-
-			<!-- Message (if set) -->
-			<%
-				if (request.getParameter("message") != null) {
-					out.println("<div style=\"padding-bottom: 5px; text-align: center;\" id=\"success\"><p>"
-							+ request.getParameter("message") + "</p></div>");
-				}
-			%>
-
 		</div>
 	</div>
 
 	<!-- Footer -->
 	<div class="footer shadow">
-		<p>A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp" >our team</a> for an ICSI 418Y/410 final project, Spring 2019.</p>
+		<p>
+			A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp">our team</a> for an ICSI 418Y/410 final project, Spring 2019.
+		</p>
 	</div>
 </body>
 

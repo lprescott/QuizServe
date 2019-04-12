@@ -97,20 +97,24 @@
 							<br>
 						</c:forEach>
 						<br>
-						
+
 						<sql:query dataSource="${snapshot1}" var="result7"> SELECT * FROM TEST_QUESTIONS TQ INNER JOIN QUESTION Q ON TQ.QUESTION_ID = Q.QUESTION_ID INNER JOIN QUESTION_ANSWER QA ON Q.QUESTION_ID = QA.QUESTION_ID WHERE TQ.TEST_ID = <%=request.getParameter("TEST_ID")%> AND Q.QUESTION_ID = ${row.QUESTION_ID} AND QA.ANSWER_ID = ${result6.rows[0].ANSWER_ID}; </sql:query>
 						<sql:query dataSource="${snapshot1}" var="result8"> SELECT * FROM TEST_QUESTIONS TQ INNER JOIN QUESTION Q ON TQ.QUESTION_ID = Q.QUESTION_ID INNER JOIN QUESTION_ANSWER QA ON Q.QUESTION_ID = QA.QUESTION_ID INNER JOIN ANSWER A ON QA.ANSWER_ID = A.ANSWER_ID WHERE TQ.TEST_ID = <%=request.getParameter("TEST_ID")%> AND Q.QUESTION_ID = ${row.QUESTION_ID} AND QA.IS_CORRECT_ANSWER = 1; </sql:query>
-						
+
 						<c:if test="${result7.rows[0].IS_CORRECT_ANSWER == true}">
 							<!-- correct -->
-							<div><i style="color: green;" class="fas fa-check"></i>&nbsp;Correct </div>
+							<div>
+								<i style="color: green;" class="fas fa-check"></i>&nbsp;Correct
+							</div>
 						</c:if>
-						
+
 						<c:if test="${!(result7.rows[0].IS_CORRECT_ANSWER == true)}">
 							<!-- incorrect -->
-							<div><i style="color: red;"class="fas fa-times"></i>&nbsp;Incorrect, the correct answer is: '${result8.rows[0].ANSWER}'.</div> 
+							<div>
+								<i style="color: red;" class="fas fa-times"></i>&nbsp;Incorrect, the correct answer is: '${result8.rows[0].ANSWER}'.
+							</div>
 						</c:if>
-						
+
 						<br>
 						<hr style="margin-left: -20px; margin-right: -20px;">
 
@@ -138,31 +142,39 @@
 						<br>
 						<br>
 						<sql:query dataSource="${snapshot1}" var="result9"> SELECT * FROM QUESTION Q WHERE QUESTION_ID = ${row.QUESTION_ID};</sql:query>
-						
+
 						<c:if test="${(result6.rows[0].TF_CHOSEN == true) and (result9.rows[0].TF_IS_TRUE == true)}">
 							<!-- correct -->
-							<div><i style="color: green;" class="fas fa-check"></i>&nbsp;Correct </div>
+							<div>
+								<i style="color: green;" class="fas fa-check"></i>&nbsp;Correct
+							</div>
 						</c:if>
-						
+
 						<c:if test="${(result6.rows[0].TF_CHOSEN == false) and (result9.rows[0].TF_IS_TRUE == false)}">
 							<!-- correct -->
-							<div><i style="color: green;" class="fas fa-check"></i>&nbsp;Correct </div>
+							<div>
+								<i style="color: green;" class="fas fa-check"></i>&nbsp;Correct
+							</div>
 						</c:if>
-						
+
 						<c:if test="${(result6.rows[0].TF_CHOSEN == true) and (result9.rows[0].TF_IS_TRUE == false)}">
 							<!-- incorrect -->
-							<div><i style="color: red;"class="fas fa-times"></i>&nbsp;Incorrect, the correct answer is false. </div> 
+							<div>
+								<i style="color: red;" class="fas fa-times"></i>&nbsp;Incorrect, the correct answer is false.
+							</div>
 						</c:if>
-						
+
 						<c:if test="${(result6.rows[0].TF_CHOSEN == false) and (result9.rows[0].TF_IS_TRUE == true)}">
 							<!-- incorrect -->
-							<div><i style="color: red;"class="fas fa-times"></i>&nbsp;Incorrect, the correct answer is true. </div> 
+							<div>
+								<i style="color: red;" class="fas fa-times"></i>&nbsp;Incorrect, the correct answer is true.
+							</div>
 						</c:if>
-						
+
 						<br>
 						<hr style="margin-left: -20px; margin-right: -20px;">
-						
-					</c:if>		
+
+					</c:if>
 
 					<c:set var="count" value="${count + 1}" scope="page" />
 				</c:forEach>

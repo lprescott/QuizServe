@@ -41,8 +41,7 @@
 			<%
 				if (request.getParameter("success") != null) {
 					if (request.getParameter("success").equals("false")) {
-						out.println("<div id=\"error\" style=\"text-align:center; padding: 5px;margin: 5px;\"><p>"
-								+ request.getParameter("error") + "</p></div>");
+						out.println("<div id=\"error\" style=\"text-align:center; padding: 5px;margin: 5px;\"><p>" + request.getParameter("error") + "</p></div>");
 					}
 				}
 			%>
@@ -51,8 +50,7 @@
 			<%
 				if (request.getParameter("success") != null) {
 					if (request.getParameter("success").equals("true")) {
-						out.println(
-								"<div id=\"success\" style=\"text-align:center; padding: 5px;margin: 5px;\"><p>Successfully Updated Invitations</p></div>");
+						out.println("<div id=\"success\" style=\"text-align:center; padding: 5px;margin: 5px;\"><p>Invitations Successfully Updated</p></div>");
 					}
 				}
 			%>
