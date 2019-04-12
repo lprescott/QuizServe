@@ -66,7 +66,7 @@
 
 				<!-- Connect to DB and select all admin's tests -->
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
-				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM TEST WHERE ADMIN_ID = ${id};</sql:query>
+				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM TEST WHERE ADMIN_ID = ${id} group by test_id ;</sql:query>
 
 				<!-- Print table of admin's tests -->
 				<table id="table1" class="table" style="width: 100%;">
