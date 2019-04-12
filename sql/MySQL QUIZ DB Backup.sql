@@ -57,7 +57,7 @@ CREATE TABLE `allowed_users` (
   KEY `TEST_ID` (`TEST_ID`),
   CONSTRAINT `allowed_users_ibfk_1` FOREIGN KEY (`USERS_ID`) REFERENCES `users` (`USERS_ID`) ON DELETE CASCADE,
   CONSTRAINT `allowed_users_ibfk_2` FOREIGN KEY (`TEST_ID`) REFERENCES `test` (`TEST_ID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `allowed_users` (
 
 LOCK TABLES `allowed_users` WRITE;
 /*!40000 ALTER TABLE `allowed_users` DISABLE KEYS */;
-INSERT INTO `allowed_users` VALUES (1,1,1,'2019-04-11');
+INSERT INTO `allowed_users` VALUES (1,1,1,'2019-04-12'),(2,1,2,'2019-04-12');
 /*!40000 ALTER TABLE `allowed_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,7 +203,7 @@ CREATE TABLE `test` (
   PRIMARY KEY (`TEST_ID`),
   KEY `ADMIN_ID` (`ADMIN_ID`),
   CONSTRAINT `test_ibfk_1` FOREIGN KEY (`ADMIN_ID`) REFERENCES `administrator` (`ADMIN_ID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,8 +212,43 @@ CREATE TABLE `test` (
 
 LOCK TABLES `test` WRITE;
 /*!40000 ALTER TABLE `test` DISABLE KEYS */;
-INSERT INTO `test` VALUES (1,1,NULL,'Astronomy Test','Look to the stars.','But, stay grounded.','2019-04-25');
+INSERT INTO `test` VALUES (1,1,NULL,'Astronomy Test','Look to the stars.','But, stay grounded.','2019-05-12'),(2,1,NULL,'Vocabulary Test','T/F and M/C Questions','Do your best.','2019-05-01');
 /*!40000 ALTER TABLE `test` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `test_in_progress`
+--
+
+DROP TABLE IF EXISTS `test_in_progress`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `test_in_progress` (
+  `TEST_IN_PROGRESS_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `TEST_ID` int(10) unsigned NOT NULL,
+  `USERS_ID` int(10) unsigned NOT NULL,
+  `QUESTION_ID` int(10) unsigned NOT NULL,
+  `ANSWER_ID` int(10) unsigned DEFAULT NULL,
+  `TF_CHOSEN` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`TEST_IN_PROGRESS_ID`),
+  KEY `TEST_ID` (`TEST_ID`),
+  KEY `USERS_ID` (`USERS_ID`),
+  KEY `QUESTION_ID` (`QUESTION_ID`),
+  KEY `ANSWER_ID` (`ANSWER_ID`),
+  CONSTRAINT `test_in_progress_ibfk_1` FOREIGN KEY (`TEST_ID`) REFERENCES `test` (`TEST_ID`) ON DELETE CASCADE,
+  CONSTRAINT `test_in_progress_ibfk_2` FOREIGN KEY (`USERS_ID`) REFERENCES `users` (`USERS_ID`) ON DELETE CASCADE,
+  CONSTRAINT `test_in_progress_ibfk_3` FOREIGN KEY (`QUESTION_ID`) REFERENCES `question` (`QUESTION_ID`) ON DELETE CASCADE,
+  CONSTRAINT `test_in_progress_ibfk_4` FOREIGN KEY (`ANSWER_ID`) REFERENCES `answer` (`ANSWER_ID`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `test_in_progress`
+--
+
+LOCK TABLES `test_in_progress` WRITE;
+/*!40000 ALTER TABLE `test_in_progress` DISABLE KEYS */;
+/*!40000 ALTER TABLE `test_in_progress` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -232,7 +267,7 @@ CREATE TABLE `test_questions` (
   KEY `QUESTION_ID` (`QUESTION_ID`),
   CONSTRAINT `test_questions_ibfk_1` FOREIGN KEY (`TEST_ID`) REFERENCES `test` (`TEST_ID`) ON DELETE CASCADE,
   CONSTRAINT `test_questions_ibfk_2` FOREIGN KEY (`QUESTION_ID`) REFERENCES `question` (`QUESTION_ID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -241,7 +276,7 @@ CREATE TABLE `test_questions` (
 
 LOCK TABLES `test_questions` WRITE;
 /*!40000 ALTER TABLE `test_questions` DISABLE KEYS */;
-INSERT INTO `test_questions` VALUES (1,1,1),(2,1,2),(3,1,5),(4,1,6),(5,1,7),(6,1,8),(7,1,9);
+INSERT INTO `test_questions` VALUES (1,1,1),(2,1,2),(3,1,5),(4,1,6),(5,1,7),(6,1,8),(7,1,9),(8,2,3),(9,2,4),(10,2,10),(11,2,11),(12,2,12),(13,2,13),(14,2,14),(15,2,15),(16,2,16),(17,2,17),(18,2,18),(19,2,19);
 /*!40000 ALTER TABLE `test_questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -310,4 +345,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-11  0:08:05
+-- Dump completed on 2019-04-12 16:20:35
