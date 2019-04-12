@@ -22,7 +22,7 @@ public class AdminFilter implements Filter {
 
         HttpSession session = req.getSession(false);
                 	
-        if ((session == null) || (session.getAttribute("email") == null) || (!session.getAttribute("user-type").equals("admin"))) {  
+        if ((session == null) || (session.getAttribute("email") == null) || (!session.getAttribute("userType").equals("admin"))) {  
         	res.sendRedirect(req.getContextPath() + "/login.jsp");
         } else {
         	chain.doFilter(request, response);

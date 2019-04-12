@@ -37,8 +37,26 @@
 	<div class="main-container">
 		<div class="main shadow">
 			<div class="form-container-question">
+				<!-- Error Message (if set) -->
+				<%
+					if (request.getParameter("success") != null) {
+						if (request.getParameter("success").equals("false")) {
+							out.println("<div style=\"padding-bottom:15px; margin: 5px\" id=\"error\"><p>" + request.getParameter("error") + "</p></div>");
+						}
+					}
+				%>
+				
+				<!-- Success Message (if set) -->
+				<%
+					if (request.getParameter("success") != null) {
+						if (request.getParameter("success").equals("true")) {
+							out.println("<div style=\"padding-bottom:15px; margin: 5px\" id=\"success\">Question Successfully Created</div>");
+						}
+					}
+				%>
+				
 				<!-- Form -->
-				<form class="login-form" action="${pageContext.request.contextPath}/CreateQuestionMC" method="post" enctype="multipart/form-data">
+				<form class="quiz-form" action="${pageContext.request.contextPath}/CreateQuestionMC" method="post" enctype="multipart/form-data">
 					<textarea class="q_input_text" id="q_text" name="q_text" rows="10" cols="30"
 						placeholder="Question text goes here..." required></textarea>
 					<input class="q_input_text" id="q_category" name="q_category" type="text" placeholder="Category">
@@ -57,32 +75,13 @@
 					</div>
 					<input class="shadow-button" id="submit" type="submit" value="CREATE QUESTION">
 				</form>
-				
-				<!-- Error Message (if set) -->
-				<%
-					if (request.getParameter("success") != null) {
-						if (request.getParameter("success").equals("false")) {
-							out.println("<div id=\"error\"><p>" + request.getParameter("error") + "</p></div>");
-						}
-					}
-				%>
-				
-				<!-- Success Message (if set) -->
-				<%
-					if (request.getParameter("success") != null) {
-						if (request.getParameter("success").equals("true")) {
-							out.println("<div id=\"success\"><p>Successfully Added Question</p></div>");
-						}
-					}
-				%>
 			</div>
 		</div>
 	</div>
 
 	<!-- Footer -->
 	<div class="footer shadow">
-		<p>A quiz application for the ICSI 418Y final project, Spring
-			2019.</p>
+		<p>A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp" >our team</a> for an ICSI 418Y/410 final project, Spring 2019.</p>
 	</div>
 </body>
 

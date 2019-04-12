@@ -11,22 +11,21 @@
 
 <head>
 <meta content="text/html;" charset="UTF-8">
-<title>Edit A User</title>
+<title>Update Account</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
-<script src="${pageContext.request.contextPath}/js/checkBox.js"></script>
 </head>
 
 <body>
 	<!-- Navbar -->
 	<div class="header shadow">
-		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 65px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
+		<a class="logo" href="${pageContext.request.contextPath}/user/main.jsp"><img class="shadow" style="max-height: 65px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
 		<p style="float: left;">University at Albany, SUNY</p>
 		<p>Logged in as ${email}.</p>
-		<a id="link" href="${pageContext.request.contextPath}/admin/user/user_management.jsp"> Go back </a>
+		<a id="link" href="${pageContext.request.contextPath}/user/main.jsp"> Go back </a>
 		<form action="${pageContext.request.contextPath}/Logout" method="post">
 			<input type="submit" value="Logout">
 		</form>
@@ -55,32 +54,18 @@
 			%>
 
 			<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
-			<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM USERS WHERE USERS_ID=<%=request.getParameter("USERS_ID")%>; </sql:query>
+			<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM USERS WHERE USERS_ID=<%=session.getAttribute("id")%>; </sql:query>
 
-			<form class="quiz-form" action="${pageContext.request.contextPath}/EditUser" method="post">
+			<form class="quiz-form" action="${pageContext.request.contextPath}/UpdateUser" method="post">
 
 				<!-- Hidden input with ID# -->
-				<input id="USERS_ID" type="hidden" name="USERS_ID" value="<%=request.getParameter("USERS_ID")%>"> <input id="email" name="email" type="email" placeholder="new email" value="${result.rows[0].EMAIL}" required> <input id="password" name="password" type="text" placeholder="new password" value="${result.rows[0].PASSWORD}" required>
-
-				<!-- If user is active, mark active check box -->
-				<c:if test="${result.rows[0].IS_ACTIVE}">
-					<div class="padded-bottom">
-						<input class="cb" type="checkbox" id="active_cb" name="active_cb" value="active_cb" onchange="checkBoxUpdate(this, 'cb')" checked> <label for="active_cb">Active</label> <input class="cb" type="checkbox" id="inactive_cb" name="inactive_cb" value="inactive_cb" onchange="checkBoxUpdate(this, 'cb')"> <label for="inactive_cb">Inactive</label>
-					</div>
-				</c:if>
-
-				<!-- If user is inactive, mark inactive check box -->
-				<c:if test="${!result.rows[0].IS_ACTIVE}">
-					<div class="padded-bottom">
-						<input class="cb" type="checkbox" id="active_cb" name="active_cb" value="active_cb" onchange="checkBoxUpdate(this, 'cb')"> <label for="active_cb">Active</label> <input class="cb" type="checkbox" id="inactive_cb" name="inactive_cb" value="inactive_cb" onchange="checkBoxUpdate(this, 'cb')" checked> <label for="inactive_cb">Inactive</label>
-					</div>
-				</c:if>
+				<input id="USERS_ID" type="hidden" name="USERS_ID" value="<%=session.getAttribute("id")%>"> <input id="email" name="email" type="email" placeholder="email" value="${result.rows[0].EMAIL}" required> <input id="password" name="password" type="password" placeholder="password" value="${result.rows[0].PASSWORD}" required> <input id="password-confirm" name="password-confirm" type="password" placeholder="confirm password" value="${result.rows[0].PASSWORD}" required>
 
 				<div class="padded-bottom">
 					<input class="shadow-button" id="submit" type="submit" name="submit" value="UPDATE">
 				</div>
 
-				<input class="shadow-button" id="delete" onclick="return confirm('Are you sure?');" type="submit" name="submit" value="DELETE">
+				<input class="shadow-button" id="delete" type="submit" name="submit" onclick="return confirm('Are you sure?');" value="DELETE">
 
 			</form>
 		</div>

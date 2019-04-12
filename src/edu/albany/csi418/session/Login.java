@@ -55,13 +55,13 @@ public class Login extends HttpServlet {
             Class.forName("com.mysql.cj.jdbc.Driver");
             
             // Open a connection
-            Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
-            //System.out.println(DB_Connnection);
+            Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
+            //System.out.println(DB_Connection);
             // Execute SQL queries
-            Statement USER_SQL_Statement = DB_Connnection.createStatement();
+            Statement USER_SQL_Statement = DB_Connection.createStatement();
             String USER_SQL_Query = "SELECT USERS_ID, EMAIL, PASSWORD, IS_ACTIVE FROM USERS";
 
-            Statement ADMIN_SQL_Statement = DB_Connnection.createStatement();
+            Statement ADMIN_SQL_Statement = DB_Connection.createStatement();
             String ADMIN_SQL_Query = "SELECT ADMIN_ID, EMAIL, PASSWORD FROM ADMINISTRATOR";
 
             ResultSet USER_Results = USER_SQL_Statement.executeQuery(USER_SQL_Query);
@@ -106,7 +106,7 @@ public class Login extends HttpServlet {
                 
                 //Add session email attribute, and user-type
                 session.setAttribute("email", email);
-                session.setAttribute("user-type", "user");
+                session.setAttribute("userType", "user");
 				session.setAttribute("id", id);
                 
                 // Clean-up environment
@@ -116,7 +116,7 @@ public class Login extends HttpServlet {
                 USER_SQL_Statement.close();
                 ADMIN_SQL_Statement.close();
 
-                DB_Connnection.close();
+                DB_Connection.close();
                 
                 //redirect to user main page
                 response.sendRedirect(request.getContextPath() + "/user/main.jsp");
@@ -130,7 +130,7 @@ public class Login extends HttpServlet {
                 USER_SQL_Statement.close();
                 ADMIN_SQL_Statement.close();
 
-                DB_Connnection.close();
+                DB_Connection.close();
             	            	
                 //return to login page with error binded to request
                 response.sendRedirect("login.jsp?success=false&error=User%20Account%20Disabled");
@@ -146,7 +146,7 @@ public class Login extends HttpServlet {
                 
                 //Add session email attribute, and user-type
                 session.setAttribute("email", email);
-                session.setAttribute("user-type", "admin");
+                session.setAttribute("userType", "admin");
 				session.setAttribute("id", id);
                 
                 // Clean-up environment
@@ -156,7 +156,7 @@ public class Login extends HttpServlet {
                 USER_SQL_Statement.close();
                 ADMIN_SQL_Statement.close();
 
-                DB_Connnection.close();
+                DB_Connection.close();
 
                 //redirect to admin main page
                 response.sendRedirect(request.getContextPath() + "/admin/main.jsp");
@@ -170,7 +170,7 @@ public class Login extends HttpServlet {
                 USER_SQL_Statement.close();
                 ADMIN_SQL_Statement.close();
 
-                DB_Connnection.close();
+                DB_Connection.close();
             	            	
                 //return to login page with error binded to request
                 response.sendRedirect("login.jsp?success=false&error=Invalid%20Login%20Credentials");

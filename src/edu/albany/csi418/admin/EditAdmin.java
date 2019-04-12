@@ -42,16 +42,16 @@ public class EditAdmin extends HttpServlet {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 
 	            // Open a connection
-	            Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
+	            Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 
 	            // Execute SQL query
-	            Statement DELETE_ADMIN_SQL_Statement = DB_Connnection.createStatement();
+	            Statement DELETE_ADMIN_SQL_Statement = DB_Connection.createStatement();
 	            String DELETE_ADMIN_SQL_Query = "DELETE FROM ADMINISTRATOR WHERE ADMIN_ID="+request.getParameter("ADMIN_ID")+";";
 	            DELETE_ADMIN_SQL_Statement.executeUpdate(DELETE_ADMIN_SQL_Query);
 	            
 	            // Clean-up environment
 	            DELETE_ADMIN_SQL_Statement.close();
-	            DB_Connnection.close();
+	            DB_Connection.close();
 
 	            response.sendRedirect("admin/admin_management.jsp?message=Admin%20Deleted%20Successfully");
 	            return;
@@ -76,16 +76,16 @@ public class EditAdmin extends HttpServlet {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 
 	            // Open a connection
-	            Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
+	            Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 
 	            // Execute SQL query
-	            Statement UPDATE_ADMIN_SQL_Statement = DB_Connnection.createStatement();
+	            Statement UPDATE_ADMIN_SQL_Statement = DB_Connection.createStatement();
 	            String UPDATE_ADMIN_SQL_Query = "UPDATE ADMINISTRATOR SET EMAIL = '" + new_email + "', PASSWORD= '" + new_password + "' WHERE ADMIN_ID = " + ADMIN_ID + ";";
 	            UPDATE_ADMIN_SQL_Statement.executeUpdate(UPDATE_ADMIN_SQL_Query);
 	            
 	            // Clean-up environment
 	            UPDATE_ADMIN_SQL_Statement.close();
-	            DB_Connnection.close();
+	            DB_Connection.close();
 
 	            response.sendRedirect("admin/admin_management.jsp?message=Admin%20Updated%20Successfully");
 	            return;

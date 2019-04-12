@@ -20,13 +20,13 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/test.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/filter.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/checkBox.js"></script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 </head>
 
 <body>
 	<!-- Navbar -->
 	<div class="header shadow">
-		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
+		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 65px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
 		<p style="float: left;">University at Albany, SUNY</p>
 		<p>Logged in as ${email}.</p>
 		<a id="link" href="${pageContext.request.contextPath}/admin/main.jsp"> Go back </a>
@@ -40,25 +40,45 @@
 		<div class="main shadow" style="padding: 0;">
 
 			<div class="form-container-test">
+			
+				<!-- Error Message (if set) -->
+				<%
+					if (request.getParameter("success") != null) {
+						if (request.getParameter("success").equals("false")) {
+							out.println("<div id=\"error\" style=\"text-align:center; padding: 5px;\"><p>"
+									+ request.getParameter("error") + "</p></div>");
+						}
+					}
+				%>
+
+				<!-- Success Message (if set) -->
+				<%
+					if (request.getParameter("success") != null) {
+						if (request.getParameter("success").equals("true")) {
+							out.println(
+									"<div id=\"success\" style=\"text-align:center; padding: 5px;\"><p>Test Successfully Updated</p></div>");
+						}
+					}
+				%>
+				
 				<!-- Connect to DB and select all questions -->
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 				<sql:query dataSource="${snapshot}" var="q_result"> SELECT * FROM QUESTION;</sql:query>
 				<sql:query dataSource="${snapshot}" var="t_result"> SELECT * FROM TEST WHERE TEST_ID=<%=request.getParameter("TEST_ID")%>;</sql:query>
-				
+
 				<!-- Form -->
-				<form class="login-form" action="${pageContext.request.contextPath}/EditTest" method="post">
-				
+				<form class="quiz-form" action="${pageContext.request.contextPath}/EditTest" method="post">
+
 					<!-- Hidden input with ID# -->
-					<input id="TEST_ID" type="hidden" name="TEST_ID" value="<%=request.getParameter("TEST_ID")%>">  
+					<input id="TEST_ID" type="hidden" name="TEST_ID" value="<%=request.getParameter("TEST_ID")%>">
 
 					<div style="padding: 45px">
 
-						<input class="t_input_text" id="test_title" name="test_title" type="text" placeholder="Title" value="${t_result.rows[0].HEADER_TEXT}" required>
-						
-						<input class="t_input_text" id="test_subtitle" name="test_subtitle" type="text" placeholder="Subtitle" value="${t_result.rows[0].FOOTER_TEXT}" required>
+						<input class="t_input_text" id="test_title" name="test_title" type="text" placeholder="Title" value="${t_result.rows[0].TITLE}" required> <input class="t_input_text" id="test_header" name="test_header" type="text" placeholder="Header" value="${t_result.rows[0].HEADER_TEXT}" required> <input class="t_input_text" id="test_footer" name="test_footer" type="text" placeholder="Footer" value="${t_result.rows[0].FOOTER_TEXT}" required>
 
 						<div style="text-align: center;">
-							Attached image: <input type="file" id="q_image" name="q_image" accept="image/png, image/jpeg">
+							Attached image: <input type="file" id="q_image" name="q_image" accept="image/png, image/jpeg"><br><br>
+							Due Date: <input type="date" id="test_due" name="test_due" value = "${t_result.rows[0].TEST_DUE}">
 						</div>
 
 					</div>
@@ -81,14 +101,14 @@
 								<td><c:out value="${row.QUESTION_ID}" /></td>
 								<td><c:out value="${row.TEXT}" /></td>
 								<td><c:out value="${row.CATEGORY}" /></td>
-								
-								<sql:query dataSource="${snapshot}" var="active_result"> SELECT * FROM TEST_QUESTIONS WHERE TEST_ID=<%=request.getParameter("TEST_ID")%> AND QUESTION_ID = ${row.QUESTION_ID};</sql:query>	
-								
+
+								<sql:query dataSource="${snapshot}" var="active_result"> SELECT * FROM TEST_QUESTIONS WHERE TEST_ID=<%=request.getParameter("TEST_ID")%> AND QUESTION_ID = ${row.QUESTION_ID};</sql:query>
+
 								<!-- question is a part of test -->
 								<c:if test="${active_result.rowCount != 0}">
 									<td><input class="cb" type="checkbox" id="${row.QUESTION_ID}" name="${row.QUESTION_ID}" checked></td>
 								</c:if>
-								
+
 								<!-- question is not a part of test -->
 								<c:if test="${active_result.rowCount == 0}">
 									<td><input class="cb" type="checkbox" id="${row.QUESTION_ID}" name="${row.QUESTION_ID}"></td>
@@ -104,37 +124,20 @@
 							<input class="shadow-button" id="submit" type="submit" name="submit" value="UPDATE">
 						</div>
 
-						<input class="shadow-button" id="delete" type="submit" name="submit" value="DELETE">
+						<input class="shadow-button" id="delete" onclick="return confirm('Are you sure?');" type="submit" name="submit" value="DELETE">
 					</div>
 
 				</form>
 
-				<!-- Error Message (if set) -->
-				<%
-					if (request.getParameter("success") != null) {
-						if (request.getParameter("success").equals("false")) {
-							out.println("<div id=\"error\" style=\"text-align:center; padding-bottom: 5px;\"><p>"
-									+ request.getParameter("error") + "</p></div>");
-						}
-					}
-				%>
-
-				<!-- Success Message (if set) -->
-				<%
-					if (request.getParameter("success") != null) {
-						if (request.getParameter("success").equals("true")) {
-							out.println(
-									"<div id=\"success\" style=\"text-align:center; padding-bottom: 5px;\"><p>Successfully Added Test</p></div>");
-						}
-					}
-				%>
 			</div>
 		</div>
 	</div>
 
 	<!-- Footer -->
 	<div class="footer shadow">
-		<p>A quiz application for the ICSI 418Y final project, Spring 2019.</p>
+		<p>
+			A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp">our team</a> for an ICSI 418Y/410 final project, Spring 2019.
+		</p>
 	</div>
 </body>
 

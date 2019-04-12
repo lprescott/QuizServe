@@ -98,15 +98,15 @@ public class CreateQuestionMC extends HttpServlet {
             	Files.copy(fileContent, fileToSave.toPath(), StandardCopyOption.REPLACE_EXISTING);
             }
             // Open a connection
-            Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
+            Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 
             //Insert into QUESTION Table
-            Statement ADD_QUESTION_Statement = DB_Connnection.createStatement();
+            Statement ADD_QUESTION_Statement = DB_Connection.createStatement();
             String ADD_QUESTION_STRING = "INSERT INTO QUESTION (TEXT, CATEGORY, IS_TRUE_FALSE, NUM_ANSWERS, IMAGE_NAME) VALUES ('" + question + "', '" + category + "', 0, " + numAnswers + ",'" + fileName + "')";
             ADD_QUESTION_Statement.executeUpdate(ADD_QUESTION_STRING);
             
             //Get Question ID
-            Statement GET_QUESTION_ID_Statement = DB_Connnection.createStatement();
+            Statement GET_QUESTION_ID_Statement = DB_Connection.createStatement();
             ResultSet questionRS = GET_QUESTION_ID_Statement.executeQuery("SELECT * FROM QUESTION;");
             
             if(questionRS.last()) {
@@ -115,10 +115,10 @@ public class CreateQuestionMC extends HttpServlet {
             
             
             //Variables for inserting into ANSWER Table
-            Statement GET_ANSWER_ID_Statement = DB_Connnection.createStatement();
+            Statement GET_ANSWER_ID_Statement = DB_Connection.createStatement();
             ResultSet answerRS = null;
             
-            Statement ADD_ANSWER_Statement = DB_Connnection.createStatement();
+            Statement ADD_ANSWER_Statement = DB_Connection.createStatement();
             String ADD_ANSWER_STRING;
             
             
@@ -137,7 +137,7 @@ public class CreateQuestionMC extends HttpServlet {
             }
             
             //Variables for inserting into QUESTION_ANSWER Table
-       	 	Statement ADD_QUESTION_ANSWER_Statement = DB_Connnection.createStatement();
+       	 	Statement ADD_QUESTION_ANSWER_Statement = DB_Connection.createStatement();
        	 	String ADD_QUESTION_ANSWER_STRING;
             
             //Insert into QUESTION-ANSWER Table
@@ -170,7 +170,7 @@ public class CreateQuestionMC extends HttpServlet {
             questionRS.close();
             answerRS.close();
             
-            DB_Connnection.close();
+            DB_Connection.close();
 
             //success
             response.sendRedirect("admin/question/create_question_mc.jsp?success=true");

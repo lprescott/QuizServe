@@ -66,16 +66,16 @@ public class EditQuestionTF extends HttpServlet {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 
 	            // Open a connection
-	            Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
+	            Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 
 	            // Execute SQL query
-	            Statement DELETE_QUESTION_SQL_Statement = DB_Connnection.createStatement();
+	            Statement DELETE_QUESTION_SQL_Statement = DB_Connection.createStatement();
 	            String DELETE_QUESTION_SQL_Query = "DELETE FROM QUESTION WHERE QUESTION_ID="+request.getParameter("QUESTION_ID")+";";
 	            DELETE_QUESTION_SQL_Statement.executeUpdate(DELETE_QUESTION_SQL_Query);
 	            
 	            // Clean-up environment
 	            DELETE_QUESTION_SQL_Statement.close();
-	            DB_Connnection.close();
+	            DB_Connection.close();
 	            
 	            response.sendRedirect("admin/question/question_management.jsp?message_tf=Question%20Deleted%20Successfully");
 	            return;
@@ -133,17 +133,17 @@ public class EditQuestionTF extends HttpServlet {
 	            }
 
 	            // Open a connection
-	            Connection DB_Connnection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
+	            Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 
 	            //Update into QUESTION Table
-	            Statement UPDATE_QUESTION_Statement = DB_Connnection.createStatement();
+	            Statement UPDATE_QUESTION_Statement = DB_Connection.createStatement();
 	            String UPDATE_QUESTION_STRING =  "UPDATE QUESTION SET TEXT = '" + question + "', CATEGORY = '" + category + "', TF_IS_TRUE = " + tf + ", IMAGE_NAME = '" + fileName + "' WHERE QUESTION_ID = " + QUESTION_ID + ";" ;
 	            UPDATE_QUESTION_Statement.executeUpdate(UPDATE_QUESTION_STRING);
 
 	            // Clean-up environment
 	            UPDATE_QUESTION_Statement.close();
 	            
-	            DB_Connnection.close();
+	            DB_Connection.close();
 	            
 	            //success
 	            response.sendRedirect("admin/question/question_management.jsp?message_tf=Question%20Updated%20Successfully");

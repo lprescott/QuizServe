@@ -20,13 +20,13 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/test.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/filter.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/checkBox.js"></script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 </head>
 
 <body>
 	<!-- Navbar -->
 	<div class="header shadow">
-		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
+		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 65px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
 		<p style="float: left;">University at Albany, SUNY</p>
 		<p>Logged in as ${email}.</p>
 		<a id="link" href="${pageContext.request.contextPath}/admin/main.jsp"> Go back </a>
@@ -40,19 +40,35 @@
 		<div class="main shadow" style="padding: 0;">
 
 			<div class="form-container-test">
+
+				<!-- Error Message (if set) -->
+				<%
+					if (request.getParameter("success") != null) {
+						if (request.getParameter("success").equals("false")) {
+							out.println("<div id=\"error\" style=\"text-align:center; padding: 5px;\"><p>" + request.getParameter("error") + "</p></div>");
+						}
+					}
+				%>
+
+				<!-- Success Message (if set) -->
+				<%
+					if (request.getParameter("success") != null) {
+						if (request.getParameter("success").equals("true")) {
+							out.println("<div id=\"success\" style=\"text-align:center; padding: 5px;\"><p>Test Successfully Created</p></div>");
+						}
+					}
+				%>
+
 				<!-- Connect to DB and select all questions -->
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM QUESTION;</sql:query>
 
 				<!-- Form -->
-				<form class="login-form" action="${pageContext.request.contextPath}/CreateTest" method="post">
+				<form class="quiz-form" action="${pageContext.request.contextPath}/CreateTest" method="post">
 
 					<div style="padding: 45px">
 
-						<input class="t_input_text" id="test_title" name="test_title" type="text" placeholder="Title" required>
-						
-						<input class="t_input_text" id="test_subtitle" name="test_subtitle" type="text" placeholder="Subtitle" required>
-						
+						<input class="t_input_text" id="test_title" name="test_title" type="text" placeholder="Title" required> <input class="t_input_text" id="test_header" name="test_header" type="text" placeholder="Header" required> <input class="t_input_text" id="test_footer" name="test_footer" type="text" placeholder="Footer" required>
 
 						<div style="text-align: center;">
 							<a id="link" href="${pageContext.request.contextPath}/admin/test/image_upload.jsp"> Upload Image </a>
@@ -84,37 +100,21 @@
 						</c:forEach>
 
 					</table>
-					
+
 					<div style="padding: 45px">
 						<input class="shadow-button" id="submit" type="submit" value="CREATE TEST">
 					</div>
 
 				</form>
-
-				<!-- Error Message (if set) -->
-				<%
-					if (request.getParameter("success") != null) {
-						if (request.getParameter("success").equals("false")) {
-							out.println("<div id=\"error\" style=\"text-align:center; padding-bottom: 5px;\"><p>" + request.getParameter("error") + "</p></div>");
-						}
-					}
-				%>
-
-				<!-- Success Message (if set) -->
-				<%
-					if (request.getParameter("success") != null) {
-						if (request.getParameter("success").equals("true")) {
-							out.println("<div id=\"success\" style=\"text-align:center; padding-bottom: 5px;\"><p>Successfully Added Test</p></div>");
-						}
-					}
-				%>
 			</div>
 		</div>
 	</div>
 
 	<!-- Footer -->
 	<div class="footer shadow">
-		<p>A quiz application for the ICSI 418Y final project, Spring 2019.</p>
+		<p>
+			A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp">our team</a> for an ICSI 418Y/410 final project, Spring 2019.
+		</p>
 	</div>
 </body>
 
