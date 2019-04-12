@@ -24,7 +24,7 @@
 <body>
 	<sql:setDataSource var="snapshot1" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 	<sql:query dataSource="${snapshot1}" var="result1"> SELECT * FROM TEST T INNER JOIN ADMINISTRATOR A ON T.ADMIN_ID = A.ADMIN_ID WHERE TEST_ID = <%=request.getParameter("TEST_ID")%>; </sql:query>
-	<sql:query dataSource="${snapshot1}" var="result4"> SELECT * FROM USERS U INNER JOIN TESTS_TAKEN TT ON U.USERS_ID = TT.USERS_ID WHERE TEST_TAKEN_ID = ${currentTestTakenID}; </sql:query>
+	<sql:query dataSource="${snapshot1}" var="result4"> SELECT * FROM USERS U INNER JOIN TESTS_TAKEN TT ON U.USERS_ID = TT.USERS_ID WHERE TEST_TAKEN_ID = <%=request.getParameter("TEST_TAKEN_ID")%>; </sql:query>
 	<sql:query dataSource="${snapshot1}" var="result5"> SELECT * FROM ALLOWED_USERS WHERE USERS_ID = ${id} AND TEST_ID = <%=request.getParameter("TEST_ID")%>; </sql:query>
 
 	<!-- Navbar -->
@@ -77,7 +77,7 @@
 				<c:set var="count" value="1" scope="page" />
 				<c:forEach var="row" items="${result2.rows}">
 
-					<sql:query dataSource="${snapshot1}" var="result6"> SELECT * FROM RESULTS WHERE TEST_TAKEN_ID = ${currentTestTakenID} AND QUESTION_ID = ${row.QUESTION_ID}; </sql:query>
+					<sql:query dataSource="${snapshot1}" var="result6"> SELECT * FROM RESULTS WHERE TEST_TAKEN_ID = <%=request.getParameter("TEST_TAKEN_ID")%> AND QUESTION_ID = ${row.QUESTION_ID}; </sql:query>
 
 					<h4>${count}.&nbsp;${row.TEXT}</h4>
 					<!-- question is mc -->

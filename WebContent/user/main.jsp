@@ -114,7 +114,7 @@
 							<td><c:out value="${row.TITLE}" /></td>
 							<td><c:out value="${row.TEST_DATE}" /></td>		
 							<td><c:out value="${row.SCORE}" /></td>								
-							<td><a class="link-style" href="${pageContext.request.contextPath}/user/test/test_results.jsp?success=true&USERS_ID=${id}&TEST_ID=${row.TEST_ID}">view results</a></td>												
+							<td><a class="link-style" href="${pageContext.request.contextPath}/user/test/test_results.jsp?success=true&USERS_ID=${id}&TEST_ID=${row.TEST_ID}&TEST_TAKEN_ID=${row.TEST_TAKEN_ID}">view results</a></td>												
 						</tr>
 					</c:forEach>
 	
