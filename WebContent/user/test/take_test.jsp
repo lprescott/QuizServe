@@ -62,6 +62,7 @@
 		
 		<!-- This script assigns the scroll height to the hidden scrollHeight input. -->
 		<script>
+			document.getElementById('scrollHeight').value = 0;
 			window.addEventListener("scroll", function (event) {
 				document.getElementById('scrollHeight').value = this.scrollY;
 			});
