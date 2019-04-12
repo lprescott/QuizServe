@@ -1,5 +1,6 @@
 html {
 	height: 100%;
+	overflow:auto;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -26,6 +27,7 @@ html {
 }
 
 body {
+	height: 100%;
 	margin: 0;
 	margin-bottom: 84px;
 }

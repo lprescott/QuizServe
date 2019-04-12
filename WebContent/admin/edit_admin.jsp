@@ -23,7 +23,7 @@
 <body>
 	<!-- Navbar -->
 	<div class="header shadow">
-		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
+		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 65px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
 		<p style="float: left;">University at Albany, SUNY</p>
 		<p>Logged in as ${email}.</p>
 		<a id="link" href="${pageContext.request.contextPath}/admin/admin_management.jsp"> Go back </a>
@@ -40,7 +40,7 @@
 			<%
 				if (request.getParameter("success") != null) {
 					if (request.getParameter("success").equals("false")) {
-						out.println("<div style=\"padding-bottom:15px; margin: 5px\" id=\"error\"><p>" + request.getParameter("error") + "</p></div>");
+						out.println("<div style=\"text-align:center; padding-bottom:15px; margin: 5px;\" id=\"error\"><p>" + request.getParameter("error") + "</p></div>");
 					}
 				}
 			%>
@@ -49,7 +49,7 @@
 			<%
 				if (request.getParameter("success") != null) {
 					if (request.getParameter("success").equals("true")) {
-						out.println("<div id=\"success\" style=\"text-align:center; padding: 5px;\"><p>Admin Successfully Updated</p></div>");
+						out.println("<div id=\"success\" style=\"text-align:center; padding-bottom:15px; margin: 5px;\"><p>Admin Successfully Updated</p></div>");
 					}
 				}
 			%>
