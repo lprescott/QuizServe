@@ -6,7 +6,7 @@
 	z-index: 1;
 	background: #ffffff;
 	margin: 0 auto 0;
-	padding: 45px;
+	padding:15px;
 	text-align: center;
 }
 
@@ -26,7 +26,7 @@
 	font-family: "Open Sans", sans-serif;
 	text-transform: uppercase;
 	outline: 0;
-	background: #93cede;
+	background: #5babc1;
 	width: 100%;
 	border: 0;
 	padding: 15px;
@@ -35,6 +35,7 @@
 	-webkit-transition: all 0.3 ease;
 	transition: all 0.3 ease;
 	cursor: pointer;
+	border-radius: 5pt;
 }
 
 .form-container-question #submit:hover,
@@ -56,7 +57,9 @@
 	-webkit-transition: all 0.3 ease;
 	transition: all 0.3 ease;
 	cursor: pointer;
+	border-radius: 5pt;
 }
+
 
 .form-container-question #delete:hover {
 	background: #b73f3e;

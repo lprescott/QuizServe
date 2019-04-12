@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import edu.albany.csi418.session.LoginEnum;
 
@@ -53,6 +52,12 @@ public class TakeTest extends HttpServlet {
 				//Open a connection
 				Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 
+				//Delete test questions in the in_progress table from the current test
+				Statement delete_in_progress = DB_Connection.createStatement();
+	            String delete_in_progress_string = "DELETE FROM TEST_IN_PROGRESS WHERE TEST_ID = "+testID+" AND USERS_ID = " + userID + ";";
+	            delete_in_progress.executeUpdate(delete_in_progress_string);
+
+	            
 				//Add Tests_Taken entry
 				Statement tests_taken_statement = DB_Connection.createStatement();
 				String tests_taken_query = "INSERT INTO TESTS_TAKEN (TEST_ID, USERS_ID, TEST_DATE) VALUES (" + testID + ", " + userID + ", CURDATE());";
@@ -65,10 +70,6 @@ public class TakeTest extends HttpServlet {
 				if (tests_take_rs.last()) {
 					testTakenID = tests_take_rs.getInt("TEST_TAKEN_ID");
 				}
-
-				//Add testTakenID to session
-				HttpSession session = request.getSession(false);
-				session.setAttribute("currentTestTakenID", testTakenID);
 
 				//Select test questions of the current test
 				Statement test_questions_statement = DB_Connection.createStatement();
@@ -181,15 +182,119 @@ public class TakeTest extends HttpServlet {
 				test_question_rs.close();
 				
 				//TODO success
-				request.getRequestDispatcher("/user/main.jsp").forward(request, response);
-
+				response.sendRedirect("user/test/test_results.jsp?success=true&USERS_ID=" + userID + "&TEST_ID=" + testID + "&TEST_TAKEN_ID=" + testTakenID);
+	            return;
 				
 			} catch (Exception e) {
 				
 				//System.out.println(e);
 				//TODO error
+				response.sendRedirect("user/test/test_results.jsp?success=false");
+	            return;
 			}
 
+		} else {
+			
+			//Save the tests progress
+			int questionID = 0; //int questionChanged = 0;
+
+			try {
+					
+				//Load the Connector/J
+				Class.forName("com.mysql.cj.jdbc.Driver");
+	
+				//Open a connection
+				Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
+	
+				//Delete test questions in the in_progress table from the current test
+				Statement delete_in_progress = DB_Connection.createStatement();
+	            String delete_in_progress_string = "DELETE FROM TEST_IN_PROGRESS WHERE TEST_ID = "+testID+" AND USERS_ID = " + userID + ";";
+	            delete_in_progress.executeUpdate(delete_in_progress_string);
+				
+				//Select test questions of the current test
+				Statement test_questions_statement = DB_Connection.createStatement();
+				String test_questions_query = "SELECT * FROM QUESTION Q INNER JOIN TEST_QUESTIONS TQ ON Q.QUESTION_ID = TQ.QUESTION_ID WHERE TQ.TEST_ID = " + testID + ";";
+				ResultSet test_question_rs = test_questions_statement.executeQuery(test_questions_query);			
+				
+				//Loop through selected questions
+				while (test_question_rs.next()) {
+					
+					questionID = test_question_rs.getInt("QUESTION_ID");
+					
+					if (test_question_rs.getBoolean("IS_TRUE_FALSE") == true) {
+						
+						//True/False question
+						boolean chosen = false;
+
+						//Determine selected t/f answer
+						if (request.getParameter(test_question_rs.getString("QUESTION_ID") + "_true") != null) {
+							
+							chosen = true;
+						} else if (request.getParameter(test_question_rs.getString("QUESTION_ID") + "_false") != null) {
+							
+							chosen = false;
+						} else if((request.getParameter(test_question_rs.getString("QUESTION_ID") + "_true") == null)&& (request.getParameter(test_question_rs.getString("QUESTION_ID") + "_false") == null)) {
+						   
+							//continue if no selection
+							continue;
+						}
+						
+						//Insert into in progress table
+						Statement in_progress_statement = DB_Connection.createStatement();
+						String in_progress_string = "INSERT INTO TEST_IN_PROGRESS (TEST_ID, USERS_ID, QUESTION_ID, TF_CHOSEN) VALUES ("+testID+", "+userID+", "+questionID+", "+chosen+");";
+						
+						in_progress_statement.executeUpdate(in_progress_string);
+						
+						//close
+						in_progress_statement.close();
+						
+					} else if (test_question_rs.getBoolean("IS_TRUE_FALSE") != true) {  
+						
+						//Multiple choice question
+						int chosen = 0;
+						
+						//Select answers of question
+						Statement question_answers_statement = DB_Connection.createStatement();
+						String question_answers_query = "SELECT * FROM QUESTION Q INNER JOIN QUESTION_ANSWER QA ON Q.QUESTION_ID = QA.QUESTION_ID WHERE Q.QUESTION_ID = " + questionID + ";";
+						ResultSet question_answers_rs = question_answers_statement.executeQuery(question_answers_query);
+						
+						//Loop through answers
+						while (question_answers_rs.next()) {
+							
+							int answerID = question_answers_rs.getInt("ANSWER_ID");
+							
+							if(request.getParameter("answer_" + answerID) != null) {
+								chosen = answerID;
+							}
+						}
+						
+						//continue if no selection
+						if(chosen == 0) {
+							continue;
+						}
+						
+						//Insert into in progress
+						Statement in_progress_statement = DB_Connection.createStatement();
+						String in_progress_string = "INSERT INTO TEST_IN_PROGRESS (TEST_ID, USERS_ID, QUESTION_ID, ANSWER_ID) VALUES ("+testID+", "+userID+", "+questionID+", "+chosen+");";
+						in_progress_statement.executeUpdate(in_progress_string);
+						
+						//close
+						question_answers_statement.close();
+						question_answers_rs.close();
+						in_progress_statement.close();
+					}
+				}
+				
+				//scroll
+				int scrollHeight = Integer.parseInt(request.getParameter("scrollHeight"));
+
+				//success
+				response.sendRedirect("user/test/take_test.jsp?USERS_ID=" + userID + "&TEST_ID=" + testID + "&QUESTION_ID=" + questionID + "&SCROLL=" + scrollHeight);
+	            return;
+            
+			} catch (Exception e) {
+				System.out.println(e);
+			}
 		}
 
 	}

@@ -23,7 +23,7 @@
 <body>
 	<!-- Navbar -->
 	<div class="header shadow">
-		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
+		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 65px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
 		<p style="float: left;">University at Albany, SUNY</p>
 		<p>Logged in as ${email}.</p>
 		<a id="link" href="${pageContext.request.contextPath}/admin/main.jsp"> Go back </a>
@@ -37,6 +37,14 @@
 	<div class="main-container" style="max-width: 1500px;">
 		<div class="main shadow" style="padding: 0;">
 
+			<!-- Message (if set) -->
+			<%
+				if (request.getParameter("message_mc") != null) {
+					out.println("<div style=\"padding-top: 5px; margin: 5px; text-align: center;\" id=\"success\"><p>"
+							+ request.getParameter("message_mc") + "</p></div>");
+				}
+			%>
+			
 			<div class="filter-box">
 				<i class="fas fa-search filter-icon"></i>
 				<input class="table-filter" type="text" id="filter1" onkeyup="filterTable('filter1', 'table1')" placeholder="Filter the below table by question text or category...">
@@ -77,15 +85,6 @@
 					<td></td>
 				</tr>
 			</table>
-
-			<!-- Message (if set) -->
-			<%
-				if (request.getParameter("message_mc") != null) {
-					out.println("<div style=\"padding-bottom: 1px; margin: 5px; text-align: center;\" id=\"success\"><p>"
-							+ request.getParameter("message_mc") + "</p></div>");
-				}
-			%>
-
 		</div>
 	</div>
 
@@ -94,6 +93,14 @@
 
 		<div class="main shadow" style="padding: 0;">
 
+			<!-- Message (if set) -->
+			<%
+				if (request.getParameter("message_tf") != null) {
+					out.println("<div style=\"padding-top: 5px; margin: 5px; text-align: center;\" id=\"success\"><p>"
+							+ request.getParameter("message_tf") + "</p></div>");
+				}
+			%>
+			
 			<div class="filter-box">
 				<i class="fas fa-search filter-icon"></i>
 				<input class="table-filter" type="text" id="filter2" onkeyup="filterTable('filter2', 'table2')" placeholder="Filter the below table by question text or category...">
@@ -131,15 +138,6 @@
 					<td></td>
 				</tr>
 			</table>
-
-			<!-- Message (if set) -->
-			<%
-				if (request.getParameter("message_tf") != null) {
-					out.println("<div style=\"padding-bottom: 5px; text-align: center;\" id=\"success\"><p>"
-							+ request.getParameter("message_tf") + "</p></div>");
-				}
-			%>
-
 		</div>
 	</div>
 

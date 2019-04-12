@@ -23,7 +23,7 @@
 <body>
 	<!-- Navbar -->
 	<div class="header shadow">
-		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
+		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 65px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
 		<p style="float: left;">University at Albany, SUNY</p>
 		<p>Logged in as ${email}.</p>		
 		<a id="link" href="${pageContext.request.contextPath}/admin/question/question_management.jsp"> Go back </a>
@@ -36,8 +36,26 @@
 	<div class="main-container">
 		<div class="main shadow">
 			<div class="form-container-question">
+							
+				<!-- Error Message (if set) -->
+				<%
+					if (request.getParameter("success") != null) {
+						if (request.getParameter("success").equals("false")) {
+							out.println("<div style=\"padding-bottom:15px; margin: 5px\" id=\"error\"><p>" + request.getParameter("error") + "</p></div>");
+						}
+					}
+				%>
+				
+				<!-- Success Message (if set) -->
+				<%
+					if (request.getParameter("success") != null) {
+						if (request.getParameter("success").equals("true")) {
+							out.println("<div style=\"padding-bottom:15px; margin: 5px\" id=\"success\">Question Successfully Updated</div>");
+						}
+					}
+				%>
+				
 				<!-- Form -->
-
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM QUESTION WHERE QUESTION_ID=<%=request.getParameter("QUESTION_ID")%>; </sql:query>
 
@@ -75,26 +93,8 @@
 						<input class="shadow-button" id="submit" type="submit" name="submit" value="UPDATE">
 					</div>
 
-					<input class="shadow-button" id="delete" type="submit" name="submit" value="DELETE">
+					<input class="shadow-button" id="delete" onclick="return confirm('Are you sure?');" type="submit" name="submit" value="DELETE">
 				</form>
-
-				<!-- Error Message (if set) -->
-				<%
-					if (request.getParameter("success") != null) {
-						if (request.getParameter("success").equals("false")) {
-							out.println("<div id=\"error\"><p>" + request.getParameter("error") + "</p></div>");
-						}
-					}
-				%>
-
-				<!-- Success Message (if set) -->
-				<%
-					if (request.getParameter("success") != null) {
-						if (request.getParameter("success").equals("true")) {
-							out.println("<div id=\"success\"><p>Successfully Updated Question</p></div>");
-						}
-					}
-				%>
 			</div>
 		</div>
 	</div>

@@ -11,20 +11,18 @@
 <head>
 <meta content="text/html;" charset="UTF-8">
 <title>Test List</title>
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/filter.js"></script>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">	
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/filter.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 </head>
 <body>
-<!-- Navbar -->
+	<!-- Navbar -->
 	<div class="header shadow">
-		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow"
-				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
-				alt="SUNY Albany Seal"></a>
+		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 65px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
 		<div class="logo-label"></div>
 		<p style="float: left;">University at Albany, SUNY</p>
 		<p>Logged in as ${email}.</p>
@@ -33,20 +31,27 @@
 			<input type="submit" value="Logout">
 		</form>
 	</div>
-	
+
 	<!-- Content -->
 	<div class="main-container" style="max-width: 1000px;">
 		<div class="main shadow" style="padding: 0;">
+
+			<!-- Message (if set) -->
+			<%
+				if (request.getParameter("message") != null) {
+					out.println("<div style=\"padding-bottom: 5px; text-align: center;\" id=\"success\"><p>"
+							+ request.getParameter("message") + "</p></div>");
+				}
+			%>
 
 			<!-- Connect to DB and select all tests -->
 			<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 			<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM TEST T INNER JOIN ADMINISTRATOR A ON T.ADMIN_ID = A.ADMIN_ID;</sql:query>
 
 			<div class="filter-box">
-				<i class="fas fa-search filter-icon"></i>
-				<input class="table-filter" type="text" id="filter1" onkeyup="filterTable('filter1', 'table1')" placeholder="Filter the below table by test name or admin email...">
+				<i class="fas fa-search filter-icon"></i> <input class="table-filter" type="text" id="filter1" onkeyup="filterTable('filter1', 'table1')" placeholder="Filter the below table by test name or admin email...">
 			</div>
-				
+
 			<!-- Print table of all users -->
 			<table id="table1" class="table" style="width: 100%;">
 				<tr>
@@ -77,21 +82,14 @@
 					<td></td>
 				</tr>
 			</table>
-
-			<!-- Message (if set) -->
-			<%
-				if (request.getParameter("message") != null) {
-					out.println("<div style=\"padding-bottom: 5px; text-align: center;\" id=\"success\"><p>"
-							+ request.getParameter("message") + "</p></div>");
-				}
-			%>
-
 		</div>
 	</div>
 
 	<!-- Footer -->
 	<div class="footer shadow">
-		<p>A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp" >our team</a> for an ICSI 418Y/410 final project, Spring 2019.</p>
+		<p>
+			A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp">our team</a> for an ICSI 418Y/410 final project, Spring 2019.
+		</p>
 	</div>
 </body>
 

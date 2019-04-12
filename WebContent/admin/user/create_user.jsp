@@ -17,7 +17,7 @@
 <body>
 	<!-- Navbar -->
 	<div class="header shadow">
-		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
+		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 65px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
 		<p style="float: left;">University at Albany, SUNY</p>
 		<p>Logged in as ${email}.</p>
 		<a id="link" href="${pageContext.request.contextPath}/admin/user/user_management.jsp"> Go back </a>
@@ -29,6 +29,25 @@
 	<!-- Content -->
 	<div class="login-main">
 		<div class="form-container shadow">
+
+			<!-- Error Message (if set) -->
+			<%
+				if (request.getParameter("success") != null) {
+					if (request.getParameter("success").equals("false")) {
+						out.println("<div style=\"text-align:center; padding-bottom:15px; margin: 5px;\" id=\"error\"><p>" + request.getParameter("error") + "</p></div>");
+					}
+				}
+			%>
+
+			<!-- Success Message (if set) -->
+			<%
+				if (request.getParameter("success") != null) {
+					if (request.getParameter("success").equals("true")) {
+						out.println("<div id=\"success\" style=\"text-align:center; padding-bottom:15px; margin: 5px;\">User Successfully Created</div>");
+					}
+				}
+			%>
+
 			<!-- Form -->
 			<form class="quiz-form" action="${pageContext.request.contextPath}/CreateUser" method="post">
 				<input id="email" name="email" type="email" placeholder="email" required> <input id="password" name="password" type="password" placeholder="password" required> <input id="password-confirm" name="password-confirm" type="password" placeholder="confirm password" required>
@@ -39,24 +58,6 @@
 
 				<input class="shadow-button" id="submit" type="submit" value="CREATE">
 			</form>
-
-			<!-- Error Message (if set) -->
-			<%
-				if (request.getParameter("success") != null) {
-					if (request.getParameter("success").equals("false")) {
-						out.println("<div id=\"error\"><p>" + request.getParameter("error") + "</p></div>");
-					}
-				}
-			%>
-
-			<!-- Success Message (if set) -->
-			<%
-				if (request.getParameter("success") != null) {
-					if (request.getParameter("success").equals("true")) {
-						out.println("<div id=\"success\"><p>Successfully Added User</p></div>");
-					}
-				}
-			%>
 		</div>
 	</div>
 

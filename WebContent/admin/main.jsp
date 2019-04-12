@@ -24,9 +24,9 @@
 <body>
 	<!-- Navbar -->
 	<div class="header shadow">
-		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
+		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow" style="max-height: 65px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
 		<p style="float: left;">University at Albany, SUNY</p>
-		<p>Logged in as ${email}.</p>		
+		<p>Logged in as ${email}.</p>
 		<form action="${pageContext.request.contextPath}/Logout" method="post">
 			<input type="submit" value="Logout">
 		</form>
@@ -49,18 +49,21 @@
 				<form action="${pageContext.request.contextPath}/admin/test/test_management.jsp">
 					<input class="shadow-button" type="submit" value="Test Management" />
 				</form>
+
+				<form action="${pageContext.request.contextPath}/admin/question/file_upload.jsp">
+					<input class="shadow-button" type="submit" value="File Upload" />
+				</form>
 			</div>
 		</div>
 
 		<div class="row">
 			<div id="left" class="column shadow">
 				<h3 style="margin: 20px;">Current Tests</h3>
-				
+
 				<div class="filter-box">
-					<i class="fas fa-search filter-icon"></i>
-					<input class="table-filter" type="text" id="filter1" onkeyup="filterTable('filter1', 'table1')" placeholder="Filter the below table by test name...">
+					<i class="fas fa-search filter-icon"></i> <input class="table-filter" type="text" id="filter1" onkeyup="filterTable('filter1', 'table1')" placeholder="Filter the below table by test name...">
 				</div>
-				
+
 				<!-- Connect to DB and select all admin's tests -->
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM TEST WHERE ADMIN_ID = ${id} group by test_id ;</sql:query>
@@ -72,48 +75,47 @@
 						<th>Test Name</th>
 						<th></th>
 					</tr>
-	
+
 					<c:forEach var="row" items="${result.rows}">
 						<tr>
 							<td><c:out value="${row.TEST_ID}" /></td>
 							<td><c:out value="${row.TITLE}" /></td>
-							<td><a class="link-style" href="${pageContext.request.contextPath}/admin/test/invite_users.jsp?TEST_ID=<c:out value="${row.TEST_ID}"/>">invite users</a></td>					
+							<td><a class="link-style" href="${pageContext.request.contextPath}/admin/test/invite_users.jsp?TEST_ID=<c:out value="${row.TEST_ID}"/>">invite users</a></td>
 						</tr>
 					</c:forEach>
-	
+
 				</table>
-			
+
 			</div>
 			<div id="right" class="column shadow">
 				<h3 style="margin: 20px;">Tests Taken</h3>
-				
+
 				<div class="filter-box">
-					<i class="fas fa-search filter-icon"></i>
-					<input class="table-filter" type="text" id="filter2" onkeyup="filterTable('filter2', 'table2')" placeholder="Filter the below table by user id or test name...">
+					<i class="fas fa-search filter-icon"></i> <input class="table-filter" type="text" id="filter2" onkeyup="filterTable('filter2', 'table2')" placeholder="Filter the below table by user id or test name...">
 				</div>
-				
+
 				<!-- Connect to DB and select all admin's tests -->
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
-				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM TEST T INNER JOIN TESTS_TAKEN TT ON T.TEST_ID = TT.TEST_ID INNER JOIN RESULTS R ON TT.TEST_TAKEN_ID = R.TEST_TAKEN_ID WHERE T.ADMIN_ID = ${id} group by T.TEST_ID;</sql:query>
+				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM TEST T INNER JOIN TESTS_TAKEN TT ON T.TEST_ID = TT.TEST_ID INNER JOIN USERS U ON TT.USERS_ID = U.USERS_ID WHERE T.ADMIN_ID = ${id};</sql:query>
 
 				<!-- Print table of admin's tests -->
 				<table id="table2" class="table" style="width: 100%;">
 					<tr>
-						<th>ID</th>
-						<th>User ID</th>
-						<th>Date Taken</th>
 						<th>Test Name</th>
+						<th>User Email</th>
+						<th>Date Taken</th>
+						<th>Score</th>
 						<th></th>
 					</tr>
-	
+
 					<c:forEach var="row" items="${result.rows}">
 						<tr>
-							<td><c:out value="${row.TEST_ID}" /></td>
-							<td><c:out value="${row.USERS_ID}" /></td>
-							<td><c:out value="${row.TEST_DT}" /></td>
 							<td><c:out value="${row.TITLE}" /></td>
-							
-							<td><a class="link-style" href="../TestResult?USERS_ID=<c:out value="${row.USERS_ID}"/>&TEST_ID=<c:out value="${row.TEST_ID}"/>">results</a></td>
+							<td><c:out value="${row.EMAIL}" /></td>
+							<td><c:out value="${row.TEST_DATE}" /></td>
+							<td><c:out value="${row.SCORE}" /></td>
+
+							<td><a class="link-style" href="${pageContext.request.contextPath}/admin/test/test_results.jsp?TEST_TAKEN_ID=${row.TEST_TAKEN_ID}&TEST_ID=<c:out value="${row.TEST_ID}"/>&?USERS_ID=<c:out value="${row.USERS_ID}"/>">results</a></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -123,7 +125,9 @@
 
 	<!-- Footer -->
 	<div class="footer shadow">
-		<p>A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp" >our team</a> for an ICSI 418Y/410 final project, Spring 2019.</p>
+		<p>
+			A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp">our team</a> for an ICSI 418Y/410 final project, Spring 2019.
+		</p>
 	</div>
 </body>
 
