@@ -55,7 +55,7 @@
 						
 
 						<div style="text-align: center;">
-							<a id="link" href="${pageContext.request.contextPath}/admin/image_upload.jsp"> Upload Image </a>
+							<a id="link" href="${pageContext.request.contextPath}/admin/test/image_upload.jsp"> Upload Image </a>
 							Attached image: <input type="file" id="q_image" name="q_image" accept="image/png, image/jpeg">
 						</div>
 
