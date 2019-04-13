@@ -84,10 +84,12 @@
 					data : $('#test-form').serialize(),
 					success : function() {
 						setTimeout( function() {
-							$("#question-label-" + questionID).css("display", "inline");
+							$("#question-label-" + questionID).css("visibility", "visible");
+							$("#question-label-" + questionID).css("opacity", "1");
 						}, 100);
 						setTimeout( function() {
-							$("#question-label-" + questionID).css("display", "none");
+							$("#question-label-" + questionID).css("visibility", "hidden");
+							$("#question-label-" + questionID).css("opacity", "0");
 						}, 5000);
 					}
 				});
@@ -147,7 +149,7 @@
 
 					</c:if>
 
-					<div id="question-label-${row.QUESTION_ID}" style="display: none;">
+					<div id="question-label-${row.QUESTION_ID}" style="transition: visibility 0.5s, opacity 0.5s linear;  opacity: 0; visibility: hidden;">
 						<!-- saved -->
 						<div style="float: right;">
 							<i style="color: green;" class="fas fa-save"></i>&nbsp;Answer Saved
