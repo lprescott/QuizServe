@@ -23,12 +23,21 @@
 
 <!-- This function scrolls to a y value supplied by a url attribute. -->
 <script>
-	window.addEventListener('load', function() {
-		window.scrollTo(0, <%=request.getParameter("SCROLL") %>);
-	})
+
+	window.onload = function() {
+		setScroll();
+	}
+	
+	function setScroll(){
+		window.scrollTo({
+			  top: <%=request.getParameter("SCROLL")%>,
+			  left: 0,
+			  behavior: 'auto'
+			});
+	}
 </script>
 	
-<body>
+<body onload="setScroll()">
 	<sql:setDataSource var="snapshot1" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 	<sql:query dataSource="${snapshot1}" var="result1"> SELECT * FROM TEST T INNER JOIN ADMINISTRATOR A ON T.ADMIN_ID = A.ADMIN_ID WHERE TEST_ID = <%=request.getParameter("TEST_ID")%>; </sql:query>
 
@@ -64,12 +73,12 @@
 		<script>
 			document.getElementById('scrollHeight').value = 0;
 			window.addEventListener("scroll", function (event) {
-				document.getElementById('scrollHeight').value = this.scrollY;
+				document.getElementById('scrollHeight').value = Math.round(this.scrollY);
 			});
 		</script>
 	
 		<div class="main-container">
-			<div class="main shadow">
+			<div class="main shadow" style="margin-bottom: 82px !important">
 
 				<c:set var="count" value="1" scope="page" />
 				<c:forEach var="row" items="${result2.rows}">

@@ -72,7 +72,7 @@
 		<input id="TEST_ID" type="hidden" name="TEST_ID" value="<%=request.getParameter("TEST_ID")%>"> <input id="USERS_ID" type="hidden" name="USERS_ID" value="<%=request.getParameter("USERS_ID")%>">
 
 		<div class="main-container">
-			<div class="main shadow">
+			<div class="main shadow" style="margin-bottom: 82px !important">
 
 				<c:set var="count" value="1" scope="page" />
 				<c:forEach var="row" items="${result2.rows}">

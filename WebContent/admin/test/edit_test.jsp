@@ -37,7 +37,7 @@
 
 	<!-- Content -->
 	<div class="main-container" style="max-width: 1500px;">
-		<div class="main shadow" style="padding: 0;">
+		<div class="main shadow" style="padding: 0;margin-bottom: 82px !important;">
 
 			<div class="form-container-test">
 			
@@ -63,7 +63,7 @@
 				
 				<!-- Connect to DB and select all questions -->
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
-				<sql:query dataSource="${snapshot}" var="q_result"> SELECT * FROM QUESTION;</sql:query>
+				<sql:query dataSource="${snapshot}" var="q_result"> SELECT * FROM QUESTION ORDER BY CATEGORY;</sql:query>
 				<sql:query dataSource="${snapshot}" var="t_result"> SELECT * FROM TEST WHERE TEST_ID=<%=request.getParameter("TEST_ID")%>;</sql:query>
 
 				<!-- Form -->
