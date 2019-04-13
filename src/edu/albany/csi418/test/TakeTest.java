@@ -181,7 +181,7 @@ public class TakeTest extends HttpServlet {
 				test_questions_statement.close();
 				test_question_rs.close();
 				
-				//TODO success
+				//success
 				response.sendRedirect("user/test/test_results.jsp?success=true&USERS_ID=" + userID + "&TEST_ID=" + testID + "&TEST_TAKEN_ID=" + testTakenID);
 	            return;
 
@@ -189,7 +189,6 @@ public class TakeTest extends HttpServlet {
 			} catch (Exception e) {
 				
 				//System.out.println(e);
-				//TODO error
 				response.sendRedirect("user/test/test_results.jsp?success=false");
 	            return;
 			}
@@ -288,13 +287,18 @@ public class TakeTest extends HttpServlet {
 				
 				//scroll
 				int scrollHeight = Integer.parseInt(request.getParameter("scrollHeight"));
+				request.setAttribute("SCROLL", scrollHeight);
 
 				//success
 				response.sendRedirect("user/test/take_test.jsp?USERS_ID=" + userID + "&TEST_ID=" + testID + "&QUESTION_ID=" + questionID + "&SCROLL=" + scrollHeight);
 	            return;
-            
+	            
 			} catch (Exception e) {
-				System.out.println(e);
+				
+				//System.out.println(e);
+				response.sendRedirect("user/test/test_results.jsp?success=false");
+	            return;
+				
 			}
 		}
 

@@ -18,25 +18,25 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
 <script src="${pageContext.request.contextPath}/js/checkBox.js"></script>
-
+<script src="${pageContext.request.contextPath}/js/jquery-3.4.0.min.js"></script>
+<link rel="stylesheet" type="text/css"  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 </head>
 
 <!-- This function scrolls to a y value supplied by a url attribute. -->
 <script>
-
 	window.onload = function() {
 		setScroll();
 	}
-	
-	function setScroll(){
+
+	function setScroll() {
 		window.scrollTo({
-			  top: <%=request.getParameter("SCROLL")%>,
-			  left: 0,
-			  behavior: 'auto'
-			});
+			top : <%=request.getParameter("SCROLL")%>,
+			left : 0,
+			behavior : 'auto'
+		});
 	}
 </script>
-	
+
 <body onload="setScroll()">
 	<sql:setDataSource var="snapshot1" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 	<sql:query dataSource="${snapshot1}" var="result1"> SELECT * FROM TEST T INNER JOIN ADMINISTRATOR A ON T.ADMIN_ID = A.ADMIN_ID WHERE TEST_ID = <%=request.getParameter("TEST_ID")%>; </sql:query>
@@ -57,6 +57,8 @@
 		<div class="main shadow">
 			<h2 style="margin: 10px;">${result1.rows[0].TITLE}</h2>
 			<h3 style="margin: 10px;">Administered by ${result1.rows[0].EMAIL}</h3>
+			<h3 style="margin: 10px;">Due by ${result1.rows[0].TEST_DUE}</h3>
+			
 		</div>
 	</div>
 
@@ -65,18 +67,33 @@
 	<form id="test-form" class="quiz-form" action="${pageContext.request.contextPath}/TakeTest" method="post">
 
 		<!-- Hidden inputs with ID #s and scroll height-->
-		<input id="TEST_ID" type="hidden" name="TEST_ID" value="<%=request.getParameter("TEST_ID")%>"> 
-		<input id="USERS_ID" type="hidden" name="USERS_ID" value="<%=request.getParameter("USERS_ID")%>">
-		<input id="scrollHeight" type="hidden" name="scrollHeight"> 
-		
+		<input id="TEST_ID" type="hidden" name="TEST_ID" value="<%=request.getParameter("TEST_ID")%>"> <input id="USERS_ID" type="hidden" name="USERS_ID" value="<%=request.getParameter("USERS_ID")%>"> <input id="scrollHeight" type="hidden" name="scrollHeight">
+
 		<!-- This script assigns the scroll height to the hidden scrollHeight input. -->
 		<script>
 			document.getElementById('scrollHeight').value = 0;
-			window.addEventListener("scroll", function (event) {
-				document.getElementById('scrollHeight').value = Math.round(this.scrollY);
+			window.addEventListener("scroll", function(event) {
+				document.getElementById('scrollHeight').value = Math
+						.round(this.scrollY);
 			});
+
+			function subForm(questionID) {
+				$.ajax({
+					url : '/ICSI418-Group-Project/TakeTest',
+					type : 'post',
+					data : $('#test-form').serialize(),
+					success : function() {
+						setTimeout( function() {
+							$("#question-label-" + questionID).css("display", "inline");
+						}, 100);
+						setTimeout( function() {
+							$("#question-label-" + questionID).css("display", "none");
+						}, 5000);
+					}
+				});
+			}
 		</script>
-	
+
 		<div class="main-container">
 			<div class="main shadow" style="margin-bottom: 82px !important">
 
@@ -92,46 +109,53 @@
 						<c:forEach var="row2" items="${result3.rows}">
 
 							<c:if test="${row2.ANSWER_ID == result4.rows[0].ANSWER_ID}">
-								<input checked class="${row.QUESTION_ID}" type="checkbox" id="answer_${row2.ANSWER_ID}" name="answer_${row2.ANSWER_ID}" onchange="checkBoxUpdate(this, '${row2.QUESTION_ID}'); document.forms[1].submit();">
+								<input checked class="${row.QUESTION_ID}" type="checkbox" id="answer_${row2.ANSWER_ID}" name="answer_${row2.ANSWER_ID}" onchange="checkBoxUpdate(this, '${row2.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
 							</c:if>
 							<c:if test="${row2.ANSWER_ID != result4.rows[0].ANSWER_ID}">
-								<input class="${row.QUESTION_ID}" type="checkbox" id="answer_${row2.ANSWER_ID}" name="answer_${row2.ANSWER_ID}" onchange="checkBoxUpdate(this, '${row2.QUESTION_ID}'); document.forms[1].submit();">
+								<input class="${row.QUESTION_ID}" type="checkbox" id="answer_${row2.ANSWER_ID}" name="answer_${row2.ANSWER_ID}" onchange="checkBoxUpdate(this, '${row2.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
 							</c:if>
 
 							<label for="${row2.ANSWER_ID}">${row2.ANSWER}</label>
 							<br>
 						</c:forEach>
-						<br>
-						<hr style="margin-left: -20px; margin-right: -20px;">
 
 					</c:if>
 					<!-- question is t/f -->
 					<c:if test="${row.IS_TRUE_FALSE == true}">
 						<c:if test="${result4.rows[0].TF_CHOSEN == true}">
-							<input checked class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); document.forms[1].submit();">
+							<input checked class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
 							<label for="${row.QUESTION_ID}_true">True</label>
 							<br>
-							<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); document.forms[1].submit();">
+							<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
 							<label for="${row.QUESTION_ID}_false">False</label>
 						</c:if>
 						<c:if test="${result4.rows[0].TF_CHOSEN == false}">
-							<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); document.forms[1].submit();">
+							<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
 							<label for="${row.QUESTION_ID}_true">True</label>
 							<br>
-							<input checked class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); document.forms[1].submit();">
+							<input checked class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
 							<label for="${row.QUESTION_ID}_false">False</label>
 						</c:if>
 						<c:if test="${empty result4.rows[0].TF_CHOSEN}">
-							<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); document.forms[1].submit();">
+							<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
 							<label for="${row.QUESTION_ID}_true">True</label>
 							<br>
-							<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); document.forms[1].submit();">
+							<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
 							<label for="${row.QUESTION_ID}_false">False</label>
 						</c:if>
 						<br>
-						<br>
-						<hr style="margin-left: -20px; margin-right: -20px;">
+
 					</c:if>
+
+					<div id="question-label-${row.QUESTION_ID}" style="display: none;">
+						<!-- saved -->
+						<div style="float: right;">
+							<i style="color: green;" class="fas fa-save"></i>&nbsp;Answer Saved
+						</div>
+					</div>
+
+					<br>
+					<hr style="margin-left: -20px; margin-right: -20px;">
 
 					<c:set var="count" value="${count + 1}" scope="page" />
 				</c:forEach>
