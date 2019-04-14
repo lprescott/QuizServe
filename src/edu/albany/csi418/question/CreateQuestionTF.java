@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import edu.albany.csi418.session.LoginEnum;
+import edu.albany.csi418.FileUtils;
 
 /**
  * Servlet implementation class CreateQuestionTF
@@ -47,7 +48,7 @@ public class CreateQuestionTF extends HttpServlet {
 		
 		//Get name and content
 		if (filePart != null && !(filePart.getSize() == 0)) {
-			fileName = extractFileName(filePart);
+			fileName = FileUtils.extractFileName(filePart);
 			fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
 			fileContent = filePart.getInputStream();
 		}
@@ -138,15 +139,4 @@ public class CreateQuestionTF extends HttpServlet {
         }
         
 	}
-	private String extractFileName(Part part) {
-        String contentDisp = part.getHeader("content-disposition");
-        String[] items = contentDisp.split(";");
-        for (String s : items) {
-            if (s.trim().startsWith("filename")) {
-                return s.substring(s.indexOf("=") + 2, s.length()-1);
-            }
-        }
-        return "";
-    }
-
 }
