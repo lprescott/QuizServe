@@ -67,7 +67,7 @@
 				<sql:query dataSource="${snapshot}" var="t_result"> SELECT * FROM TEST WHERE TEST_ID=<%=request.getParameter("TEST_ID")%>;</sql:query>
 
 				<!-- Form -->
-				<form class="quiz-form" action="${pageContext.request.contextPath}/EditTest" method="post">
+				<form class="quiz-form" action="${pageContext.request.contextPath}/EditTest" method="post" enctype="multipart/form-data">
 
 					<!-- Hidden input with ID# -->
 					<input id="TEST_ID" type="hidden" name="TEST_ID" value="<%=request.getParameter("TEST_ID")%>">
@@ -77,7 +77,7 @@
 						<input class="t_input_text" id="test_title" name="test_title" type="text" placeholder="Title" value="${t_result.rows[0].TITLE}" required> <input class="t_input_text" id="test_header" name="test_header" type="text" placeholder="Header" value="${t_result.rows[0].HEADER_TEXT}" required> <input class="t_input_text" id="test_footer" name="test_footer" type="text" placeholder="Footer" value="${t_result.rows[0].FOOTER_TEXT}" required>
 
 						<div style="text-align: center;">
-							Attached image: <input type="file" id="q_image" name="q_image" accept="image/png, image/jpeg"><br><br>
+							Attached image: <input type="file" id="t_image" name="t_image" accept="image/png, image/jpeg"><br><br>
 							Due Date: <input type="date" id="test_due" name="test_due" value = "${t_result.rows[0].TEST_DUE}">
 						</div>
 

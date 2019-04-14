@@ -113,10 +113,21 @@ public class CreateQuestionTF extends HttpServlet {
             // Open a connection
             Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 
-            //Insert into QUESTION Table
-            Statement ADD_QUESTION_Statement = DB_Connection.createStatement();
-            String ADD_QUESTION_STRING = "INSERT INTO QUESTION (TEXT, CATEGORY, IS_TRUE_FALSE, TF_IS_TRUE, IMAGE_NAME) VALUES ('" + question + "', '" + category + "', 1, " + tf + ", '" + fileName + "')";
-            ADD_QUESTION_Statement.executeUpdate(ADD_QUESTION_STRING);
+            Statement ADD_QUESTION_Statement;
+            if(fileName.equals("")) {
+            	//Insert into QUESTION Table
+                ADD_QUESTION_Statement = DB_Connection.createStatement();
+                String ADD_QUESTION_STRING = "INSERT INTO QUESTION (TEXT, CATEGORY, IS_TRUE_FALSE, TF_IS_TRUE) VALUES ('" + question + "', '" + category + "', 1, " + tf + ")";
+                ADD_QUESTION_Statement.executeUpdate(ADD_QUESTION_STRING);
+                
+            } else {
+                //Insert into QUESTION Table
+                ADD_QUESTION_Statement = DB_Connection.createStatement();
+                String ADD_QUESTION_STRING = "INSERT INTO QUESTION (TEXT, CATEGORY, IS_TRUE_FALSE, TF_IS_TRUE, IMAGE_NAME) VALUES ('" + question + "', '" + category + "', 1, " + tf + ", '" + fileName + "')";
+                ADD_QUESTION_Statement.executeUpdate(ADD_QUESTION_STRING);
+            }
+           
+
 
             // Clean-up environment
             ADD_QUESTION_Statement.close();

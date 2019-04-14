@@ -29,7 +29,19 @@
 
 	<!-- Navbar -->
 	<div class="header shadow">
-		<a class="logo" href="${pageContext.request.contextPath}/user/main.jsp"><img class="shadow" style="max-height: 65px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal"></a>
+		
+		<c:if test="${not empty result1.rows[0].IMAGE_NAME}">
+			<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp">
+				<img class="shadow" style="max-height: 65px;" src="${pageContext.request.contextPath}/uploads/${result1.rows[0].IMAGE_NAME}" alt="T-${result1.rows[0].IMAGE_NAME}">
+			</a>
+		</c:if>
+		
+		<c:if test="${empty result1.rows[0].IMAGE_NAME}">
+			<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp">
+				<img class="shadow" style="max-height: 65px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal">
+			</a>
+		</c:if>
+		
 		<p style="float: left;">${result1.rows[0].HEADER_TEXT}</p>
 		<p>Logged in as ${email}.</p>
 		<a id="link" href="${pageContext.request.contextPath}/user/main.jsp"> Go back </a>

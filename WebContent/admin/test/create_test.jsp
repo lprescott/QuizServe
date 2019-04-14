@@ -64,14 +64,14 @@
 				<sql:query dataSource="${snapshot}" var="result"> SELECT * FROM QUESTION ORDER BY CATEGORY;</sql:query>
 
 				<!-- Form -->
-				<form class="quiz-form" action="${pageContext.request.contextPath}/CreateTest" method="post">
+				<form class="quiz-form" action="${pageContext.request.contextPath}/CreateTest" method="post" enctype="multipart/form-data">
 
 					<div style="padding: 45px">
 
 						<input class="t_input_text" id="test_title" name="test_title" type="text" placeholder="Title" required> <input class="t_input_text" id="test_header" name="test_header" type="text" placeholder="Header" required> <input class="t_input_text" id="test_footer" name="test_footer" type="text" placeholder="Footer" required>
 
 						<div style="text-align: center;">
-							Attached image: <input type="file" id="q_image" name="q_image" accept="image/png, image/jpeg"> <br>
+							Attached image: <input type="file" id="t_image" name="t_image" accept="image/png, image/jpeg"> <br>
 							<br> Due Date: <input type="date" id="test_due" name="test_due">
 						</div>
 
