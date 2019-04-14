@@ -11,7 +11,7 @@
 
 <head>
 <meta content="text/html;" charset="UTF-8">
-<title>Test Results</title>
+<title>View Your Test Results</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
@@ -81,6 +81,13 @@
 
 						<sql:query dataSource="${snapshot1}" var="result6"> SELECT * FROM RESULTS WHERE TEST_TAKEN_ID = <%=request.getParameter("TEST_TAKEN_ID")%> AND QUESTION_ID = ${row.QUESTION_ID}; </sql:query>
 
+						<c:if test="${not empty row.IMAGE_NAME}">
+							<!-- Image -->
+							<div class="image-container">
+								<img src="${pageContext.request.contextPath}/uploads/${row.IMAGE_NAME}" alt="Q-${row.QUESTION_ID} Image">
+							</div>
+						</c:if>
+
 						<h4>${count}.&nbsp;${row.TEXT}</h4>
 						<!-- question is mc -->
 						<c:if test="${row.IS_TRUE_FALSE == false}">
@@ -116,10 +123,6 @@
 									<i style="color: red;" class="fas fa-times"></i>&nbsp;Incorrect, the correct answer is: '${result8.rows[0].ANSWER}'.
 								</div>
 							</c:if>
-
-							<br>
-							<hr style="margin-left: -20px; margin-right: -20px;">
-
 						</c:if>
 						<!-- question is t/f -->
 						<c:if test="${row.IS_TRUE_FALSE == true}">
@@ -172,13 +175,16 @@
 									<i style="color: red;" class="fas fa-times"></i>&nbsp;Incorrect, the correct answer is true.
 								</div>
 							</c:if>
-
-							<br>
-							<hr style="margin-left: -20px; margin-right: -20px;">
-
 						</c:if>
+						
+						<div class="clearfix">&nbsp;</div>
 
+						<br>
+						<hr style="margin-left: -20px; margin-right: -20px;">
+						<div style="padding-bottom: 20px;"></div>
+						
 						<c:set var="count" value="${count + 1}" scope="page" />
+						
 					</c:forEach>
 				</div>
 			</div>

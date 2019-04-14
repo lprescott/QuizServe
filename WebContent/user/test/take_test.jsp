@@ -19,7 +19,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
 <script src="${pageContext.request.contextPath}/js/checkBox.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-3.4.0.min.js"></script>
-<link rel="stylesheet" type="text/css"  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 </head>
 
 <!-- This function scrolls to a y value supplied by a url attribute. -->
@@ -58,7 +58,7 @@
 			<h2 style="margin: 10px;">${result1.rows[0].TITLE}</h2>
 			<h3 style="margin: 10px;">Administered by ${result1.rows[0].EMAIL}</h3>
 			<h3 style="margin: 10px;">Due by ${result1.rows[0].TEST_DUE}</h3>
-			
+
 		</div>
 	</div>
 
@@ -102,68 +102,87 @@
 				<c:set var="count" value="1" scope="page" />
 				<c:forEach var="row" items="${result2.rows}">
 
-					<sql:query dataSource="${snapshot1}" var="result4"> SELECT * FROM TEST_IN_PROGRESS WHERE TEST_ID = ${row.TEST_ID} AND USERS_ID = <%=request.getParameter("USERS_ID")%> AND QUESTION_ID = ${row.QUESTION_ID}; </sql:query>
+					<div class="question-container">
 
-					<h4>${count}.&nbsp;${row.TEXT}</h4>
-					<!-- question is mc -->
-					<c:if test="${row.IS_TRUE_FALSE == false}">
-						<sql:query dataSource="${snapshot1}" var="result3"> SELECT * FROM QUESTION Q INNER JOIN QUESTION_ANSWER QA ON Q.QUESTION_ID = QA.QUESTION_ID INNER JOIN ANSWER A ON QA.ANSWER_ID = A.ANSWER_ID WHERE Q.QUESTION_ID = ${row.QUESTION_ID} ORDER BY RAND(${id});</sql:query>
-						<c:forEach var="row2" items="${result3.rows}">
+						<sql:query dataSource="${snapshot1}" var="result4"> SELECT * FROM TEST_IN_PROGRESS WHERE TEST_ID = ${row.TEST_ID} AND USERS_ID = <%=request.getParameter("USERS_ID")%> AND QUESTION_ID = ${row.QUESTION_ID}; </sql:query>
 
-							<c:if test="${row2.ANSWER_ID == result4.rows[0].ANSWER_ID}">
-								<input checked class="${row.QUESTION_ID}" type="checkbox" id="answer_${row2.ANSWER_ID}" name="answer_${row2.ANSWER_ID}" onchange="checkBoxUpdate(this, '${row2.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
+						<c:if test="${not empty row.IMAGE_NAME}">
+							<!-- Image -->
+							<div class="image-container">
+								<img src="${pageContext.request.contextPath}/uploads/${row.IMAGE_NAME}" alt="Q-${row.QUESTION_ID} Image">
+							</div>
+						</c:if>
+
+						<h4 style="margin-top: 0;">${count}.&nbsp;${row.TEXT}</h4>
+
+						<!-- question is mc -->
+						<c:if test="${row.IS_TRUE_FALSE == false}">
+							<sql:query dataSource="${snapshot1}" var="result3"> SELECT * FROM QUESTION Q INNER JOIN QUESTION_ANSWER QA ON Q.QUESTION_ID = QA.QUESTION_ID INNER JOIN ANSWER A ON QA.ANSWER_ID = A.ANSWER_ID WHERE Q.QUESTION_ID = ${row.QUESTION_ID} ORDER BY RAND(${id});</sql:query>
+							<c:forEach var="row2" items="${result3.rows}">
+
+								<c:if test="${row2.ANSWER_ID == result4.rows[0].ANSWER_ID}">
+									<input checked class="${row.QUESTION_ID}" type="checkbox" id="answer_${row2.ANSWER_ID}" name="answer_${row2.ANSWER_ID}" onchange="checkBoxUpdate(this, '${row2.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
+								</c:if>
+								<c:if test="${row2.ANSWER_ID != result4.rows[0].ANSWER_ID}">
+									<input class="${row.QUESTION_ID}" type="checkbox" id="answer_${row2.ANSWER_ID}" name="answer_${row2.ANSWER_ID}" onchange="checkBoxUpdate(this, '${row2.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
+								</c:if>
+
+								<label for="${row2.ANSWER_ID}">${row2.ANSWER}</label>
+								<br>
+							</c:forEach>
+
+						</c:if>
+						<!-- question is t/f -->
+						<c:if test="${row.IS_TRUE_FALSE == true}">
+							<c:if test="${result4.rows[0].TF_CHOSEN == true}">
+								<input checked class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
+								<label for="${row.QUESTION_ID}_true">True</label>
+								<br>
+								<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
+								<label for="${row.QUESTION_ID}_false">False</label>
 							</c:if>
-							<c:if test="${row2.ANSWER_ID != result4.rows[0].ANSWER_ID}">
-								<input class="${row.QUESTION_ID}" type="checkbox" id="answer_${row2.ANSWER_ID}" name="answer_${row2.ANSWER_ID}" onchange="checkBoxUpdate(this, '${row2.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
+							<c:if test="${result4.rows[0].TF_CHOSEN == false}">
+								<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
+								<label for="${row.QUESTION_ID}_true">True</label>
+								<br>
+								<input checked class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
+								<label for="${row.QUESTION_ID}_false">False</label>
 							</c:if>
-
-							<label for="${row2.ANSWER_ID}">${row2.ANSWER}</label>
+							<c:if test="${empty result4.rows[0].TF_CHOSEN}">
+								<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
+								<label for="${row.QUESTION_ID}_true">True</label>
+								<br>
+								<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
+								<label for="${row.QUESTION_ID}_false">False</label>
+							</c:if>
 							<br>
-						</c:forEach>
 
-					</c:if>
-					<!-- question is t/f -->
-					<c:if test="${row.IS_TRUE_FALSE == true}">
-						<c:if test="${result4.rows[0].TF_CHOSEN == true}">
-							<input checked class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
-							<label for="${row.QUESTION_ID}_true">True</label>
-							<br>
-							<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
-							<label for="${row.QUESTION_ID}_false">False</label>
 						</c:if>
-						<c:if test="${result4.rows[0].TF_CHOSEN == false}">
-							<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
-							<label for="${row.QUESTION_ID}_true">True</label>
-							<br>
-							<input checked class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
-							<label for="${row.QUESTION_ID}_false">False</label>
-						</c:if>
-						<c:if test="${empty result4.rows[0].TF_CHOSEN}">
-							<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
-							<label for="${row.QUESTION_ID}_true">True</label>
-							<br>
-							<input class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}'); subForm(${row.QUESTION_ID});">
-							<label for="${row.QUESTION_ID}_false">False</label>
-						</c:if>
-						<br>
 
-					</c:if>
 
-					<div id="question-label-${row.QUESTION_ID}" style="transition: visibility 0.5s, opacity 0.5s linear;  opacity: 0; visibility: hidden;">
-						<!-- saved -->
-						<div style="float: right;">
-							<i style="color: green;" class="fas fa-save"></i>&nbsp;Answer Saved
+
+						<div id="question-label-${row.QUESTION_ID}" style="transition: visibility 0.5s, opacity 0.5s linear; opacity: 0; visibility: hidden;">
+							<!-- saved -->
+							<br>
+							<div style="float: bottom;">
+								<i style="color: green;" class="fas fa-save"></i>&nbsp;Answer Saved
+							</div>
 						</div>
+
+						<div class="clearfix">&nbsp;</div>
+
+						<br>
+						<hr style="margin-left: -20px; margin-right: -20px;">
+						<div style="padding-bottom: 20px;"></div>
+						
+						<c:set var="count" value="${count + 1}" scope="page" />
 					</div>
-
-					<br>
-					<hr style="margin-left: -20px; margin-right: -20px;">
-
-					<c:set var="count" value="${count + 1}" scope="page" />
 				</c:forEach>
 				<div style="padding-top: 30px">
 					<input onClick="return validateCheckboxes();" class="shadow-button submit-button" name="submitTest" id="submitTest" type="submit" value="SUBMIT">
 				</div>
+
+
 			</div>
 		</div>
 	</form>

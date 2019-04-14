@@ -91,7 +91,7 @@
 	<!-- Content -->
 	<div class="main-container" style="max-width: 1500px;">
 
-		<div class="main shadow" style="padding: 0;">
+			<div class="main shadow" style="padding: 0; margin-bottom: 82px !important">
 
 			<!-- Message (if set) -->
 			<%

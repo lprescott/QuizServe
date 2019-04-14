@@ -1,6 +1,6 @@
 html {
 	height: 100%;
-	overflow:auto;
+	overflow: auto;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -144,7 +144,8 @@ table th, table td {
 
 .column#left {
 	margin-top: 30px;
-	margin-bottom: 30px; margin-left : 30px;
+	margin-bottom: 30px;
+	margin-left: 30px;
 	margin-right: 15px;
 	margin-left: 30px;
 }
@@ -216,4 +217,19 @@ table th, table td {
 	padding-left: 15px;
 	padding-top: 15px;
 	padding-bottom: 15px;
+}
+
+.image-container {
+}
+
+.image-container img {
+	max-height: 300px;
+	float: right;
+	overflow: auto;
+	border-radius: 5pt;
+}
+
+.clearfix {
+  clear: both;
+  height: 1px;
 }

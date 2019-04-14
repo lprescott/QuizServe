@@ -55,7 +55,6 @@ public class EditQuestionTF extends HttpServlet {
         	tf = 1;
         }
         
-        
 		String action = request.getParameter("submit");
 		
 		if (action.equals("DELETE")) {
@@ -89,14 +88,16 @@ public class EditQuestionTF extends HttpServlet {
 			
 		} else if (action.equals("UPDATE")) {
 			
+			//New part object containing image, and vars
 			Part filePart = request.getPart("q_image");
 			String fileName = "";
 			InputStream fileContent = null;
-			if (filePart != null && !(filePart.getSize() == 0)) 
-			{
-			fileName = extractFileName(filePart);
-			fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
-			fileContent = filePart.getInputStream();
+			
+			//Get name and content
+			if (filePart != null && !(filePart.getSize() == 0)) {
+				fileName = extractFileName(filePart);
+				fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
+				fileContent = filePart.getInputStream();
 			}
 			
 			int QUESTION_ID = Integer.parseInt(request.getParameter("QUESTION_ID"));  
@@ -105,31 +106,43 @@ public class EditQuestionTF extends HttpServlet {
 	            //Load the Connector/J
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	            
-	            if (filePart != null && !(filePart.getSize() == 0)) 
-	            {
+	            //If a file was attached
+	            if (filePart != null && !(filePart.getSize() == 0)) {
+	            	
 	            	String appPath = request.getServletContext().getRealPath("");
-	            	String savePath = appPath + File.separator + "Uploaded-Files";
+	            	String savePath = appPath + "uploads";
+	            	            	
 	            	// creates the save directory if it does not exists
 	            	File fileSaveDir = new File(savePath);
 	            	if (!fileSaveDir.exists()) {
-	            	        fileSaveDir.mkdir();
+	        	        fileSaveDir.mkdir();
 	            	}
 
+	            	//Get new path
 	            	File fileToSave = new File(savePath + File.separator + fileName);
 	            	Integer x = 0;
 	            	String temp = fileName.substring(0, fileName.lastIndexOf("."));
 	            	String ext = fileName.substring(fileName.lastIndexOf("."));
-	            	while (fileToSave.exists())
-	            	{
+	            	
+	            	//Adds a number if the same image exists
+	            	while (fileToSave.exists()) {
+	            		
 	            		x++;
 	            		String tempFileName = temp + x.toString() + ext;
 	            		fileToSave = new File(savePath + File.separator + tempFileName);
-	            	}
-	            	if (x != 0)
-	            	{
+	            	} if (x != 0) {
+	            		
 	            		fileName = temp + x.toString() + ext;
 	            	}
+	            	
+	            	//Save file
 	            	Files.copy(fileContent, fileToSave.toPath(), StandardCopyOption.REPLACE_EXISTING);
+	            	
+	            	//clean up
+	            	fileSaveDir.delete();
+	            	//fileToSave.delete();
+	            	filePart.delete();
+	            	fileContent.close();
 	            }
 
 	            // Open a connection
