@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
@@ -162,6 +163,11 @@ public class EditQuestionTF extends HttpServlet {
 	            response.sendRedirect("admin/question/question_management.jsp?message_tf=Question%20Updated%20Successfully");
 	            return;
 	        
+	        } catch(SQLException s) {
+	        	
+	        	 response.sendRedirect("admin/question/edit_question_tf.jsp?success=false&error=SQL%20Exception");
+	             return;
+	             
 	        } catch (Exception e) {
 	            
 	        	//e.printStackTrace();

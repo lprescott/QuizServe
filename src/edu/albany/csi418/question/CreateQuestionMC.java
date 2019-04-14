@@ -8,6 +8,7 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
@@ -191,7 +192,12 @@ public class CreateQuestionMC extends HttpServlet {
             //success
             response.sendRedirect("admin/question/create_question_mc.jsp?success=true");
             
-        } catch (Exception e) {
+        } catch(SQLException s) {
+        	
+       	 	response.sendRedirect("admin/question/create_question_mc.jsp?success=false&error=SQL%20Exception");
+            return;
+            
+       } catch (Exception e) {
             
         	//System.out.println(e);
         	//e.printStackTrace();
