@@ -22,6 +22,15 @@
 	border-radius: 50%;
 }
 
+.header a.logo-uploaded {
+	float: left;
+	padding: 5px 5px 0px 5px;
+}
+
+.header a.logo-uploaded img {
+	border-radius: 5pt;
+}
+
 .header p{
 	display:inline-block;
 	text-align: center;

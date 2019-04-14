@@ -45,8 +45,8 @@
 	<div class="header shadow">
 	
 		<c:if test="${not empty result1.rows[0].IMAGE_NAME}">
-			<a class="logo" href="${pageContext.request.contextPath}/user/main.jsp">
-				<img class="shadow" style="max-height: 65px;" src="${pageContext.request.contextPath}/uploads/${result1.rows[0].IMAGE_NAME}" alt="T-${result1.rows[0].IMAGE_NAME}">
+			<a class="logo-uploaded" href="${pageContext.request.contextPath}/user/main.jsp">
+				<img class="shadow" style="max-height: 70px;" src="${pageContext.request.contextPath}/uploads/${result1.rows[0].IMAGE_NAME}" alt="T-${result1.rows[0].IMAGE_NAME}">
 			</a>
 		</c:if>
 		
