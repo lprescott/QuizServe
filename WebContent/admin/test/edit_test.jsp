@@ -77,9 +77,12 @@
 						<input class="t_input_text" id="test_title" name="test_title" type="text" placeholder="Title" value="${t_result.rows[0].TITLE}" required> <input class="t_input_text" id="test_header" name="test_header" type="text" placeholder="Header" value="${t_result.rows[0].HEADER_TEXT}" required> <input class="t_input_text" id="test_footer" name="test_footer" type="text" placeholder="Footer" value="${t_result.rows[0].FOOTER_TEXT}" required>
 
 						<div style="text-align: center;">
-							Attached image: <input type="file" id="t_image" name="t_image" accept="image/png, image/jpeg"><br><br>
+							Attached image:  <output name="image">${t_result.rows[0].IMAGE_NAME}</output> 
+							<input type="file" id="t_image" name="t_image" accept="image/png, image/jpeg"><br><br>
 							Due Date: <input type="date" id="test_due" name="test_due" value = "${t_result.rows[0].TEST_DUE}">
 						</div>
+						
+					</div>
 
 					</div>
 
