@@ -20,6 +20,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/test.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/filter.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/checkBox.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.4.0.min.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 </head>
 
@@ -37,10 +38,10 @@
 
 	<!-- Content -->
 	<div class="main-container" style="max-width: 1500px;">
-		<div class="main shadow" style="padding: 0;margin-bottom: 82px !important;">
+		<div class="main shadow" style="padding: 0; margin-bottom: 82px !important;">
 
 			<div class="form-container-test">
-			
+
 				<!-- Error Message (if set) -->
 				<%
 					if (request.getParameter("success") != null) {
@@ -60,7 +61,7 @@
 						}
 					}
 				%>
-				
+
 				<!-- Connect to DB and select all questions -->
 				<sql:setDataSource var="snapshot" driver="com.mysql.cj.jdbc.Driver" url="<%=LoginEnum.hostname.getValue()%>" user="<%=LoginEnum.username.getValue()%>" password="<%=LoginEnum.password.getValue()%>" />
 				<sql:query dataSource="${snapshot}" var="q_result"> SELECT * FROM QUESTION ORDER BY CATEGORY;</sql:query>
@@ -77,18 +78,27 @@
 						<input class="t_input_text" id="test_title" name="test_title" type="text" placeholder="Title" value="${t_result.rows[0].TITLE}" required> <input class="t_input_text" id="test_header" name="test_header" type="text" placeholder="Header" value="${t_result.rows[0].HEADER_TEXT}" required> <input class="t_input_text" id="test_footer" name="test_footer" type="text" placeholder="Footer" value="${t_result.rows[0].FOOTER_TEXT}" required>
 
 						<div style="text-align: center;">
-							Attached image:  <output name="image">${t_result.rows[0].IMAGE_NAME}</output> 
-							<input type="file" id="t_image" name="t_image" accept="image/png, image/jpeg"><br><br>
-							Due Date: <input type="date" id="test_due" name="test_due" value = "${t_result.rows[0].TEST_DUE}">
+							Attached image:
+							<output name="image">${t_result.rows[0].IMAGE_NAME}</output>
+							<input type="file" id="t_image" name="t_image" accept="image/png, image/jpeg"><br> <br> Due Date: <input type="date" id="test_due" name="test_due" value="${t_result.rows[0].TEST_DUE}">
 						</div>
-						
-					</div>
 
 					</div>
 
 					<div class="filter-box">
 						<i class="fas fa-search filter-icon"></i> <input class="table-filter" type="text" id="filter1" onkeyup="filterTable('filter1', 'table1')" placeholder="Filter the below table by question text or category...">
 					</div>
+
+					<script>
+						$(document).ready(function() {
+							$(window).keydown(function(event) {
+								if (event.keyCode == 13) {
+									event.preventDefault();
+									return false;
+								}
+							});
+						});
+					</script>
 
 					<!-- Print table of all questions -->
 					<table id="table1" class="table" style="width: 100%;">
@@ -129,9 +139,7 @@
 
 						<input class="shadow-button" id="delete" onclick="return confirm('Are you sure?');" type="submit" name="submit" value="DELETE">
 					</div>
-
 				</form>
-
 			</div>
 		</div>
 	</div>

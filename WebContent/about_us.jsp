@@ -17,7 +17,6 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/filter.js"></script>
 </head>
 
 <body>

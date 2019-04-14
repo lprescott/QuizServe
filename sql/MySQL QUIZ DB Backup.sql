@@ -66,7 +66,7 @@ CREATE TABLE `allowed_users` (
 
 LOCK TABLES `allowed_users` WRITE;
 /*!40000 ALTER TABLE `allowed_users` DISABLE KEYS */;
-INSERT INTO `allowed_users` VALUES (1,1,1,'2019-04-12'),(2,1,2,'2019-04-12');
+INSERT INTO `allowed_users` VALUES (1,1,2,'2019-04-14'),(2,1,3,'2019-04-14');
 /*!40000 ALTER TABLE `allowed_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,7 +105,7 @@ CREATE TABLE `question` (
   `QUESTION_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `TEXT` varchar(250) NOT NULL,
   `CATEGORY` varchar(75) DEFAULT NULL,
-  `IMAGE_NAME` varchar(25) DEFAULT NULL,
+  `IMAGE_NAME` varchar(50) DEFAULT NULL,
   `IS_TRUE_FALSE` bit(1) NOT NULL,
   `TF_IS_TRUE` bit(1) DEFAULT NULL,
   `NUM_ANSWERS` int(10) unsigned DEFAULT NULL,
@@ -195,7 +195,7 @@ DROP TABLE IF EXISTS `test`;
 CREATE TABLE `test` (
   `TEST_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ADMIN_ID` int(10) unsigned NOT NULL,
-  `IMAGE_NAME` varchar(25) DEFAULT NULL,
+  `IMAGE_NAME` varchar(50) DEFAULT NULL,
   `TITLE` varchar(25) NOT NULL,
   `HEADER_TEXT` varchar(25) NOT NULL,
   `FOOTER_TEXT` varchar(25) NOT NULL,
@@ -203,7 +203,7 @@ CREATE TABLE `test` (
   PRIMARY KEY (`TEST_ID`),
   KEY `ADMIN_ID` (`ADMIN_ID`),
   CONSTRAINT `test_ibfk_1` FOREIGN KEY (`ADMIN_ID`) REFERENCES `administrator` (`ADMIN_ID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,7 +212,7 @@ CREATE TABLE `test` (
 
 LOCK TABLES `test` WRITE;
 /*!40000 ALTER TABLE `test` DISABLE KEYS */;
-INSERT INTO `test` VALUES (1,1,NULL,'Astronomy Test','Look to the stars.','But, stay grounded.','2019-05-12'),(2,1,NULL,'Vocabulary Test','T/F and M/C Questions','Do your best.','2019-05-01');
+INSERT INTO `test` VALUES (2,1,NULL,'Astronomy Test','Look to the stars.','But, stay grounded.','2019-05-12'),(3,1,NULL,'Vocabulary Test','Do your best.','Take your time.','2019-05-12');
 /*!40000 ALTER TABLE `test` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -276,7 +276,7 @@ CREATE TABLE `test_questions` (
 
 LOCK TABLES `test_questions` WRITE;
 /*!40000 ALTER TABLE `test_questions` DISABLE KEYS */;
-INSERT INTO `test_questions` VALUES (1,1,1),(2,1,2),(3,1,5),(4,1,6),(5,1,7),(6,1,8),(7,1,9),(8,2,3),(9,2,4),(10,2,10),(11,2,11),(12,2,12),(13,2,13),(14,2,14),(15,2,15),(16,2,16),(17,2,17),(18,2,18),(19,2,19);
+INSERT INTO `test_questions` VALUES (1,2,1),(2,2,2),(3,2,5),(4,2,6),(5,2,7),(6,2,8),(7,2,9),(8,3,3),(9,3,4),(10,3,10),(11,3,11),(12,3,12),(13,3,13),(14,3,14),(15,3,15),(16,3,16),(17,3,17),(18,3,18),(19,3,19);
 /*!40000 ALTER TABLE `test_questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -345,4 +345,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-12 16:20:35
+-- Dump completed on 2019-04-14 16:20:39

@@ -18,7 +18,10 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/question.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/test.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/filter.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.4.0.min.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
 </head>
 
 <body>
