@@ -29,19 +29,17 @@
 
 	<!-- Navbar -->
 	<div class="header shadow">
-		
+
 		<c:if test="${not empty result1.rows[0].IMAGE_NAME}">
-			<a class="logo-uploaded" href="${pageContext.request.contextPath}/admin/main.jsp">
-				<img class="shadow" style="max-height: 70px;" src="${pageContext.request.contextPath}/uploads/${result1.rows[0].IMAGE_NAME}" alt="T-${result1.rows[0].IMAGE_NAME}">
+			<a class="logo-uploaded" href="${pageContext.request.contextPath}/admin/main.jsp"> <img class="shadow" style="max-height: 70px;" src="${pageContext.request.contextPath}/uploads/${result1.rows[0].IMAGE_NAME}" alt="T-${result1.rows[0].IMAGE_NAME}">
 			</a>
 		</c:if>
-		
+
 		<c:if test="${empty result1.rows[0].IMAGE_NAME}">
-			<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp">
-				<img class="shadow" style="max-height: 65px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal">
+			<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"> <img class="shadow" style="max-height: 65px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal">
 			</a>
 		</c:if>
-		
+
 		<p style="float: left;">${result1.rows[0].HEADER_TEXT}</p>
 		<p>Logged in as ${email}.</p>
 		<a id="link" href="${pageContext.request.contextPath}/user/main.jsp"> Go back </a>
@@ -76,116 +74,143 @@
 		</div>
 	</div>
 
-	<sql:query dataSource="${snapshot1}" var="result2"> SELECT * FROM TEST T INNER JOIN TEST_QUESTIONS TQ ON T.TEST_ID = TQ.TEST_ID INNER JOIN QUESTION Q ON TQ.QUESTION_ID = Q.QUESTION_ID WHERE T.TEST_ID = <%=request.getParameter("TEST_ID")%> ORDER BY RAND(${id}); </sql:query>
+	<!-- Test has not been updated since taken. -->
+	<c:if test="${result4.rows[0].UP_TO_DATE == true}">
 
-	<form id="test-form" class="quiz-form" action="${pageContext.request.contextPath}/TakeTest" method="post">
+		<sql:query dataSource="${snapshot1}" var="result2"> SELECT * FROM TEST T INNER JOIN TEST_QUESTIONS TQ ON T.TEST_ID = TQ.TEST_ID INNER JOIN QUESTION Q ON TQ.QUESTION_ID = Q.QUESTION_ID WHERE T.TEST_ID = <%=request.getParameter("TEST_ID")%> ORDER BY RAND(${id}); </sql:query>
 
-		<!-- Hidden inputs with ID #s -->
-		<input id="TEST_ID" type="hidden" name="TEST_ID" value="<%=request.getParameter("TEST_ID")%>"> <input id="USERS_ID" type="hidden" name="USERS_ID" value="<%=request.getParameter("USERS_ID")%>">
+		<form id="test-form" class="quiz-form" action="${pageContext.request.contextPath}/TakeTest" method="post">
 
+			<!-- Hidden inputs with ID #s -->
+			<input id="TEST_ID" type="hidden" name="TEST_ID" value="<%=request.getParameter("TEST_ID")%>"> <input id="USERS_ID" type="hidden" name="USERS_ID" value="<%=request.getParameter("USERS_ID")%>">
+
+			<div class="main-container">
+				<div class="main shadow" style="margin-bottom: 82px !important">
+
+					<c:set var="count" value="1" scope="page" />
+					<c:forEach var="row" items="${result2.rows}">
+
+						<sql:query dataSource="${snapshot1}" var="result6"> SELECT * FROM RESULTS WHERE TEST_TAKEN_ID = <%=request.getParameter("TEST_TAKEN_ID")%> AND QUESTION_ID = ${row.QUESTION_ID}; </sql:query>
+
+						<c:if test="${not empty row.IMAGE_NAME}">
+							<!-- Image -->
+							<div class="image-container">
+								<img src="${pageContext.request.contextPath}/uploads/${row.IMAGE_NAME}" alt="Q-${row.QUESTION_ID} Image">
+							</div>
+						</c:if>
+
+						<h4>${count}.&nbsp;${row.TEXT}</h4>
+						<!-- question is mc -->
+						<c:if test="${row.IS_TRUE_FALSE == false}">
+							<sql:query dataSource="${snapshot1}" var="result3"> SELECT * FROM QUESTION Q INNER JOIN QUESTION_ANSWER QA ON Q.QUESTION_ID = QA.QUESTION_ID INNER JOIN ANSWER A ON QA.ANSWER_ID = A.ANSWER_ID WHERE Q.QUESTION_ID = ${row.QUESTION_ID} ORDER BY RAND(${id});</sql:query>
+							<c:forEach var="row2" items="${result3.rows}">
+								<c:if test="${row2.ANSWER_ID == result6.rows[0].ANSWER_ID}">
+									<!-- chosen answer -->
+									<input disabled class="${row.QUESTION_ID}" type="checkbox" id="answer_${row2.ANSWER_ID}" name="answer_${row2.ANSWER_ID}" onchange="checkBoxUpdate(this, '${row2.QUESTION_ID}');" checked>
+									<label for="${row2.ANSWER_ID}">${row2.ANSWER}</label>
+								</c:if>
+								<c:if test="${!(row2.ANSWER_ID == result6.rows[0].ANSWER_ID)}">
+									<!-- not chosen answer -->
+									<input disabled class="${row.QUESTION_ID}" type="checkbox" id="answer_${row2.ANSWER_ID}" name="answer_${row2.ANSWER_ID}" onchange="checkBoxUpdate(this, '${row2.QUESTION_ID}');">
+									<label for="${row2.ANSWER_ID}">${row2.ANSWER}</label>
+								</c:if>
+								<br>
+							</c:forEach>
+							<br>
+
+							<sql:query dataSource="${snapshot1}" var="result7"> SELECT * FROM TEST_QUESTIONS TQ INNER JOIN QUESTION Q ON TQ.QUESTION_ID = Q.QUESTION_ID INNER JOIN QUESTION_ANSWER QA ON Q.QUESTION_ID = QA.QUESTION_ID WHERE TQ.TEST_ID = <%=request.getParameter("TEST_ID")%> AND Q.QUESTION_ID = ${row.QUESTION_ID} AND QA.ANSWER_ID = ${result6.rows[0].ANSWER_ID}; </sql:query>
+							<sql:query dataSource="${snapshot1}" var="result8"> SELECT * FROM TEST_QUESTIONS TQ INNER JOIN QUESTION Q ON TQ.QUESTION_ID = Q.QUESTION_ID INNER JOIN QUESTION_ANSWER QA ON Q.QUESTION_ID = QA.QUESTION_ID INNER JOIN ANSWER A ON QA.ANSWER_ID = A.ANSWER_ID WHERE TQ.TEST_ID = <%=request.getParameter("TEST_ID")%> AND Q.QUESTION_ID = ${row.QUESTION_ID} AND QA.IS_CORRECT_ANSWER = 1; </sql:query>
+
+							<c:if test="${result7.rows[0].IS_CORRECT_ANSWER == true}">
+								<!-- correct -->
+								<div>
+									<i style="color: green;" class="fas fa-check"></i>&nbsp;Correct
+								</div>
+							</c:if>
+
+							<c:if test="${!(result7.rows[0].IS_CORRECT_ANSWER == true)}">
+								<!-- incorrect -->
+								<div>
+									<i style="color: red;" class="fas fa-times"></i>&nbsp;Incorrect, the correct answer is: '${result8.rows[0].ANSWER}'.
+								</div>
+							</c:if>
+						</c:if>
+						<!-- question is t/f -->
+						<c:if test="${row.IS_TRUE_FALSE == true}">
+
+							<c:if test="${result6.rows[0].TF_CHOSEN == true}">
+								<!--  user chose true -->
+								<input checked disabled class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}');">
+								<label for="${row.QUESTION_ID}_true">True</label>
+								<br>
+								<input disabled class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}');">
+								<label for="${row.QUESTION_ID}_false">False</label>
+							</c:if>
+
+							<c:if test="${result6.rows[0].TF_CHOSEN == false}">
+								<!--  user chose false -->
+								<input disabled class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}');">
+								<label for="${row.QUESTION_ID}_true">True</label>
+								<br>
+								<input checked disabled class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}');">
+								<label for="${row.QUESTION_ID}_false">False</label>
+							</c:if>
+							<br>
+							<br>
+							<sql:query dataSource="${snapshot1}" var="result9"> SELECT * FROM QUESTION Q WHERE QUESTION_ID = ${row.QUESTION_ID};</sql:query>
+
+							<c:if test="${(result6.rows[0].TF_CHOSEN == true) and (result9.rows[0].TF_IS_TRUE == true)}">
+								<!-- correct -->
+								<div>
+									<i style="color: green;" class="fas fa-check"></i>&nbsp;Correct
+								</div>
+							</c:if>
+
+							<c:if test="${(result6.rows[0].TF_CHOSEN == false) and (result9.rows[0].TF_IS_TRUE == false)}">
+								<!-- correct -->
+								<div>
+									<i style="color: green;" class="fas fa-check"></i>&nbsp;Correct
+								</div>
+							</c:if>
+
+							<c:if test="${(result6.rows[0].TF_CHOSEN == true) and (result9.rows[0].TF_IS_TRUE == false)}">
+								<!-- incorrect -->
+								<div>
+									<i style="color: red;" class="fas fa-times"></i>&nbsp;Incorrect, the correct answer is false.
+								</div>
+							</c:if>
+
+							<c:if test="${(result6.rows[0].TF_CHOSEN == false) and (result9.rows[0].TF_IS_TRUE == true)}">
+								<!-- incorrect -->
+								<div>
+									<i style="color: red;" class="fas fa-times"></i>&nbsp;Incorrect, the correct answer is true.
+								</div>
+							</c:if>
+						</c:if>
+
+						<div class="clearfix">&nbsp;</div>
+
+						<br>
+						<hr style="margin-left: -20px; margin-right: -20px;">
+						<div style="padding-bottom: 20px;"></div>
+
+						<c:set var="count" value="${count + 1}" scope="page" />
+					</c:forEach>
+				</div>
+			</div>
+		</form>
+	</c:if>
+
+	<!-- Test has been updated since taken. -->
+	<c:if test="${result4.rows[0].UP_TO_DATE == false}">
 		<div class="main-container">
-			<div class="main shadow" style="margin-bottom: 82px !important">
-
-				<c:set var="count" value="1" scope="page" />
-				<c:forEach var="row" items="${result2.rows}">
-
-					<sql:query dataSource="${snapshot1}" var="result6"> SELECT * FROM RESULTS WHERE TEST_TAKEN_ID = <%=request.getParameter("TEST_TAKEN_ID")%> AND QUESTION_ID = ${row.QUESTION_ID}; </sql:query>
-
-					<c:if test="${not empty row.IMAGE_NAME}">
-						<!-- Image -->
-						<div class="image-container">
-							<img src="${pageContext.request.contextPath}/uploads/${row.IMAGE_NAME}" alt="Q-${row.QUESTION_ID} Image">
-						</div>
-					</c:if>
-						
-					<h4>${count}.&nbsp;${row.TEXT}</h4>
-					<!-- question is mc -->
-					<c:if test="${row.IS_TRUE_FALSE == false}">
-						<sql:query dataSource="${snapshot1}" var="result3"> SELECT * FROM QUESTION Q INNER JOIN QUESTION_ANSWER QA ON Q.QUESTION_ID = QA.QUESTION_ID INNER JOIN ANSWER A ON QA.ANSWER_ID = A.ANSWER_ID WHERE Q.QUESTION_ID = ${row.QUESTION_ID} ORDER BY RAND(${id});</sql:query>
-						<c:forEach var="row2" items="${result3.rows}">
-							<c:if test="${row2.ANSWER_ID == result6.rows[0].ANSWER_ID}">
-								<!-- chosen answer -->
-								<input disabled class="${row.QUESTION_ID}" type="checkbox" id="answer_${row2.ANSWER_ID}" name="answer_${row2.ANSWER_ID}" onchange="checkBoxUpdate(this, '${row2.QUESTION_ID}');" checked>
-								<label for="${row2.ANSWER_ID}">${row2.ANSWER}</label>
-							</c:if>
-							<c:if test="${!(row2.ANSWER_ID == result6.rows[0].ANSWER_ID)}">
-								<!-- not chosen answer -->
-								<input disabled class="${row.QUESTION_ID}" type="checkbox" id="answer_${row2.ANSWER_ID}" name="answer_${row2.ANSWER_ID}" onchange="checkBoxUpdate(this, '${row2.QUESTION_ID}');">
-								<label for="${row2.ANSWER_ID}">${row2.ANSWER}</label>
-							</c:if>
-							<br>
-						</c:forEach>
-						<br>
-						
-						<sql:query dataSource="${snapshot1}" var="result7"> SELECT * FROM TEST_QUESTIONS TQ INNER JOIN QUESTION Q ON TQ.QUESTION_ID = Q.QUESTION_ID INNER JOIN QUESTION_ANSWER QA ON Q.QUESTION_ID = QA.QUESTION_ID WHERE TQ.TEST_ID = <%=request.getParameter("TEST_ID")%> AND Q.QUESTION_ID = ${row.QUESTION_ID} AND QA.ANSWER_ID = ${result6.rows[0].ANSWER_ID}; </sql:query>
-						<sql:query dataSource="${snapshot1}" var="result8"> SELECT * FROM TEST_QUESTIONS TQ INNER JOIN QUESTION Q ON TQ.QUESTION_ID = Q.QUESTION_ID INNER JOIN QUESTION_ANSWER QA ON Q.QUESTION_ID = QA.QUESTION_ID INNER JOIN ANSWER A ON QA.ANSWER_ID = A.ANSWER_ID WHERE TQ.TEST_ID = <%=request.getParameter("TEST_ID")%> AND Q.QUESTION_ID = ${row.QUESTION_ID} AND QA.IS_CORRECT_ANSWER = 1; </sql:query>
-						
-						<c:if test="${result7.rows[0].IS_CORRECT_ANSWER == true}">
-							<!-- correct -->
-							<div><i style="color: green;" class="fas fa-check"></i>&nbsp;Correct </div>
-						</c:if>
-						
-						<c:if test="${!(result7.rows[0].IS_CORRECT_ANSWER == true)}">
-							<!-- incorrect -->
-							<div><i style="color: red;"class="fas fa-times"></i>&nbsp;Incorrect, the correct answer is: '${result8.rows[0].ANSWER}'.</div> 
-						</c:if>
-					</c:if>
-					<!-- question is t/f -->
-					<c:if test="${row.IS_TRUE_FALSE == true}">
-
-						<c:if test="${result6.rows[0].TF_CHOSEN == true}">
-							<!--  user chose true -->
-							<input checked disabled class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}');">
-							<label for="${row.QUESTION_ID}_true">True</label>
-							<br>
-							<input disabled class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}');">
-							<label for="${row.QUESTION_ID}_false">False</label>
-						</c:if>
-
-						<c:if test="${result6.rows[0].TF_CHOSEN == false}">
-							<!--  user chose false -->
-							<input disabled class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_true" name="${row.QUESTION_ID}_true" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}');">
-							<label for="${row.QUESTION_ID}_true">True</label>
-							<br>
-							<input checked disabled class="${row.QUESTION_ID}" type="checkbox" id="${row.QUESTION_ID}_false" name="${row.QUESTION_ID}_false" onchange="checkBoxUpdate(this, '${row.QUESTION_ID}');">
-							<label for="${row.QUESTION_ID}_false">False</label>
-						</c:if>
-						<br>
-						<br>
-						<sql:query dataSource="${snapshot1}" var="result9"> SELECT * FROM QUESTION Q WHERE QUESTION_ID = ${row.QUESTION_ID};</sql:query>
-						
-						<c:if test="${(result6.rows[0].TF_CHOSEN == true) and (result9.rows[0].TF_IS_TRUE == true)}">
-							<!-- correct -->
-							<div><i style="color: green;" class="fas fa-check"></i>&nbsp;Correct </div>
-						</c:if>
-						
-						<c:if test="${(result6.rows[0].TF_CHOSEN == false) and (result9.rows[0].TF_IS_TRUE == false)}">
-							<!-- correct -->
-							<div><i style="color: green;" class="fas fa-check"></i>&nbsp;Correct </div>
-						</c:if>
-						
-						<c:if test="${(result6.rows[0].TF_CHOSEN == true) and (result9.rows[0].TF_IS_TRUE == false)}">
-							<!-- incorrect -->
-							<div><i style="color: red;"class="fas fa-times"></i>&nbsp;Incorrect, the correct answer is false. </div> 
-						</c:if>
-						
-						<c:if test="${(result6.rows[0].TF_CHOSEN == false) and (result9.rows[0].TF_IS_TRUE == true)}">
-							<!-- incorrect -->
-							<div><i style="color: red;"class="fas fa-times"></i>&nbsp;Incorrect, the correct answer is true. </div> 
-						</c:if>
-					</c:if>		
-
-					<div class="clearfix">&nbsp;</div>
-
-					<br>
-					<hr style="margin-left: -20px; margin-right: -20px;">
-					<div style="padding-bottom: 20px;"></div>
-						
-					<c:set var="count" value="${count + 1}" scope="page" />
-				</c:forEach>
+			<div class="main shadow">
+				<div style="text-align: center; font-size: 14pt;">
+					The test has been edited by ${result1.rows[0].EMAIL} on ${result4.rows[0].TEST_DATE}, after it was taken.. <br> Therefore, detailed results will not be shown.<br>
+				</div>
 			</div>
 		</div>
-	</form>
+	</c:if>
 
 	<!-- Footer -->
 	<div class="footer shadow">

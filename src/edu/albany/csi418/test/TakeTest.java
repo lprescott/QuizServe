@@ -60,7 +60,7 @@ public class TakeTest extends HttpServlet {
 	            
 				//Add Tests_Taken entry
 				Statement tests_taken_statement = DB_Connection.createStatement();
-				String tests_taken_query = "INSERT INTO TESTS_TAKEN (TEST_ID, USERS_ID, TEST_DATE) VALUES (" + testID + ", " + userID + ", CURDATE());";
+				String tests_taken_query = "INSERT INTO TESTS_TAKEN (TEST_ID, USERS_ID, TEST_DATE, UP_TO_DATE) VALUES (" + testID + ", " + userID + ", CURDATE(), 1);";
 				tests_taken_statement.executeUpdate(tests_taken_query);
 				int testTakenID = 0;
 

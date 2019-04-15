@@ -39,7 +39,7 @@
 			<!-- Message (if set) -->
 			<%
 				if (request.getParameter("message") != null) {
-					out.println("<div style=\"padding-bottom: 5px; text-align: center;\" id=\"success\"><p>"
+					out.println("<div style=\"margin: 5px; text-align: center;\" id=\"success\"><p>"
 							+ request.getParameter("message") + "</p></div>");
 				}
 			%>

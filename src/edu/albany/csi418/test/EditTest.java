@@ -141,6 +141,13 @@ public class EditTest extends HttpServlet {
 	            // Open a connection
 	            Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 	
+	            //Find all tests_taken, mark them as outdated
+	            Statement UPDATE_TESTS_TAKEN_SQL_Statement = DB_Connection.createStatement();
+	            String UPDATE_TESTS_TAKEN_SQL_Query = "UPDATE TESTS_TAKEN SET UP_TO_DATE = 0 WHERE TEST_ID = " + request.getParameter("TEST_ID") + ";";
+	            UPDATE_TESTS_TAKEN_SQL_Statement.executeUpdate(UPDATE_TESTS_TAKEN_SQL_Query);
+	            UPDATE_TESTS_TAKEN_SQL_Statement.close();
+	            
+	            //Update test details
 	            if(testDue != null) {
 	            	Statement UPDATE_TEST_SQL_Statement = DB_Connection.createStatement();
 		            String UPDATE_TEST_SQL_Query = "UPDATE TEST SET TITLE = '" + testTitle + "', HEADER_TEXT = '" + testHeader + "', FOOTER_TEXT = '" + testFooter + "', TEST_DUE = '" + testDue + "' WHERE TEST_ID = " + request.getParameter("TEST_ID") + ";";
