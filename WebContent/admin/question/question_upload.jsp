@@ -37,8 +37,9 @@
 	<div class="main-container" style="max-width: 500px;">
 		<div class="main shadow">
 			<div class="form-container" style="padding: 30px;">
-				<h2 style="margin: 10px;">Upload a Test (.csv)</h2> <br>
+				<h2 style="margin: 10px;">Upload Questions (.csv)</h2> <br>
 				<form action="${pageContext.request.contextPath}/QuestionUpload">
+					<input class="cb" type="checkbox" id="make_test_cb" name="make_test_cb"> <label for="make_test_cb">Make Test by Filename</label> <br>
 					<input type="file" accept=".csv" /><br> <br>
 					<input class="shadow-button" id="submit" type="submit" value="UPLOAD QUESTIONS">
 				</form> 
