@@ -11,7 +11,7 @@
 
 <head>
 <meta content="text/html;" charset="UTF-8">
-<title>Admin Home</title>
+<title>Upload a CSV of Questions</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
@@ -37,10 +37,10 @@
 	<div class="main-container" style="max-width: 500px;">
 		<div class="main shadow">
 			<div class="form-container" style="padding: 30px;">
-				<h2 style="margin: 10px;">Upload a Test (.xlsx)</h2> <br>
-				<form action="${pageContext.request.contextPath}/TestUpload">
-					<input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" /><br> <br>
-					<input class="shadow-button" id="submit" type="submit" value="UPLOAD TEST">
+				<h2 style="margin: 10px;">Upload a Test (.csv)</h2> <br>
+				<form action="${pageContext.request.contextPath}/QuestionUpload">
+					<input type="file" accept=".csv" /><br> <br>
+					<input class="shadow-button" id="submit" type="submit" value="UPLOAD QUESTIONS">
 				</form> 
 			</div>
 		</div>
