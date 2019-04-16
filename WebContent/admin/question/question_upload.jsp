@@ -37,10 +37,30 @@
 	<div class="main-container" style="max-width: 500px;">
 		<div class="main shadow">
 			<div class="form-container" style="padding: 30px;">
+			
+				<!-- Error Message (if set) -->
+				<%
+					if (request.getParameter("success") != null) {
+						if (request.getParameter("success").equals("false")) {
+							out.println("<div id=\"error\" style=\"text-align:center; padding: 5px; margin: 5px;\"><p>"
+									+ request.getParameter("error") + "</p></div>");
+						}
+					}
+				%>
+
+				<!-- Success Message (if set) -->
+				<%
+					if (request.getParameter("success") != null) {
+						if (request.getParameter("success").equals("true")) {
+							out.println(
+									"<div id=\"success\" style=\"text-align:center; padding: 5px; margin: 5px;\"><p>Questions Successfully Uploaded</p></div>");
+						}
+					}
+				%>
+			
 				<h2 style="margin: 10px;">Upload Questions (.csv)</h2> <br>
-				<form action="${pageContext.request.contextPath}/QuestionUpload">
-					<input class="cb" type="checkbox" id="make_test_cb" name="make_test_cb"> <label for="make_test_cb">Make Test by Filename</label> <br>
-					<input type="file" accept=".csv" /><br> <br>
+				<form action="${pageContext.request.contextPath}/QuestionUpload" method="post" enctype="multipart/form-data">
+					<input required id="csv_file" name="csv_file" type="file" accept=".csv" /><br> <br>
 					<input class="shadow-button" id="submit" type="submit" value="UPLOAD QUESTIONS">
 				</form> 
 			</div>
