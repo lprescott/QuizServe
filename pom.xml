@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>edu.albany.csi418</groupId>
 	<artifactId>ICSI418-Group-Project</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>war</packaging>
 	<name>ICSI418-Group-Project</name>
 	<description>A thin client quiz web app.</description>
