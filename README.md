@@ -41,6 +41,17 @@
   * See [PDF](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/Maintenance-Plan.pdf)
 
 ## Other Info
+### Dependencies
+* javax.servlet-api 4.0.1
+* javax.servlet.jsp-api 2.3.3
+* jstl 1.2
+* mysql-connector-java 8.0.15
+* javax.mail 1.6.2
+* commons-io 1.3.2
+* commons-fileupload 1.4
+* opencsv 4.5
+
+
 ### [Group Chat Invite Link](https://join.slack.com/t/icsi-418team/shared_invite/enQtNTU4NjUxODQ4NTQ2LTM2MDMwY2ExM2U0YjU0ZjMzNzkzY2JlNGFiMTQ4YWJlMjBkM2JmNTMyZThlMWRkZmYxZjhhZTcxYWQ5M2E5Y2I)
 * [Slack](https://www.slack.com) Team Code: __icsi-418team__.slack.com
 
