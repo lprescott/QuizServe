@@ -27,15 +27,18 @@
 * 3.14.2019 Trello Backup:  https://trello.com/b/xDXtTe7T/3142019
 
 ### Testing Plan and Results
-* See [Testing Plan and Results Document](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/Testing-Plan-and-Results.docx)
+* Download [Testing Plan and Results Document](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/Testing-Plan-and-Results.docx)
+  * See [PDF](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/Testing-Plan-and-Results.pdf)
 
 ### Deployment Plan Including Install Scripts
 * See [Live Trello](https://trello.com/b/pfH92DPN/icsi-418-group-project), more specifically: Sprint 7.
 * See [SQL Scripts](https://github.com/lprescott/ICSI418-Group-Project/blob/master/sql/)
-* See [Deployment Plan Document](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/Deployment-Plan.docx)
+* Download [Deployment Plan Document](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/Deployment-Plan.docx)
+  * See [PDF](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/Deployment-Plan.pdf)
 
 ### Maintenance Plan 
-* See [Maintenance Plan Document](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/Maintenance-Plan.docx)
+* Download [Maintenance Plan Document](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/Maintenance-Plan.docx)
+  * See [PDF](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/Maintenance-Plan.pdf)
 
 ## Other Info
 ### [Group Chat Invite Link](https://join.slack.com/t/icsi-418team/shared_invite/enQtNTU4NjUxODQ4NTQ2LTM2MDMwY2ExM2U0YjU0ZjMzNzkzY2JlNGFiMTQ4YWJlMjBkM2JmNTMyZThlMWRkZmYxZjhhZTcxYWQ5M2E5Y2I)
