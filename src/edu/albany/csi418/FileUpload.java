@@ -438,7 +438,7 @@ public class FileUpload extends HttpServlet {
 					
 				} else if (a5.isEmpty()) {
 					// error, skip question insertion
-					response.sendRedirect("admin/file_upload.jsp?success=false&error=Error%20Adding%20Question%20" + count);
+					response.sendRedirect("admin/file_upload.jsp?success=false&error=Error%20Uploading%20Question%20" + count);
 					System.out.println("Error: Answer 5 was empty, and six was not.");
 					reader.close();
 					return;

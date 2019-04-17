@@ -52,7 +52,7 @@
 				<%
 					if (request.getParameter("success") != null) {
 						if (request.getParameter("success").equals("true")) {
-							out.println("<div id=\"success\" style=\"text-align:center; padding: 5px; margin: 5px;\"><p>Questions Successfully Uploaded</p></div>");
+							out.println("<div id=\"success\" style=\"text-align:center; padding: 5px; margin: 5px;\"><p>File Successfully Uploaded</p></div>");
 						}
 					}
 				%>
