@@ -50,8 +50,8 @@
 					<input class="shadow-button" type="submit" value="Test Management" />
 				</form>
 
-				<form action="${pageContext.request.contextPath}/admin/question/question_upload.jsp">
-					<input class="shadow-button" type="submit" value="Question Upload" />
+				<form action="${pageContext.request.contextPath}/admin/file_upload.jsp">
+					<input class="shadow-button" type="submit" value="File Upload" />
 				</form>
 			</div>
 		</div>

@@ -71,8 +71,8 @@
     <servlet-class>edu.albany.csi418.test.TakeTest</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>QuestionUpload</servlet-name>
-    <servlet-class>edu.albany.csi418.question.QuestionUpload</servlet-class>
+    <servlet-name>FileUpload</servlet-name>
+    <servlet-class>edu.albany.csi418.FileUpload</servlet-class>
   </servlet>
   <filter>
     <filter-name>userFilter</filter-name>

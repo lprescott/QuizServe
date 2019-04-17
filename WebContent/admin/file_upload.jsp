@@ -17,6 +17,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/login.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/footer.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/question.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/filter.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 </head>
@@ -36,14 +37,13 @@
 	<!-- Content -->
 	<div class="main-container" style="max-width: 500px;">
 		<div class="main shadow">
-			<div class="form-container" style="padding: 30px;">
-			
+			<div class="form-container-question" style="padding: 30px;">
+
 				<!-- Error Message (if set) -->
 				<%
 					if (request.getParameter("success") != null) {
 						if (request.getParameter("success").equals("false")) {
-							out.println("<div id=\"error\" style=\"text-align:center; padding: 5px; margin: 5px;\"><p>"
-									+ request.getParameter("error") + "</p></div>");
+							out.println("<div id=\"error\" style=\"text-align:center; padding: 5px; margin: 5px;\"><p>" + request.getParameter("error") + "</p></div>");
 						}
 					}
 				%>
@@ -52,17 +52,20 @@
 				<%
 					if (request.getParameter("success") != null) {
 						if (request.getParameter("success").equals("true")) {
-							out.println(
-									"<div id=\"success\" style=\"text-align:center; padding: 5px; margin: 5px;\"><p>Questions Successfully Uploaded</p></div>");
+							out.println("<div id=\"success\" style=\"text-align:center; padding: 5px; margin: 5px;\"><p>Questions Successfully Uploaded</p></div>");
 						}
 					}
 				%>
-			
-				<h2 style="margin: 10px;">Upload Questions (.csv)</h2> <br>
-				<form action="${pageContext.request.contextPath}/QuestionUpload" method="post" enctype="multipart/form-data">
-					<input required id="csv_file" name="csv_file" type="file" accept=".csv" /><br> <br>
-					<input class="shadow-button" id="submit" type="submit" value="UPLOAD QUESTIONS">
-				</form> 
+
+				<h2 style="margin: 10px;">Upload File (.csv)</h2>
+				<br>
+				<form action="${pageContext.request.contextPath}/FileUpload" method="post" enctype="multipart/form-data">
+
+					<input class="q_input_text" id="q_test" name="q_test" type="text" placeholder="Test Name (Leave Empty for No Test!)"> <br>
+					<input required class="q_input_text" id="q_category" name="q_category" type="text" placeholder="Question Category"> <br>
+					<input required id="csv_file" name="csv_file" type="file" accept=".csv" /><br> 
+					<br> <input class="shadow-button" id="submit" type="submit" value="UPLOAD">
+				</form>
 			</div>
 		</div>
 	</div>

@@ -1,4 +1,4 @@
-package edu.albany.csi418.question;
+package edu.albany.csi418;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,17 +23,17 @@ import edu.albany.csi418.FileUtils;
 import edu.albany.csi418.session.LoginEnum;
 
 /**
- * Servlet implementation class QuestionUpload
+ * Servlet implementation class FileUpload
  */
-@WebServlet("/QuestionUpload")
+@WebServlet("/FileUpload")
 @MultipartConfig
-public class QuestionUpload extends HttpServlet {
+public class FileUpload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public QuestionUpload() {
+	public FileUpload() {
 		super();
 	}
 
@@ -57,7 +57,7 @@ public class QuestionUpload extends HttpServlet {
 			fileContent = filePart.getInputStream();
 		}
 
-		//Create a bew CSVReader object for parsing
+		//Create a new CSVReader object for parsing
 		CSVReader reader = new CSVReader(new InputStreamReader(fileContent));
 
 		try {
@@ -67,6 +67,36 @@ public class QuestionUpload extends HttpServlet {
 			// Open a connection
 			Connection DB_Connection = DriverManager.getConnection(LoginEnum.hostname.getValue(), LoginEnum.username.getValue(), LoginEnum.password.getValue());
 
+			//Set category
+			String category = "Question Upload";
+			if(request.getParameter("q_category") != null && !request.getParameter("q_category").isEmpty()) {
+				category = request.getParameter("q_category");
+			}
+			
+			//Set title
+			String title = null;
+			if(request.getParameter("q_test") != null && !request.getParameter("q_test").isEmpty()) {
+				title = request.getParameter("q_test");
+			}	
+			
+			//Create Test
+			if(title != null) {
+				Statement ADD_TEST_Statement = DB_Connection.createStatement();
+				String ADD_TEST_STRING = "INSERT INTO TEST (ADMIN_ID, TITLE, HEADER_TEXT, FOOTER_TEXT) VALUES (" + request.getSession().getAttribute("id") + ", '" + title + "', 'Uploaded Test', 'Uploaded Test')";
+				ADD_TEST_Statement.executeUpdate(ADD_TEST_STRING);
+				ADD_TEST_Statement.close();
+
+			}
+			
+			//Get test id
+			int testID = 0;
+			Statement GET_TEST_ID_Statement = DB_Connection.createStatement();
+			ResultSet testRS = GET_TEST_ID_Statement.executeQuery("SELECT * FROM TEST;");
+
+			if (testRS.last()) {
+				testID = testRS.getInt("TEST_ID");
+			}
+			
 			//count variable
 			int count = 1;
 
@@ -92,7 +122,7 @@ public class QuestionUpload extends HttpServlet {
 				a4 = nextLine[5];
 				a5 = nextLine[6];
 				a6 = nextLine[7];
-
+				
 				if (a5.isEmpty() && a6.isEmpty()) {
 					
 					//There are 4 answers
@@ -102,7 +132,7 @@ public class QuestionUpload extends HttpServlet {
 					
 					//Insert Question
 					Statement ADD_QUESTION_Statement = DB_Connection.createStatement();
-					String ADD_QUESTION_STRING = "INSERT INTO QUESTION (TEXT, CATEGORY, IS_TRUE_FALSE, NUM_ANSWERS) VALUES ('" + qText + "', 'Question Upload', 0, " + numAnswers + ")";
+					String ADD_QUESTION_STRING = "INSERT INTO QUESTION (TEXT, CATEGORY, IS_TRUE_FALSE, NUM_ANSWERS) VALUES ('" + qText + "', '"+category+"', 0, " + numAnswers + ")";
 					ADD_QUESTION_Statement.executeUpdate(ADD_QUESTION_STRING);
 					
 					// Get Question ID
@@ -111,6 +141,15 @@ public class QuestionUpload extends HttpServlet {
 
 					if (questionRS.last()) {
 						currentQuestionID = questionRS.getInt("QUESTION_ID");
+					}
+					
+					//Insert Into Test
+					if(title != null) {
+						Statement ADD_TEST_QUESTION_Statement = DB_Connection.createStatement();
+						String ADD_TEST_QUESTION_STRING = "INSERT INTO TEST_QUESTIONS (TEST_ID, QUESTION_ID) VALUES (" + testID + ", " + currentQuestionID + ")";
+						ADD_TEST_QUESTION_Statement.executeUpdate(ADD_TEST_QUESTION_STRING);
+						ADD_TEST_QUESTION_Statement.close();
+
 					}
 					
 					Statement ADD_ANSWER_Statement  = DB_Connection.createStatement();	
@@ -237,7 +276,7 @@ public class QuestionUpload extends HttpServlet {
 
 					//Insert Question
 					Statement ADD_QUESTION_Statement = DB_Connection.createStatement();
-					String ADD_QUESTION_STRING = "INSERT INTO QUESTION (TEXT, CATEGORY, IS_TRUE_FALSE, NUM_ANSWERS) VALUES ('" + qText + "', 'Question Upload', 0, " + numAnswers + ")";
+					String ADD_QUESTION_STRING = "INSERT INTO QUESTION (TEXT, CATEGORY, IS_TRUE_FALSE, NUM_ANSWERS) VALUES ('" + qText + "', '"+category+"', 0, " + numAnswers + ")";
 					ADD_QUESTION_Statement.executeUpdate(ADD_QUESTION_STRING);
 					
 					// Get Question ID
@@ -246,6 +285,15 @@ public class QuestionUpload extends HttpServlet {
 
 					if (questionRS.last()) {
 						currentQuestionID = questionRS.getInt("QUESTION_ID");
+					}
+					
+					//Insert Into Test
+					if(title != null) {
+						Statement ADD_TEST_QUESTION_Statement = DB_Connection.createStatement();
+						String ADD_TEST_QUESTION_STRING = "INSERT INTO TEST_QUESTIONS (TEST_ID, QUESTION_ID) VALUES (" + testID + ", " + currentQuestionID + ")";
+						ADD_TEST_QUESTION_Statement.executeUpdate(ADD_TEST_QUESTION_STRING);
+						ADD_TEST_QUESTION_Statement.close();
+
 					}
 					
 					Statement ADD_ANSWER_Statement  = DB_Connection.createStatement();	
@@ -390,20 +438,20 @@ public class QuestionUpload extends HttpServlet {
 					
 				} else if (a5.isEmpty()) {
 					// error, skip question insertion
-					response.sendRedirect("admin/question/question_upload.jsp?success=false&error=Error%20Adding%20Question%20" + count);
+					response.sendRedirect("admin/file_upload.jsp?success=false&error=Error%20Adding%20Question%20" + count);
 					System.out.println("Error: Answer 5 was empty, and six was not.");
 					reader.close();
 					return;
 
 				} else {
-					//There are 6 anwers
+					//There are 6 answers
 					numAnswers = 6;
 					int currentAnswerID = 0;
 					int currentQuestionID = 0;
 
 					//Insert Question
 					Statement ADD_QUESTION_Statement = DB_Connection.createStatement();
-					String ADD_QUESTION_STRING = "INSERT INTO QUESTION (TEXT, CATEGORY, IS_TRUE_FALSE, NUM_ANSWERS) VALUES ('" + qText + "', 'Question Upload', 0, " + numAnswers + ")";
+					String ADD_QUESTION_STRING = "INSERT INTO QUESTION (TEXT, CATEGORY, IS_TRUE_FALSE, NUM_ANSWERS) VALUES ('" + qText + "', '"+category+"', 0, " + numAnswers + ")";
 					ADD_QUESTION_Statement.executeUpdate(ADD_QUESTION_STRING);
 					
 					// Get Question ID
@@ -412,6 +460,15 @@ public class QuestionUpload extends HttpServlet {
 
 					if (questionRS.last()) {
 						currentQuestionID = questionRS.getInt("QUESTION_ID");
+					}
+					
+					//Insert Into Test
+					if(title != null) {
+						Statement ADD_TEST_QUESTION_Statement = DB_Connection.createStatement();
+						String ADD_TEST_QUESTION_STRING = "INSERT INTO TEST_QUESTIONS (TEST_ID, QUESTION_ID) VALUES (" + testID + ", " + currentQuestionID + ")";
+						ADD_TEST_QUESTION_Statement.executeUpdate(ADD_TEST_QUESTION_STRING);
+						ADD_TEST_QUESTION_Statement.close();
+
 					}
 					
 					Statement ADD_ANSWER_Statement  = DB_Connection.createStatement();	
@@ -587,13 +644,13 @@ public class QuestionUpload extends HttpServlet {
 			DB_Connection.close();
 			
 			//Success
-			response.sendRedirect("admin/question/question_upload.jsp?success=true");
+			response.sendRedirect("admin/file_upload.jsp?success=true");
 
 			
 		} catch (Exception e) {
 			
 			//System.out.println(e);
-			response.sendRedirect("admin/question/question_upload.jsp?success=false&error=Unknown%20Error");
+			response.sendRedirect("admin/file_upload.jsp?success=false&error=Unknown%20Error");
 			return;
 		}
 
