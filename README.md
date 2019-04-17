@@ -32,6 +32,7 @@
 ### Deployment Plan Including Install Scripts
 * See [Live Trello](https://trello.com/b/pfH92DPN/icsi-418-group-project), more specifically: Sprint 7.
 * See [SQL Scripts](https://github.com/lprescott/ICSI418-Group-Project/blob/master/sql/)
+* See [Deployment Plan Document](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/Deployment-Plan.docx)
 
 ### Maintenance Plan 
 * See [Maintenance Plan Document](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/Maintenance-Plan.docx)
