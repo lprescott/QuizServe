@@ -26,7 +26,7 @@
 	<sql:query dataSource="${snapshot1}" var="result1"> SELECT * FROM TEST T INNER JOIN ADMINISTRATOR A ON T.ADMIN_ID = A.ADMIN_ID WHERE TEST_ID = <%=request.getParameter("TEST_ID")%>; </sql:query>
 	<sql:query dataSource="${snapshot1}" var="result4"> SELECT * FROM USERS U INNER JOIN TESTS_TAKEN TT ON U.USERS_ID = TT.USERS_ID WHERE TEST_TAKEN_ID = <%=request.getParameter("TEST_TAKEN_ID")%>; </sql:query>
 	<sql:query dataSource="${snapshot1}" var="result5"> SELECT * FROM ALLOWED_USERS WHERE USERS_ID = ${id} AND TEST_ID = <%=request.getParameter("TEST_ID")%>; </sql:query>
-
+	<sql:query dataSource="${snapshot1}" var="currAdmin"> SELECT * FROM ADMINISTRATOR WHERE ADMIN_ID = <%=request.getSession().getAttribute("id")%>; </sql:query>
 	<!-- Navbar -->
 	<div class="header shadow">
 
@@ -34,8 +34,13 @@
 			<a class="logo-uploaded" href="${pageContext.request.contextPath}/admin/main.jsp"> <img class="shadow" style="max-height: 70px;" src="${pageContext.request.contextPath}/uploads/${result1.rows[0].IMAGE_NAME}" alt="T-${result1.rows[0].IMAGE_NAME}">
 			</a>
 		</c:if>
-
-		<c:if test="${empty result1.rows[0].IMAGE_NAME}">
+		
+		<c:if test="${empty result1.rows[0].IMAGE_NAME && not empty currAdmin.rows[0].FILENAME}">
+		<a class="logo-uploaded" href="${pageContext.request.contextPath}/admin/main.jsp"> <img class="shadow" style="max-height: 70px;" src="${pageContext.request.contextPath}/headerimg/${currAdmin.rows[0].FILENAME}" alt="T-${currAdmin.rows[0].FILENAME}">
+			</a>
+		</c:if>
+		
+		<c:if test="${empty result1.rows[0].IMAGE_NAME && empty currAdmin.rows[0].FILENAME}">
 			<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"> <img class="shadow" style="max-height: 65px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg" alt="SUNY Albany Seal">
 			</a>
 		</c:if>

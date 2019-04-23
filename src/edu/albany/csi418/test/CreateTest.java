@@ -180,7 +180,6 @@ public class CreateTest extends HttpServlet {
 			return;
 		} catch (Exception e) {
 
-			System.out.println(e);
 			response.sendRedirect("admin/test/create_test.jsp?success=false&error=Unknown%20Error");
 			return;
 		}

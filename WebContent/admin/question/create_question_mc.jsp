@@ -20,18 +20,7 @@
 
 <body>
 	<!-- Navbar -->
-	<div class="header shadow">
-		<a class="logo" href="${pageContext.request.contextPath}/admin/main.jsp"><img class="shadow"
-				style="max-height: 60px;" src="${pageContext.request.contextPath}/img/graphic-seal.jpg"
-				alt="SUNY Albany Seal"></a>
-		<p style="float: left;">University at Albany, SUNY</p>
-		<p>Logged in as ${email}.</p>		
-		<a id="link" href="${pageContext.request.contextPath}/admin/question/question_management.jsp">
-			Go back </a>
-		<form action="${pageContext.request.contextPath}/Logout" method="post">
-			<input type="submit" value="Logout">
-		</form>
-	</div>
+	<%@ include file = "../header.jsp" %>
 
 	<!-- Content -->
 	<div class="main-container">
@@ -79,10 +68,6 @@
 		</div>
 	</div>
 
-	<!-- Footer -->
-	<div class="footer shadow">
-		<p>A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp" >our team</a> for an ICSI 418Y/410 final project, Spring 2019.</p>
-	</div>
 </body>
 
 </html>

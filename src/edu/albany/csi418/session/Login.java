@@ -67,7 +67,6 @@ public class Login extends HttpServlet {
             ResultSet USER_Results = USER_SQL_Statement.executeQuery(USER_SQL_Query);
             ResultSet ADMIN_Results = ADMIN_SQL_Statement.executeQuery(ADMIN_SQL_Query);
 
-
             // Extract data from result set: USER_Results
             while (USER_Results.next()) {
                 if (email.equals(USER_Results.getString("EMAIL")) && password.equals(USER_Results.getString("PASSWORD"))) {
@@ -88,9 +87,9 @@ public class Login extends HttpServlet {
                     if (email.equals(ADMIN_Results.getString("EMAIL")) && password.equals(ADMIN_Results.getString("PASSWORD"))) {
                         isValidAdmin = true;
                         id = ADMIN_Results.getInt("ADMIN_ID");
+                        break;
                     }
 
-                    break;
                 }
             }
 
