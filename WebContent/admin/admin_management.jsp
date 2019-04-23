@@ -56,6 +56,7 @@
 
 				<c:forEach var="row" items="${result.rows}">
 					<tr>
+						<td><c:out value="${row.ADMIN_ID}" /></td>
 						<td><c:out value="${row.EMAIL}" /></td>
 						<td><c:out value="${row.PASSWORD}" /></td>
 						<td><a class="link-style" href="${pageContext.request.contextPath}/admin/edit_admin.jsp?ADMIN_ID=<c:out value="${row.ADMIN_ID}"/>">edit</a></td>
