@@ -72,7 +72,7 @@
 						<div style="text-align: center;">
 							Attached image:
 							<output name="image">${t_result.rows[0].IMAGE_NAME}</output>
-							<input type="file" id="t_image" name="t_image" accept="image/png, image/jpeg"><br> <br> Due Date: <input type="date" id="test_due" name="test_due" value="${t_result.rows[0].TEST_DUE}">
+							<input type="file" id="t_image" name="t_image" accept="image/png, image/jpeg"><br> <br> Due Date: <input required type="date" id="test_due" name="test_due" value="${t_result.rows[0].TEST_DUE}">
 						</div>
 
 					</div>
