@@ -30,10 +30,10 @@
 </div>
 <div class="footer shadow">
 	<c:if test="${not empty currAdmin.rows[0].FOOTER}">
-		<p style="float: left;">${currAdmin.rows[0].FOOTER}</p>
+		<p>${currAdmin.rows[0].FOOTER}</p>
 	</c:if>
 	<c:if test="${empty currAdmin.rows[0].FOOTER}">
-		<p style="float: left;">
+		<p>
 			A quiz application by <a class="link-style" href="${pageContext.request.contextPath}/about_us.jsp">our team</a> for an ICSI 418Y/410 final project, Spring 2019.
 		</p>
 	</c:if>
