@@ -179,7 +179,7 @@ public class Login extends HttpServlet {
             //System.out.println(e);
         	            	
             //return to login page with error binded to request
-            response.sendRedirect("login.jsp?success=false&error=Unknown%20Error");
+            response.sendRedirect("login.jsp?success=false&error=" + e.toString());
         }
     }
 }

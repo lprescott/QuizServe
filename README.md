@@ -1,5 +1,7 @@
 # Final Project for ISCI-418Y, Software Engineering, Spring 2019
 
+See it live [here](http://quiz-app.us-east-1.elasticbeanstalk.com/).
+
 ## Deliverables
 ### Requirements documentation
 * The final project completed is a web-based application. More specifically, it is a testing tool that’s function is the managing, administration, and taking of multiple-choice and true-false examinations. The goal of the project is to create a testing system, which includes a user component, where one can take any number of assigned tests, receiving said results, as well as viewing results of previously taken tests. The testing system also includes an administrative component where one can create, read, update and delete all types of users, questions (answers), and tests – as well as view user’s results.
