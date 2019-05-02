@@ -27,7 +27,7 @@
 * 3.28.2019 Trello Backup:  https://trello.com/b/ImeyHv1X/3282019
 * 3.21.2019 Trello Backup:  https://trello.com/b/ZcDJdnAc/3212019
 * 3.14.2019 Trello Backup:  https://trello.com/b/xDXtTe7T/3142019
-* Cumulative Flow [Cumulative Flow](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/cumulative-flow.png)
+* Cumulative Flow ![Cumulative Flow](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/cumulative-flow.png)
 
 ### Testing Plan and Results
 * Download [Testing Plan and Results Document](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/Testing-Plan-and-Results.docx)
