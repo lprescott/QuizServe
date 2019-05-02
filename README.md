@@ -1,10 +1,10 @@
 # Final Project for ISCI-418Y, Software Engineering, Spring 2019
 
 ### See it live [here](http://quiz-app.us-east-1.elasticbeanstalk.com/), at this domain: http://quiz-app.us-east-1.elasticbeanstalk.com/.
-|| Professor Yates  | Professor Cusano | 
-|--------| ------------- | ------------- |
-|email| jyates@albany.edu  | cacusano@albany.edu  |
-|password| csi2019  | csi2019  |
+|| Professor Yates  | Professor Cusano | Testing |
+|--------| ------------- | ------------- | ------- |
+|email| jyates@albany.edu  | cacusano@albany.edu  | admin@gmail.com |
+|password| csi2019  | csi2019  | csi2019 |
 
 ## Deliverables
 ### Requirements documentation
