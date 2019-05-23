@@ -1,5 +1,13 @@
 # Final Project for ISCI-418Y, Software Engineering, Spring 2019
 
+### Presentation [here](https://docs.google.com/presentation/d/1TYiOCDKvI02Zjpk0cX1OBYb9qO-9BI-ckkVlMHD0TyA/edit?usp=sharing)
+
+### Screenshots [here](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/screenshots/)
+
+![The Login Page](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/screenshots/image19.png)
+
+### Video [here](https://www.screencast.com/t/82TMiD1ZoB)
+
 ### ~~See it live [here](http://quiz-app.us-east-1.elasticbeanstalk.com/), at this domain: http://quiz-app.us-east-1.elasticbeanstalk.com/.~~ Terminated
 || Professor Yates  | Professor Cusano | Testing |
 |--------| ------------- | ------------- | ------- |
@@ -7,7 +15,7 @@
 |password| csi2019  | csi2019  | csi2019 |
 
 ### Requirements
-The final project completed is a web-based application. More specifically, it is a testing tool that’s function is the managing, administration, and taking of multiple-choice and true-false examinations. The goal of the project is to create a testing system, which includes a user component, where one can take any number of assigned tests, receiving said results, as well as viewing results of previously taken tests. The testing system also includes an administrative component where one can create, read, update and delete all types of users, questions (answers), and tests – as well as view user’s results.
+The final project was a web-based application. More specifically, it was a testing tool that’s function was the managing, administration, and taking of multiple-choice and true-false examinations. The goal of the project was to create a testing system, which includes a user component, where one can take any number of assigned tests, receiving said results, as well as viewing results of previously taken tests. The testing system also includes an administrative component where one can create, read, update and delete all types of users, questions (answers), and tests – as well as view user’s results.
 
 More specific requirements include: users are identified by and login through an email and password; users can be marked inactive by an administrator and are therefore not allowed to login; users are emailed their identification information upon account creation by an administrator; questions are to be categorized and can contain images as well as text; upon taking a test, a user’s progress should be saved actively as they answer questions; the header image, header text, and footer text should be customizable by each administrator; a test with questions and answers can be uploaded to the web-app in the form of a csv file, 
 propagating through the database.
