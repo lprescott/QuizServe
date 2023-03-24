@@ -46,10 +46,6 @@ To fulfill the project objective and requirements detailed previously, it is imp
 * 3.21.2019 Trello Backup:  https://trello.com/b/ZcDJdnAc/3212019
 * 3.14.2019 Trello Backup:  https://trello.com/b/xDXtTe7T/3142019
 
-<p align="center">
-  <img src="https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/cumulative-flow.png" title="Cumulative Flow">
-</p>
-
 ### Testing Plan and Results
 * Download [Testing Plan and Results Document](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/Testing-Plan-and-Results.docx)
   * See [PDF](https://github.com/lprescott/ICSI418-Group-Project/blob/master/project-logistics/Testing-Plan-and-Results.pdf)
